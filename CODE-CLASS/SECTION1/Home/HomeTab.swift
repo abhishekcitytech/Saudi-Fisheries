@@ -67,7 +67,8 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
         else
         {
             print("not call get authorization method")
-            self.getBannerUrl()
+            let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+            self.getBannerUrl(strSelectedStoreID: strSlectedStoreID)
         }
     }
     
@@ -490,10 +491,16 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
                     
                     let dicFirstIndex = self.arrMStores.object(at: 0) as! NSDictionary
                     let SelectedStoreID = String(format: "%@", dicFirstIndex.value(forKey: "StoreID") as! CVarArg)
-                    let SelectedStoreNAME = String(format: "%@", dicFirstIndex.value(forKey: "StoreID") as! CVarArg)
+                    let SelectedStoreNAME = String(format: "%@", dicFirstIndex.value(forKey: "name") as! CVarArg)
+                    
+                    UserDefaults.standard.set(SelectedStoreID, forKey: "SelectedStoreID")
+                    UserDefaults.standard.set(SelectedStoreNAME, forKey: "SelectedStoreNAME")
+                    UserDefaults.standard.synchronize()
                     
                     OperationQueue.main.addOperation {
-                        self.getBannerUrl()
+                        
+                        let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+                        self.getBannerUrl(strSelectedStoreID: strSlectedStoreID)
                     }
                 }
             }
@@ -507,12 +514,12 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
     }
     
     //MARK: - get BannerUrl method
-    func getBannerUrl()
+    func getBannerUrl(strSelectedStoreID: String)
     {
         self.showLoadingMode()
         
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
-        let strconnurl = String(format: "%@%@", Constants.conn.ConnUrl, "api/getbannerbystoreid/1")
+        let strconnurl = String(format: "%@%@%@", Constants.conn.ConnUrl, "api/getbannerbystoreid/",strSelectedStoreID)
         let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
         request.httpMethod = "GET"
         request.setValue(strapikey, forHTTPHeaderField: "Authorization")
