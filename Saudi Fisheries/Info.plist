@@ -37,5 +37,22 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Dubai-Bold.ttf</string>
+		<string>Dubai-Light.ttf</string>
+		<string>Dubai-Medium.ttf</string>
+		<string>Dubai-Regular.ttf</string>
+		<string>futura.ttf</string>
+		<string>futura_heavy.ttf</string>
+		<string>ge_ss_two_light.ttf</string>
+		<string>ge_ss_two_medium.ttf</string>
+		<string>ge_ss_two_bold.ttf</string>
+	</array>
 </dict>
 </plist>

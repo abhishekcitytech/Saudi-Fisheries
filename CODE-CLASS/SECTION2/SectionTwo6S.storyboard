@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Dubai-Medium.ttf">
+            <string>Dubai-Medium</string>
+        </array>
+        <array key="Dubai-Regular.ttf">
+            <string>Dubai-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Product Details-->
+        <scene sceneID="OKL-g5-O86">
+            <objects>
+                <viewController storyboardIdentifier="ProductDetails" id="hC8-5y-I2L" customClass="ProductDetails" customModule="Saudi_Fisheries" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AyF-J7-TGb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="oH1-3U-CCd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="C9k-2R-rBH">
+                                        <rect key="frame" x="8" y="28" width="28" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="back-white"/>
+                                        <connections>
+                                            <action selector="pressBack:" destination="hC8-5y-I2L" eventType="touchUpInside" id="2SM-tl-bFd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Iwg-Hf-QMz">
+                                        <rect key="frame" x="336" y="30" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="share"/>
+                                        <connections>
+                                            <action selector="pressShare:" destination="hC8-5y-I2L" eventType="touchUpInside" id="6cF-i4-wZq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="9cv-ip-oyO">
+                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="47.00 AED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="okI-hA-EKe">
+                                        <rect key="frame" x="8" y="8" width="80" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="16"/>
+                                        <color key="textColor" red="0.86389487980000002" green="0.30670046810000001" blue="0.25533983110000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" id="QfW-6B-sHi">
+                                        <rect key="frame" x="106" y="8" width="118" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rNS-gf-kXR">
+                                                <rect key="frame" x="0.0" y="0.0" width="33" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.93720585109999999" green="0.93728893999999996" blue="0.93713641169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" title="-">
+                                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rOg-iM-y1o">
+                                                <rect key="frame" x="85" y="0.0" width="33" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.93720585109999999" green="0.93728893999999996" blue="0.93713641169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" title="+">
+                                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="center" minimumFontSize="17" id="R9d-J4-8ZK">
+                                                <rect key="frame" x="32" y="0.0" width="53" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="j54-f5-lCT">
+                                        <rect key="frame" x="261" y="8" width="100" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="18"/>
+                                        <state key="normal" title="Add to Cart"/>
+                                        <connections>
+                                            <action selector="pressAddtoCart:" destination="hC8-5y-I2L" eventType="touchUpInside" id="ACr-4a-XZu"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6nX-8d-E2i">
+                                <rect key="frame" x="335" y="72" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="wishlist-wTop"/>
+                                <state key="selected" backgroundImage="favselected"/>
+                                <connections>
+                                    <action selector="pressFav:" destination="hC8-5y-I2L" eventType="touchUpInside" id="e6r-Cn-rFu"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="222" contentMode="scaleToFill" id="DqV-oT-xKB">
+                                <rect key="frame" x="0.0" y="64" width="375" height="511"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="wbd-Nb-nzt">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="222" contentMode="scaleToFill" id="WGf-25-0sK">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="hC8-5y-I2L" id="aST-yI-Jvl"/>
+                                                </connections>
+                                            </scrollView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="RIS-hA-8LF">
+                                        <rect key="frame" x="0.0" y="192" width="375" height="126"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sea Bass" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kcy-oP-3Xx">
+                                                <rect key="frame" x="8" y="8" width="359" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="19"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category: Fresh Fish" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mFm-n8-vIQ">
+                                                <rect key="frame" x="8" y="66" width="359" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origin: Turkey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PTg-uZ-wQm">
+                                                <rect key="frame" x="8" y="37" width="359" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" id="ciu-cm-Wkn" customClass="FloatRatingView" customModule="Saudi_Fisheries" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="103" width="129" height="16"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty"/>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="siK-E0-uZS">
+                                        <rect key="frame" x="0.0" y="320" width="375" height="283"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Size &amp; Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z3E-qV-3yS">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="16"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" id="Zbb-kO-TeJ">
+                                                <rect key="frame" x="8" y="38" width="359" height="81"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rvH-57-qKz">
+                                                        <rect key="frame" x="8" y="17" width="24" height="24"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                        <state key="normal" backgroundImage="radiouncheck"/>
+                                                        <state key="selected" backgroundImage="radiocheck"/>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Small" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iBQ-jx-xUe">
+                                                        <rect key="frame" x="40" y="17" width="142" height="29"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="17"/>
+                                                        <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 small fish = 0.9 to 1.1 kg (Approx)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aqg-ZM-Ujc">
+                                                        <rect key="frame" x="8" y="49" width="343" height="19"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                                        <color key="textColor" red="0.86389487980000002" green="0.30670046810000001" blue="0.25533983110000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" id="gxZ-g4-FGP">
+                                                <rect key="frame" x="8" y="120" width="359" height="81"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="o6j-LB-tr0">
+                                                        <rect key="frame" x="8" y="17" width="24" height="24"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                        <state key="normal" backgroundImage="radiouncheck"/>
+                                                        <state key="selected" backgroundImage="radiocheck"/>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ef6-Sk-CtN">
+                                                        <rect key="frame" x="40" y="17" width="142" height="29"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="17"/>
+                                                        <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 medium fish =2.0 to 2.2 kg (Approx)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vhy-Ip-Ose">
+                                                        <rect key="frame" x="8" y="49" width="343" height="19"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                                        <color key="textColor" red="0.86389487980000002" green="0.30670046810000001" blue="0.25533983110000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" id="5Ii-dP-Do2">
+                                                <rect key="frame" x="8" y="202" width="359" height="81"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eC0-1k-iSx">
+                                                        <rect key="frame" x="8" y="19" width="24" height="24"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                        <state key="normal" backgroundImage="radiouncheck"/>
+                                                        <state key="selected" backgroundImage="radiocheck"/>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Large" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Iy-Lk-HaX">
+                                                        <rect key="frame" x="40" y="17" width="142" height="29"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="17"/>
+                                                        <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 large fish = 2.0 to 4.0 kg (Approx)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pOy-MD-fct">
+                                                        <rect key="frame" x="8" y="49" width="343" height="19"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                                        <color key="textColor" red="0.86389487980000002" green="0.30670046810000001" blue="0.25533983110000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="ldf-sL-fqn">
+                                        <rect key="frame" x="0.0" y="603" width="375" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Selct Purchase Procedure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="beV-za-3k9">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="16"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Row" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t4x-Ew-NNO">
+                                                <rect key="frame" x="57" y="44" width="79" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vHk-ma-lI5">
+                                                <rect key="frame" x="19" y="44" width="24" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" backgroundImage="radiouncheck"/>
+                                                <state key="selected" backgroundImage="radiocheck"/>
+                                                <connections>
+                                                    <action selector="pressRow:" destination="hC8-5y-I2L" eventType="touchUpInside" id="h9A-6v-fGZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tXP-7o-fOV">
+                                                <rect key="frame" x="150" y="44" width="24" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" backgroundImage="radiouncheck"/>
+                                                <state key="selected" backgroundImage="radiocheck"/>
+                                                <connections>
+                                                    <action selector="pressService:" destination="hC8-5y-I2L" eventType="touchUpInside" id="ZUd-XV-3Nf"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ajb-uV-5s1">
+                                                <rect key="frame" x="188" y="44" width="79" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="WWj-wu-cFy">
+                                        <rect key="frame" x="0.0" y="693" width="375" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Instructions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AsU-XU-mte">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="16"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="upr-F6-8qY">
+                                                <rect key="frame" x="30" y="38" width="56" height="56"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" backgroundImage="Clean"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clean" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tsZ-rY-eOa">
+                                                <rect key="frame" x="19" y="95" width="79" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2x7-4n-2RI">
+                                                <rect key="frame" x="46" y="124" width="24" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" backgroundImage="uncheckboxGR"/>
+                                                <state key="selected" backgroundImage="checkboxGR"/>
+                                                <connections>
+                                                    <action selector="pressCleanCheckBox:" destination="hC8-5y-I2L" eventType="touchUpInside" id="adM-ZQ-CyC"/>
+                                                    <action selector="pressRow:" destination="hC8-5y-I2L" eventType="touchUpInside" id="XOt-z7-sja"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tYJ-By-20s">
+                                                <rect key="frame" x="159" y="38" width="56" height="56"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" backgroundImage="Slice"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tzh-Nc-we3">
+                                                <rect key="frame" x="148" y="95" width="79" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ebp-AI-qST">
+                                                <rect key="frame" x="175" y="124" width="24" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" backgroundImage="uncheckboxGR"/>
+                                                <state key="selected" backgroundImage="checkboxGR"/>
+                                                <connections>
+                                                    <action selector="pressRow:" destination="hC8-5y-I2L" eventType="touchUpInside" id="3Nu-o8-VvS"/>
+                                                    <action selector="pressSliceCheckBox:" destination="hC8-5y-I2L" eventType="touchUpInside" id="SC7-F7-RHy"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CCa-vZ-Lai">
+                                                <rect key="frame" x="289" y="38" width="56" height="56"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" backgroundImage="Filet"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fillet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OFl-sz-cuX">
+                                                <rect key="frame" x="278" y="94" width="79" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Egy-Q0-91y">
+                                                <rect key="frame" x="305" y="124" width="24" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" backgroundImage="uncheckboxGR"/>
+                                                <state key="selected" backgroundImage="checkboxGR"/>
+                                                <connections>
+                                                    <action selector="pressFilletCheckBox:" destination="hC8-5y-I2L" eventType="touchUpInside" id="0Ww-As-kB9"/>
+                                                    <action selector="pressRow:" destination="hC8-5y-I2L" eventType="touchUpInside" id="ObI-f9-2DG"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="05d-D7-A18">
+                                        <rect key="frame" x="0.0" y="693" width="375" height="280"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Instructions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RtN-vc-H0o">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="16"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Eyq-xS-yit">
+                                                <rect key="frame" x="30" y="38" width="56" height="56"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" backgroundImage="fry"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fry" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F6B-VD-tam">
+                                                <rect key="frame" x="19" y="95" width="79" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fw4-lj-grp">
+                                                <rect key="frame" x="46" y="124" width="24" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" backgroundImage="uncheckboxGR"/>
+                                                <state key="selected" backgroundImage="checkboxGR"/>
+                                                <connections>
+                                                    <action selector="pressFryCheckBox:" destination="hC8-5y-I2L" eventType="touchUpInside" id="W5t-KX-W1C"/>
+                                                    <action selector="pressRow:" destination="hC8-5y-I2L" eventType="touchUpInside" id="0pB-p9-hcf"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LK3-Q2-HqL">
+                                                <rect key="frame" x="159" y="38" width="56" height="56"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" backgroundImage="cook"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tQ1-TE-EfS">
+                                                <rect key="frame" x="148" y="95" width="79" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="DKG-s8-G5h">
+                                                <rect key="frame" x="175" y="124" width="24" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
+                                                <state key="normal" backgroundImage="uncheckboxGR"/>
+                                                <state key="selected" backgroundImage="checkboxGR"/>
+                                                <connections>
+                                                    <action selector="pressCookCheckBox:" destination="hC8-5y-I2L" eventType="touchUpInside" id="N3c-g9-yhZ"/>
+                                                    <action selector="pressRow:" destination="hC8-5y-I2L" eventType="touchUpInside" id="kN6-w0-9BX"/>
+                                                </connections>
+                                            </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="hEG-u7-JX6">
+                                                <rect key="frame" x="19" y="170" width="335" height="96"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="hC8-5y-I2L" id="0NY-LR-Ax4"/>
+                                                </connections>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="400"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hC8-5y-I2L" id="bHP-FF-DPg"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="btnAddtoCart" destination="j54-f5-lCT" id="GCn-Ua-hBe"/>
+                        <outlet property="btnBack" destination="C9k-2R-rBH" id="v7f-yB-dDH"/>
+                        <outlet property="btnClean" destination="upr-F6-8qY" id="EyG-gg-gfE"/>
+                        <outlet property="btnCleanCheckbox" destination="2x7-4n-2RI" id="F7R-4i-s8p"/>
+                        <outlet property="btnCook" destination="LK3-Q2-HqL" id="aKU-Vd-6NS"/>
+                        <outlet property="btnCookCheckbox" destination="DKG-s8-G5h" id="XXW-bI-CWc"/>
+                        <outlet property="btnFav" destination="6nX-8d-E2i" id="R5h-j5-Op0"/>
+                        <outlet property="btnFillet" destination="CCa-vZ-Lai" id="E5J-iT-ESm"/>
+                        <outlet property="btnFilletCheckbox" destination="Egy-Q0-91y" id="DLe-HY-R5K"/>
+                        <outlet property="btnFry" destination="Eyq-xS-yit" id="knO-FY-Q1S"/>
+                        <outlet property="btnFryCheckbox" destination="fw4-lj-grp" id="fRU-bp-fkQ"/>
+                        <outlet property="btnRow" destination="vHk-ma-lI5" id="pPb-bn-tYm"/>
+                        <outlet property="btnSevrice" destination="tXP-7o-fOV" id="0re-A4-igz"/>
+                        <outlet property="btnShare" destination="Iwg-Hf-QMz" id="Bfc-j7-mre"/>
+                        <outlet property="btnSlice" destination="tYJ-By-20s" id="fom-L3-lFR"/>
+                        <outlet property="btnSliceCheckbox" destination="Ebp-AI-qST" id="KbG-f4-RCK"/>
+                        <outlet property="lblCategory" destination="mFm-n8-vIQ" id="cST-4H-Hh1"/>
+                        <outlet property="lblClean" destination="tsZ-rY-eOa" id="UMW-al-e1o"/>
+                        <outlet property="lblCook" destination="tQ1-TE-EfS" id="5yq-Fm-f7a"/>
+                        <outlet property="lblFillet" destination="OFl-sz-cuX" id="rFH-6K-VIA"/>
+                        <outlet property="lblFry" destination="F6B-VD-tam" id="B1b-PU-pJr"/>
+                        <outlet property="lblInstructions2" destination="AsU-XU-mte" id="TgL-Ne-fne"/>
+                        <outlet property="lblInstructions3" destination="RtN-vc-H0o" id="d1o-sT-jaW"/>
+                        <outlet property="lblName" destination="kcy-oP-3Xx" id="4cQ-fm-GA4"/>
+                        <outlet property="lblOrigin" destination="PTg-uZ-wQm" id="xK1-XK-iKd"/>
+                        <outlet property="lblRow" destination="t4x-Ew-NNO" id="hcb-OO-TWW"/>
+                        <outlet property="lblSelectPurchaseProcedure" destination="beV-za-3k9" id="e0j-tP-9iI"/>
+                        <outlet property="lblService" destination="ajb-uV-5s1" id="R38-6F-jTW"/>
+                        <outlet property="lblSlice" destination="tzh-Nc-we3" id="SiQ-2F-Dag"/>
+                        <outlet property="scrollGallery" destination="WGf-25-0sK" id="0mt-Vx-Rqb"/>
+                        <outlet property="scrollOverAll" destination="DqV-oT-xKB" id="oxO-50-QDY"/>
+                        <outlet property="txtVComments" destination="hEG-u7-JX6" id="5eD-dC-asf"/>
+                        <outlet property="viewBottom1" destination="9cv-ip-oyO" id="GLx-Or-aJj"/>
+                        <outlet property="viewGallery" destination="wbd-Nb-nzt" id="Cnu-l4-2Co"/>
+                        <outlet property="viewMiddle" destination="RIS-hA-8LF" id="Ur2-x5-rmL"/>
+                        <outlet property="viewMiddle1" destination="siK-E0-uZS" id="E2H-pm-TTQ"/>
+                        <outlet property="viewMiddle2" destination="WWj-wu-cFy" id="3tP-Pw-10b"/>
+                        <outlet property="viewMiddle23" destination="ldf-sL-fqn" id="Nxq-oQ-fd4"/>
+                        <outlet property="viewMiddle3" destination="05d-D7-A18" id="wfb-Iy-5LC"/>
+                        <outlet property="viewQTY" destination="QfW-6B-sHi" id="Hgx-v1-YIV"/>
+                        <outlet property="viewReviewFeebcak" destination="ciu-cm-Wkn" id="gYW-Ni-2nB"/>
+                        <outlet property="viewmid11" destination="Zbb-kO-TeJ" id="ti9-tT-phe"/>
+                        <outlet property="viewmid22" destination="gxZ-g4-FGP" id="PPv-lT-PT9"/>
+                        <outlet property="viewmid33" destination="5Ii-dP-Do2" id="crJ-mb-VY4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ynH-oz-Cl5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-18.399999999999999" y="156.97151424287858"/>
+        </scene>
+        <!--Menu Grid-->
+        <scene sceneID="Xpd-re-0J8">
+            <objects>
+                <viewController storyboardIdentifier="MenuGrid" id="vlY-tN-7gP" customClass="MenuGrid" customModule="Saudi_Fisheries" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="quw-cR-qws">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="q7U-r7-awK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aRi-hX-eXH">
+                                        <rect key="frame" x="52" y="28" width="270" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ain-Un-NBs">
+                                        <rect key="frame" x="8" y="28" width="28" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="back-white"/>
+                                        <connections>
+                                            <action selector="pressBack:" destination="vlY-tN-7gP" eventType="touchUpInside" id="Zv3-Hd-9Wq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="n5x-sP-YGP">
+                                        <rect key="frame" x="339" y="28" width="28" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="search-w"/>
+                                        <connections>
+                                            <action selector="pressSearch:" destination="vlY-tN-7gP" eventType="touchUpInside" id="Ht7-YQ-0jH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="jEe-z1-KaX">
+                                <rect key="frame" x="0.0" y="64" width="375" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cb7-3g-8ZQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="74"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="17"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Starter" backgroundImage="menudeselection">
+                                            <color key="titleColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="selected" backgroundImage="menuselection"/>
+                                        <connections>
+                                            <action selector="pressSort:" destination="GvA-hb-d2M" eventType="touchUpInside" id="YLB-HR-d1d"/>
+                                            <action selector="pressStarter:" destination="vlY-tN-7gP" eventType="touchUpInside" id="kX7-6e-UEH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Spi-Ky-a18">
+                                        <rect key="frame" x="125" y="0.0" width="125" height="74"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="17"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Main Course" backgroundImage="menudeselection">
+                                            <color key="titleColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="selected" backgroundImage="menuselection"/>
+                                        <connections>
+                                            <action selector="pressFilter:" destination="GvA-hb-d2M" eventType="touchUpInside" id="KMm-lw-kh0"/>
+                                            <action selector="pressMainCourse:" destination="vlY-tN-7gP" eventType="touchUpInside" id="GM2-pA-iWK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Zc6-4B-KfN">
+                                        <rect key="frame" x="250" y="0.0" width="125" height="74"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="17"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Dessert" backgroundImage="menudeselection">
+                                            <color key="titleColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="selected" backgroundImage="menuselection"/>
+                                        <connections>
+                                            <action selector="pressDessert:" destination="vlY-tN-7gP" eventType="touchUpInside" id="iks-4v-Rcx"/>
+                                            <action selector="pressFilter:" destination="GvA-hb-d2M" eventType="touchUpInside" id="jCC-fk-3v8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ovv-tb-TZr">
+                                        <rect key="frame" x="46" y="8" width="32" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="starter"/>
+                                        <connections>
+                                            <action selector="pressSort:" destination="GvA-hb-d2M" eventType="touchUpInside" id="P3J-Yu-bgN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="v7T-8Z-kgb">
+                                        <rect key="frame" x="171" y="8" width="32" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="maincourse"/>
+                                        <connections>
+                                            <action selector="pressFilter:" destination="GvA-hb-d2M" eventType="touchUpInside" id="YTz-w0-SRe"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="33M-76-Spt">
+                                        <rect key="frame" x="296" y="8" width="32" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="dessert"/>
+                                        <connections>
+                                            <action selector="pressFilter:" destination="GvA-hb-d2M" eventType="touchUpInside" id="Ndx-mQ-O7H"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94508427380000004" green="0.93728798629999999" blue="0.94105476139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tTj-aY-ZuM">
+                                <rect key="frame" x="0.0" y="138" width="375" height="490"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="vlY-tN-7gP" id="KLa-rb-eTP"/>
+                                    <outlet property="delegate" destination="vlY-tN-7gP" id="x0g-X1-bRy"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="btnDessert" destination="Zc6-4B-KfN" id="0t5-Uv-mDn"/>
+                        <outlet property="btnMainCourse" destination="Spi-Ky-a18" id="q0f-ER-Y4z"/>
+                        <outlet property="btnStarter" destination="Cb7-3g-8ZQ" id="SMu-Xe-L5u"/>
+                        <outlet property="tableLine" destination="tTj-aY-ZuM" id="kET-nm-VvB"/>
+                        <outlet property="viewTopMenuBar" destination="jEe-z1-KaX" id="bqX-cj-3je"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CwE-Ml-4lD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1287.2" y="158.77061469265368"/>
+        </scene>
+        <!--Product Grid-->
+        <scene sceneID="ABV-7y-HiC">
+            <objects>
+                <viewController storyboardIdentifier="ProductGrid" id="GvA-hb-d2M" customClass="ProductGrid" customModule="Saudi_Fisheries" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WXq-G4-9du">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="TbF-Ct-pHf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Products" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4xp-nz-TqR">
+                                        <rect key="frame" x="52" y="28" width="270" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="b0q-DS-eY7">
+                                        <rect key="frame" x="8" y="28" width="28" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="back-white"/>
+                                        <connections>
+                                            <action selector="pressBack:" destination="GvA-hb-d2M" eventType="touchUpInside" id="zYE-Jv-qoA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h1B-nZ-6az">
+                                        <rect key="frame" x="339" y="28" width="28" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="search-w"/>
+                                        <connections>
+                                            <action selector="pressSearch:" destination="GvA-hb-d2M" eventType="touchUpInside" id="wlt-IR-BH2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="eig-b3-Tzy">
+                                <rect key="frame" x="0.0" y="64" width="375" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Max-Ha-cLW">
+                                        <rect key="frame" x="0.0" y="0.0" width="184" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.94509803921568625" green="0.93725490196078431" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="16"/>
+                                        <state key="normal" title="Sort">
+                                            <color key="titleColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressSort:" destination="GvA-hb-d2M" eventType="touchUpInside" id="vXm-wJ-ARK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jaT-Jb-AUO">
+                                        <rect key="frame" x="185" y="0.0" width="190" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.94509803921568625" green="0.93725490196078431" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="16"/>
+                                        <state key="normal" title="Filter">
+                                            <color key="titleColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressFilter:" destination="GvA-hb-d2M" eventType="touchUpInside" id="sWi-Yu-2i6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="N6e-zg-MRr">
+                                        <rect key="frame" x="222" y="5" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="filter"/>
+                                        <connections>
+                                            <action selector="pressFilter:" destination="GvA-hb-d2M" eventType="touchUpInside" id="3D5-1r-bCr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ohd-3i-ZZL">
+                                        <rect key="frame" x="33" y="5" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="sort"/>
+                                        <connections>
+                                            <action selector="pressSort:" destination="GvA-hb-d2M" eventType="touchUpInside" id="c71-G5-Kp7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="roD-GE-Hql">
+                                <rect key="frame" x="0.0" y="97" width="375" height="521"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="GvA-hb-d2M" id="mNI-g6-8tn"/>
+                                    <outlet property="delegate" destination="GvA-hb-d2M" id="XQF-6c-ZlB"/>
+                                </connections>
+                            </tableView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="fS8-Vl-w8K">
+                                <rect key="frame" x="7" y="107" width="361" height="502"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="21b-lH-lZ1">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <connections>
+                                    <outlet property="dataSource" destination="GvA-hb-d2M" id="TdQ-OH-FCy"/>
+                                    <outlet property="delegate" destination="GvA-hb-d2M" id="AjH-dZ-WdU"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="CollectionTable" destination="fS8-Vl-w8K" id="672-yU-9C2"/>
+                        <outlet property="btnFilter" destination="N6e-zg-MRr" id="bjR-Eg-uj0"/>
+                        <outlet property="btnSort" destination="Ohd-3i-ZZL" id="bLK-Ur-owX"/>
+                        <outlet property="tableLine" destination="roD-GE-Hql" id="SRb-jg-dEt"/>
+                        <outlet property="viewFilterListGrid" destination="eig-b3-Tzy" id="O0n-Xa-RBr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CsD-p2-E54" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-652" y="158.77061469265368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Clean" width="56" height="56"/>
+        <image name="Filet" width="56" height="56"/>
+        <image name="Slice" width="56" height="56"/>
+        <image name="StarEmpty" width="28" height="28"/>
+        <image name="StarFull" width="28" height="28"/>
+        <image name="back-white" width="28" height="28"/>
+        <image name="checkboxGR" width="28" height="28"/>
+        <image name="cook" width="56" height="56"/>
+        <image name="dessert" width="32" height="32"/>
+        <image name="favselected" width="28" height="28"/>
+        <image name="filter" width="28" height="28"/>
+        <image name="fry" width="56" height="56"/>
+        <image name="maincourse" width="32" height="32"/>
+        <image name="menudeselection" width="125" height="74"/>
+        <image name="menuselection" width="125" height="74"/>
+        <image name="radiocheck" width="28" height="28"/>
+        <image name="radiouncheck" width="28" height="28"/>
+        <image name="search-w" width="32" height="32"/>
+        <image name="share" width="28" height="28"/>
+        <image name="sort" width="28" height="28"/>
+        <image name="starter" width="32" height="32"/>
+        <image name="uncheckboxGR" width="28" height="28"/>
+        <image name="wishlist-wTop" width="28" height="28"/>
+    </resources>
+</document>
