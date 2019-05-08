@@ -11,6 +11,10 @@ import UIKit
 class Registration: UIViewController,UITextFieldDelegate
 {
     
+    var loadingCircle = UIView()
+    var circle = UIView()
+    
+    
     @IBOutlet var viewBox: UIView!
     @IBOutlet var txtFirstname: UITextField!
     @IBOutlet var txtEmail: UITextField!
@@ -112,7 +116,133 @@ class Registration: UIViewController,UITextFieldDelegate
     }
     
     //MARK: - pressRegister Method
-    @IBAction func pressRegister(_ sender: Any) {
+    @IBAction func pressRegister(_ sender: Any)
+    {
+        if txtFirstname.text == ""
+        {
+            let uiAlert = UIAlertController(title: "", message: "Please enter firstname", preferredStyle: UIAlertController.Style.alert)
+            self.present(uiAlert, animated: true, completion: nil)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                print("Click of default button")
+            }))
+        }
+        else if txtLastname.text == ""
+        {
+            let uiAlert = UIAlertController(title: "", message: "Please enter lastname", preferredStyle: UIAlertController.Style.alert)
+            self.present(uiAlert, animated: true, completion: nil)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                print("Click of default button")
+            }))
+        }
+        else if txtEmail.text == ""
+        {
+            let uiAlert = UIAlertController(title: "", message: "Please enter email", preferredStyle: UIAlertController.Style.alert)
+            self.present(uiAlert, animated: true, completion: nil)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                print("Click of default button")
+            }))
+        }
+        else if txtPassword.text == ""
+        {
+            let uiAlert = UIAlertController(title: "", message: "Please enter password", preferredStyle: UIAlertController.Style.alert)
+            self.present(uiAlert, animated: true, completion: nil)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                print("Click of default button")
+            }))
+        }
+        else if txtConfirmPassword.text == ""
+        {
+            let uiAlert = UIAlertController(title: "", message: "Please confirm password", preferredStyle: UIAlertController.Style.alert)
+            self.present(uiAlert, animated: true, completion: nil)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                print("Click of default button")
+            }))
+        }
+        else if txtMobileNumber.text == ""
+        {
+            let uiAlert = UIAlertController(title: "", message: "Please enter mobilenumber", preferredStyle: UIAlertController.Style.alert)
+            self.present(uiAlert, animated: true, completion: nil)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                print("Click of default button")
+            }))
+        }
+        else
+        {
+            self.postRegister()
+        }
+
+    }
+    func postRegister()
+    {
+        self.showLoadingMode()
+        
+        let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+        
+        let dicPostRegistration:NSMutableDictionary? = ["first_name" : txtFirstname.text!,
+        "last_name" : txtLastname.text!,
+        "email" : txtEmail.text!,
+        "password" : txtPassword.text!,
+        "confirm_password" : txtConfirmPassword.text!,
+        "register_mobilenumber" : txtMobileNumber.text!,
+        "registered_in_store_id" : strSlectedStoreID
+        ];
+        print("dicPostRegistration ---->>>>>",dicPostRegistration as Any)
+        
+        let dicPostOverAll:NSMutableDictionary? = ["customer" : dicPostRegistration as Any];
+        print("dicPostOverAll ---->>>>>",dicPostOverAll as Any)
+        
+        let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
+        let strconnurl = String(format: "%@%@", Constants.conn.ConnUrl, "/api/customer/registration")
+        let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
+        request.httpMethod = "POST"
+        request.setValue(strapikey, forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonData : NSData = try! JSONSerialization.data(withJSONObject: dicPostOverAll) as NSData
+        let jsonString = NSString(data: jsonData as Data, encoding: String.Encoding.utf8.rawValue)! as String
+        print("json string = \(jsonString)")
+        request.httpBody = jsonData as Data
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
+            guard error == nil && data != nil else
+            {
+                //check for fundamental networking error
+                self.hideLoadingMode()
+                print("Error=\(String(describing: error))")
+                return
+            }
+            do{
+                if let json = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
+                {
+                    self.hideLoadingMode()
+                    
+                    let dictemp = json as NSDictionary
+                    print("dictemp --->",dictemp)
+                    
+                    let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
+                    let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
+                    
+                    let Data = dictemp.value(forKey: "Data") as! NSDictionary
+                    UserDefaults.standard.set(Data, forKey: "RegisteredUserDetails")
+                    UserDefaults.standard.synchronize()
+                    
+                    UserDefaults.standard.set(1, forKey: "dataNotSave")
+                    UserDefaults.standard.synchronize()
+                    
+                    OperationQueue.main.addOperation {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                    
+                    
+                }
+            }
+            catch {
+                //check for internal server data error
+                self.hideLoadingMode()
+                print("Error -> \(error)")
+            }
+        }
+        task.resume()
     }
     
     //MARK: - pressHaveanAccount Method
@@ -150,5 +280,88 @@ class Registration: UIViewController,UITextFieldDelegate
         return true;
     }
     
-    
+    // MARK: - showLoadingMode Method
+    func showLoadingMode()
+    {
+        OperationQueue.main.addOperation {
+            self.loadingCircle.removeFromSuperview()
+        }
+        
+        loadingCircle = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
+        loadingCircle.backgroundColor = UIColor.black
+        loadingCircle.alpha = 0.6
+        
+        circle = UIView ()
+        circle.backgroundColor = UIColor.white
+        circle.alpha = 1.0
+        let size = 60
+        let size1 = 60
+        var frame = circle.frame
+        frame.size.width = CGFloat(size)
+        frame.size.height = CGFloat(size1)
+        frame.origin.x = self.view.frame.size.width / 2 - frame.size.width / 2;
+        frame.origin.y = self.view.frame.size.height / 2 - frame.size.height / 2;
+        circle.frame = frame
+        circle.center = self.view.center
+        circle.layer.cornerRadius = 30.0
+        circle.layer.borderWidth = 1.0
+        circle.layer.borderColor=UIColor.white.cgColor
+        circle.layer.masksToBounds = true
+        
+        /*let imgvLogo = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+         imgvLogo.backgroundColor = UIColor.clear
+         imgvLogo.image = UIImage(named:"productlogo")
+         circle.addSubview(imgvLogo)*/
+        
+        let  animatedImageView =  UIImageView(frame: circle.bounds)
+        animatedImageView.animationImages = NSArray(objects:UIImage(named: "frame-0.png")!,
+                                                    UIImage(named: "frame-1.png")!,
+                                                    UIImage(named: "frame-2.png")!,
+                                                    UIImage(named: "frame-3.png")!,
+                                                    UIImage(named: "frame-4.png")!,
+                                                    UIImage(named: "frame-5.png")!,
+                                                    UIImage(named: "frame-6.png")!,
+                                                    UIImage(named: "frame-7.png")!,
+                                                    UIImage(named: "frame-8.png")!,
+                                                    UIImage(named: "frame-9.png")!,
+                                                    UIImage(named: "frame-10.png")!,
+                                                    UIImage(named: "frame-11.png")!,
+                                                    UIImage(named: "frame-12.png")!,
+                                                    UIImage(named: "frame-13.png")!,
+                                                    UIImage(named: "frame-14.png")!,
+                                                    UIImage(named: "frame-15.png")!,
+                                                    UIImage(named: "frame-16.png")!,
+                                                    UIImage(named: "frame-17.png")!,
+                                                    UIImage(named: "frame-18.png")!,
+                                                    UIImage(named: "frame-19.png")!,
+                                                    UIImage(named: "frame-20.png")!,
+                                                    UIImage(named: "frame-21.png")!,
+                                                    UIImage(named: "frame-22.png")!,
+                                                    UIImage(named: "frame-23.png")!,
+                                                    UIImage(named: "frame-24.png")!,
+                                                    UIImage(named: "frame-25.png")!,
+                                                    UIImage(named: "frame-26.png")!,
+                                                    UIImage(named: "frame-27.png")!,
+                                                    UIImage(named: "frame-28.png")!,
+                                                    UIImage(named: "frame-29.png")!) as? [UIImage]
+        
+        animatedImageView.animationDuration = 9
+        animatedImageView.animationRepeatCount = 0
+        animatedImageView.startAnimating()
+        circle.addSubview(animatedImageView)
+        circle.center = CGPoint(x: UIScreen.main.bounds.size.width/2, y: UIScreen.main.bounds.size.height/2)
+        
+        self.view.addSubview(circle)
+        self.view.addSubview(loadingCircle)
+        self.view.bringSubviewToFront(circle)
+        
+        
+    }
+    func hideLoadingMode()
+    {
+        OperationQueue.main.addOperation {
+            self.loadingCircle.removeFromSuperview()
+            self.circle.removeFromSuperview()
+        }
+    }
 }

@@ -49,13 +49,13 @@
                                 <color key="backgroundColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="9cv-ip-oyO">
-                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="47.00 AED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="okI-hA-EKe">
-                                        <rect key="frame" x="8" y="8" width="80" height="29"/>
+                                        <rect key="frame" x="5" y="8" width="99" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="21"/>
                                         <color key="textColor" red="0.86389487980000002" green="0.30670046810000001" blue="0.25533983110000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -71,6 +71,9 @@
                                                 <state key="normal" title="-">
                                                     <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="pressMinus:" destination="hC8-5y-I2L" eventType="touchUpInside" id="Jyn-AQ-CRF"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rOg-iM-y1o">
                                                 <rect key="frame" x="85" y="0.0" width="33" height="28"/>
@@ -80,6 +83,9 @@
                                                 <state key="normal" title="+">
                                                     <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="pressPlus:" destination="hC8-5y-I2L" eventType="touchUpInside" id="lkS-nM-1xj"/>
+                                                </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="center" minimumFontSize="17" id="R9d-J4-8ZK">
                                                 <rect key="frame" x="32" y="0.0" width="53" height="28"/>
@@ -87,6 +93,9 @@
                                                 <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="hC8-5y-I2L" id="YnK-dv-nTy"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -104,17 +113,8 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6nX-8d-E2i">
-                                <rect key="frame" x="335" y="72" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="wishlist-wTop"/>
-                                <state key="selected" backgroundImage="favselected"/>
-                                <connections>
-                                    <action selector="pressFav:" destination="hC8-5y-I2L" eventType="touchUpInside" id="e6r-Cn-rFu"/>
-                                </connections>
-                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="222" contentMode="scaleToFill" id="DqV-oT-xKB">
-                                <rect key="frame" x="0.0" y="64" width="375" height="511"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="wbd-Nb-nzt">
@@ -172,7 +172,7 @@
                                         <rect key="frame" x="0.0" y="320" width="375" height="283"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Size &amp; Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z3E-qV-3yS">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z3E-qV-3yS">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -191,6 +191,9 @@
                                                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
                                                         <state key="normal" backgroundImage="radiouncheck"/>
                                                         <state key="selected" backgroundImage="radiocheck"/>
+                                                        <connections>
+                                                            <action selector="pressbtnviewmid11Selection:" destination="hC8-5y-I2L" eventType="touchUpInside" id="Hf6-Xx-GIg"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Small" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iBQ-jx-xUe">
                                                         <rect key="frame" x="40" y="17" width="142" height="29"/>
@@ -199,7 +202,7 @@
                                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 small fish = 0.9 to 1.1 kg (Approx)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aqg-ZM-Ujc">
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 small fish = 0.9 to 1.1 kg (Approx)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aqg-ZM-Ujc">
                                                         <rect key="frame" x="8" y="49" width="343" height="19"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
@@ -220,6 +223,9 @@
                                                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
                                                         <state key="normal" backgroundImage="radiouncheck"/>
                                                         <state key="selected" backgroundImage="radiocheck"/>
+                                                        <connections>
+                                                            <action selector="pressbtnviewmid22Selection:" destination="hC8-5y-I2L" eventType="touchUpInside" id="qoR-vi-HTG"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ef6-Sk-CtN">
                                                         <rect key="frame" x="40" y="17" width="142" height="29"/>
@@ -228,7 +234,7 @@
                                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 medium fish =2.0 to 2.2 kg (Approx)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vhy-Ip-Ose">
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 medium fish =2.0 to 2.2 kg (Approx)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vhy-Ip-Ose">
                                                         <rect key="frame" x="8" y="49" width="343" height="19"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
@@ -249,6 +255,9 @@
                                                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
                                                         <state key="normal" backgroundImage="radiouncheck"/>
                                                         <state key="selected" backgroundImage="radiocheck"/>
+                                                        <connections>
+                                                            <action selector="pressbtnviewmid33Selection:" destination="hC8-5y-I2L" eventType="touchUpInside" id="ndp-NI-a2f"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Large" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Iy-Lk-HaX">
                                                         <rect key="frame" x="40" y="17" width="142" height="29"/>
@@ -257,7 +266,7 @@
                                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 large fish = 2.0 to 4.0 kg (Approx)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pOy-MD-fct">
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 large fish = 2.0 to 4.0 kg (Approx)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pOy-MD-fct">
                                                         <rect key="frame" x="8" y="49" width="343" height="19"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
@@ -274,7 +283,7 @@
                                         <rect key="frame" x="0.0" y="603" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Selct Purchase Procedure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="beV-za-3k9">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Select Purchase Procedure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="beV-za-3k9">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -282,7 +291,7 @@
                                                 <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Row" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t4x-Ew-NNO">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Raw" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t4x-Ew-NNO">
                                                 <rect key="frame" x="57" y="44" width="79" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
@@ -297,7 +306,7 @@
                                                 <state key="normal" backgroundImage="radiouncheck"/>
                                                 <state key="selected" backgroundImage="radiocheck"/>
                                                 <connections>
-                                                    <action selector="pressRow:" destination="hC8-5y-I2L" eventType="touchUpInside" id="h9A-6v-fGZ"/>
+                                                    <action selector="pressRow:" destination="hC8-5y-I2L" eventType="touchUpInside" id="sTp-9B-JVR"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tXP-7o-fOV">
@@ -308,7 +317,7 @@
                                                 <state key="normal" backgroundImage="radiouncheck"/>
                                                 <state key="selected" backgroundImage="radiocheck"/>
                                                 <connections>
-                                                    <action selector="pressService:" destination="hC8-5y-I2L" eventType="touchUpInside" id="ZUd-XV-3Nf"/>
+                                                    <action selector="pressService:" destination="hC8-5y-I2L" eventType="touchUpInside" id="Y7H-IP-gEU"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ajb-uV-5s1">
@@ -356,7 +365,6 @@
                                                 <state key="selected" backgroundImage="checkboxGR"/>
                                                 <connections>
                                                     <action selector="pressCleanCheckBox:" destination="hC8-5y-I2L" eventType="touchUpInside" id="adM-ZQ-CyC"/>
-                                                    <action selector="pressRow:" destination="hC8-5y-I2L" eventType="touchUpInside" id="XOt-z7-sja"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tYJ-By-20s">
@@ -381,7 +389,6 @@
                                                 <state key="normal" backgroundImage="uncheckboxGR"/>
                                                 <state key="selected" backgroundImage="checkboxGR"/>
                                                 <connections>
-                                                    <action selector="pressRow:" destination="hC8-5y-I2L" eventType="touchUpInside" id="3Nu-o8-VvS"/>
                                                     <action selector="pressSliceCheckBox:" destination="hC8-5y-I2L" eventType="touchUpInside" id="SC7-F7-RHy"/>
                                                 </connections>
                                             </button>
@@ -408,14 +415,13 @@
                                                 <state key="selected" backgroundImage="checkboxGR"/>
                                                 <connections>
                                                     <action selector="pressFilletCheckBox:" destination="hC8-5y-I2L" eventType="touchUpInside" id="0Ww-As-kB9"/>
-                                                    <action selector="pressRow:" destination="hC8-5y-I2L" eventType="touchUpInside" id="ObI-f9-2DG"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="05d-D7-A18">
-                                        <rect key="frame" x="0.0" y="693" width="375" height="280"/>
+                                        <rect key="frame" x="0.0" y="693" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Instructions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RtN-vc-H0o">
@@ -448,8 +454,7 @@
                                                 <state key="normal" backgroundImage="uncheckboxGR"/>
                                                 <state key="selected" backgroundImage="checkboxGR"/>
                                                 <connections>
-                                                    <action selector="pressFryCheckBox:" destination="hC8-5y-I2L" eventType="touchUpInside" id="W5t-KX-W1C"/>
-                                                    <action selector="pressRow:" destination="hC8-5y-I2L" eventType="touchUpInside" id="0pB-p9-hcf"/>
+                                                    <action selector="pressFryCheckBox:" destination="hC8-5y-I2L" eventType="touchUpInside" id="Udl-og-ocv"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LK3-Q2-HqL">
@@ -474,18 +479,32 @@
                                                 <state key="normal" backgroundImage="uncheckboxGR"/>
                                                 <state key="selected" backgroundImage="checkboxGR"/>
                                                 <connections>
-                                                    <action selector="pressCookCheckBox:" destination="hC8-5y-I2L" eventType="touchUpInside" id="N3c-g9-yhZ"/>
-                                                    <action selector="pressRow:" destination="hC8-5y-I2L" eventType="touchUpInside" id="kN6-w0-9BX"/>
+                                                    <action selector="pressCookCheckBox:" destination="hC8-5y-I2L" eventType="touchUpInside" id="eFK-sH-J2o"/>
                                                 </connections>
                                             </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="hEG-u7-JX6">
-                                                <rect key="frame" x="19" y="170" width="335" height="96"/>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="fZk-qU-T5x">
+                                        <rect key="frame" x="0.0" y="843" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="huM-eb-tYA">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="16"/>
+                                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="MTf-45-lJm">
+                                                <rect key="frame" x="10" y="30" width="357" height="70"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="hC8-5y-I2L" id="0NY-LR-Ax4"/>
+                                                    <outlet property="delegate" destination="hC8-5y-I2L" id="96L-Q0-VUB"/>
                                                 </connections>
                                             </textView>
                                         </subviews>
@@ -497,31 +516,41 @@
                                     <outlet property="delegate" destination="hC8-5y-I2L" id="bHP-FF-DPg"/>
                                 </connections>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6nX-8d-E2i">
+                                <rect key="frame" x="335" y="72" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="wishlist-wTop"/>
+                                <state key="selected" backgroundImage="favselected"/>
+                                <connections>
+                                    <action selector="pressFav:" destination="hC8-5y-I2L" eventType="touchUpInside" id="e6r-Cn-rFu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="btnAddtoCart" destination="j54-f5-lCT" id="GCn-Ua-hBe"/>
                         <outlet property="btnBack" destination="C9k-2R-rBH" id="v7f-yB-dDH"/>
-                        <outlet property="btnClean" destination="upr-F6-8qY" id="EyG-gg-gfE"/>
                         <outlet property="btnCleanCheckbox" destination="2x7-4n-2RI" id="F7R-4i-s8p"/>
-                        <outlet property="btnCook" destination="LK3-Q2-HqL" id="aKU-Vd-6NS"/>
-                        <outlet property="btnCookCheckbox" destination="DKG-s8-G5h" id="XXW-bI-CWc"/>
+                        <outlet property="btnCookCheckbox" destination="DKG-s8-G5h" id="CNy-La-DVi"/>
                         <outlet property="btnFav" destination="6nX-8d-E2i" id="R5h-j5-Op0"/>
-                        <outlet property="btnFillet" destination="CCa-vZ-Lai" id="E5J-iT-ESm"/>
                         <outlet property="btnFilletCheckbox" destination="Egy-Q0-91y" id="DLe-HY-R5K"/>
-                        <outlet property="btnFry" destination="Eyq-xS-yit" id="knO-FY-Q1S"/>
-                        <outlet property="btnFryCheckbox" destination="fw4-lj-grp" id="fRU-bp-fkQ"/>
-                        <outlet property="btnRow" destination="vHk-ma-lI5" id="pPb-bn-tYm"/>
-                        <outlet property="btnSevrice" destination="tXP-7o-fOV" id="0re-A4-igz"/>
+                        <outlet property="btnFryCheckbox" destination="fw4-lj-grp" id="9rx-qB-Yq1"/>
+                        <outlet property="btnMinus" destination="rNS-gf-kXR" id="gzd-qm-vYf"/>
+                        <outlet property="btnPlus" destination="rOg-iM-y1o" id="Hjf-YD-2nO"/>
+                        <outlet property="btnRow" destination="vHk-ma-lI5" id="FU0-Xo-4S8"/>
+                        <outlet property="btnSevrice" destination="tXP-7o-fOV" id="kd3-gZ-FCf"/>
                         <outlet property="btnShare" destination="Iwg-Hf-QMz" id="Bfc-j7-mre"/>
-                        <outlet property="btnSlice" destination="tYJ-By-20s" id="fom-L3-lFR"/>
                         <outlet property="btnSliceCheckbox" destination="Ebp-AI-qST" id="KbG-f4-RCK"/>
+                        <outlet property="btnviewmid11Selection" destination="rvH-57-qKz" id="Ih8-4i-eIn"/>
+                        <outlet property="btnviewmid22Selection" destination="o6j-LB-tr0" id="bq9-MR-T3m"/>
+                        <outlet property="btnviewmid33Selection" destination="eC0-1k-iSx" id="Ocn-gQ-9do"/>
                         <outlet property="lblCategory" destination="mFm-n8-vIQ" id="cST-4H-Hh1"/>
                         <outlet property="lblClean" destination="tsZ-rY-eOa" id="UMW-al-e1o"/>
+                        <outlet property="lblComments4" destination="huM-eb-tYA" id="1Mg-D9-O24"/>
                         <outlet property="lblCook" destination="tQ1-TE-EfS" id="5yq-Fm-f7a"/>
                         <outlet property="lblFillet" destination="OFl-sz-cuX" id="rFH-6K-VIA"/>
                         <outlet property="lblFry" destination="F6B-VD-tam" id="B1b-PU-pJr"/>
@@ -529,20 +558,29 @@
                         <outlet property="lblInstructions3" destination="RtN-vc-H0o" id="d1o-sT-jaW"/>
                         <outlet property="lblName" destination="kcy-oP-3Xx" id="4cQ-fm-GA4"/>
                         <outlet property="lblOrigin" destination="PTg-uZ-wQm" id="xK1-XK-iKd"/>
+                        <outlet property="lblProductPrice" destination="okI-hA-EKe" id="RNz-pK-65D"/>
                         <outlet property="lblRow" destination="t4x-Ew-NNO" id="hcb-OO-TWW"/>
                         <outlet property="lblSelectPurchaseProcedure" destination="beV-za-3k9" id="e0j-tP-9iI"/>
-                        <outlet property="lblService" destination="ajb-uV-5s1" id="R38-6F-jTW"/>
+                        <outlet property="lblService" destination="ajb-uV-5s1" id="5hl-4q-K21"/>
                         <outlet property="lblSlice" destination="tzh-Nc-we3" id="SiQ-2F-Dag"/>
+                        <outlet property="lblviewmid11SubTitle" destination="Aqg-ZM-Ujc" id="mDM-K9-m96"/>
+                        <outlet property="lblviewmid11Title" destination="iBQ-jx-xUe" id="A6o-eR-HDQ"/>
+                        <outlet property="lblviewmid22SubTitle" destination="vhy-Ip-Ose" id="sop-n5-G8z"/>
+                        <outlet property="lblviewmid22Title" destination="ef6-Sk-CtN" id="N8S-u3-aLP"/>
+                        <outlet property="lblviewmid33SubTitle" destination="pOy-MD-fct" id="Xbk-Xz-Mle"/>
+                        <outlet property="lblviewmid33Title" destination="0Iy-Lk-HaX" id="CWG-Jq-MFR"/>
                         <outlet property="scrollGallery" destination="WGf-25-0sK" id="0mt-Vx-Rqb"/>
                         <outlet property="scrollOverAll" destination="DqV-oT-xKB" id="oxO-50-QDY"/>
-                        <outlet property="txtVComments" destination="hEG-u7-JX6" id="5eD-dC-asf"/>
+                        <outlet property="txtQTY" destination="R9d-J4-8ZK" id="N2D-ZQ-7Zd"/>
+                        <outlet property="txtVComments" destination="MTf-45-lJm" id="Y9P-Ig-Hbv"/>
                         <outlet property="viewBottom1" destination="9cv-ip-oyO" id="GLx-Or-aJj"/>
                         <outlet property="viewGallery" destination="wbd-Nb-nzt" id="Cnu-l4-2Co"/>
                         <outlet property="viewMiddle" destination="RIS-hA-8LF" id="Ur2-x5-rmL"/>
                         <outlet property="viewMiddle1" destination="siK-E0-uZS" id="E2H-pm-TTQ"/>
                         <outlet property="viewMiddle2" destination="WWj-wu-cFy" id="3tP-Pw-10b"/>
                         <outlet property="viewMiddle23" destination="ldf-sL-fqn" id="Nxq-oQ-fd4"/>
-                        <outlet property="viewMiddle3" destination="05d-D7-A18" id="wfb-Iy-5LC"/>
+                        <outlet property="viewMiddle3" destination="05d-D7-A18" id="mEp-rF-jXb"/>
+                        <outlet property="viewMiddle4" destination="fZk-qU-T5x" id="bFs-KM-J02"/>
                         <outlet property="viewQTY" destination="QfW-6B-sHi" id="Hgx-v1-YIV"/>
                         <outlet property="viewReviewFeebcak" destination="ciu-cm-Wkn" id="gYW-Ni-2nB"/>
                         <outlet property="viewmid11" destination="Zbb-kO-TeJ" id="ti9-tT-phe"/>

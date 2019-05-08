@@ -436,8 +436,6 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
                     UserDefaults.standard.set(expires_in, forKey: "expires_in")
                     UserDefaults.standard.set(token_type, forKey: "token_type")
                     UserDefaults.standard.set(refresh_token, forKey: "refresh_token")
-                    UserDefaults.standard.set(1, forKey: "dataNotSave")
-                    UserDefaults.standard.synchronize()
                     
                     OperationQueue.main.addOperation {
                         self.getStoreList()
@@ -490,7 +488,7 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
                     print("arrMStores --->",self.arrMStores)
                     
                     let dicFirstIndex = self.arrMStores.object(at: 0) as! NSDictionary
-                    let SelectedStoreID = String(format: "%@", dicFirstIndex.value(forKey: "StoreID") as! CVarArg)
+                    let SelectedStoreID = String(format: "%@", dicFirstIndex.value(forKey: "id") as! CVarArg)
                     let SelectedStoreNAME = String(format: "%@", dicFirstIndex.value(forKey: "name") as! CVarArg)
                     
                     UserDefaults.standard.set(SelectedStoreID, forKey: "SelectedStoreID")
@@ -519,6 +517,7 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
         self.showLoadingMode()
         
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
+        print("strapikey>>>>> %@",strapikey)
         let strconnurl = String(format: "%@%@%@", Constants.conn.ConnUrl, "api/getbannerbystoreid/",strSelectedStoreID)
         let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
         request.httpMethod = "GET"

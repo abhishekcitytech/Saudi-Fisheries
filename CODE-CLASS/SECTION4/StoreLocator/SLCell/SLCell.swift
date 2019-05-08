@@ -12,12 +12,8 @@ class SLCell: UITableViewCell
 {
     @IBOutlet var lblName: UILabel!
     @IBOutlet var lblAddress: UILabel!
-    
-    @IBOutlet var btnEmail: UIButton!
     @IBOutlet var btnPhone: UIButton!
-    @IBOutlet var btnDirection: UIButton!
     
-    @IBOutlet var lblOpenClose: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -126,6 +126,10 @@ class OrderHistory: UIViewController, UITableViewDataSource, UITableViewDelegate
             cell.btnStatus.backgroundColor = UIColor(red: 178/255, green: 210/255, blue: 53/255, alpha: 1.0)
         }
         
+        let labelSeparator = UILabel(frame: CGRect(x: 15, y: 96.5, width: tableView.frame.size.width, height: 0.5))
+        labelSeparator.backgroundColor = UIColor.lightGray
+        cell.contentView.addSubview(labelSeparator)
+        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)

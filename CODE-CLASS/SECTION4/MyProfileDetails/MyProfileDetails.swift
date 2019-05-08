@@ -11,15 +11,12 @@ import UIKit
 class MyProfileDetails: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var view1: UIView!
-    @IBOutlet var txtFirstname: UITextField!
-    @IBOutlet var txtLastname: UITextField!
+
+    @IBOutlet var txtName: UITextField!
     @IBOutlet var txtEmail: UITextField!
     @IBOutlet var txtMobile: UITextField!
-    @IBOutlet var imgvProfile: UIImageView!
-    @IBOutlet var btnimgvProfile: UIButton!
     
-    @IBOutlet var view2: UIView!
-    @IBOutlet var btnActiveInactive: UIButton!
+    @IBOutlet var imgvProfile: UIImageView!
     
     // MARK: - viewWillAppear Method
     override func viewWillAppear(_ animated: Bool) {
@@ -39,38 +36,23 @@ class MyProfileDetails: UIViewController, UITextFieldDelegate {
         //Do any additional setup after loading the view.
         //let myAppDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        view1.layer.borderColor = UIColor.lightGray.cgColor
-        view1.layer.borderWidth = 1.0
-        view1.layer.cornerRadius = 2.0
-        view1.layer.masksToBounds = true
-        
-        view2.layer.borderColor = UIColor.lightGray.cgColor
-        view2.layer.borderWidth = 1.0
-        view2.layer.cornerRadius = 2.0
-        view2.layer.masksToBounds = true
-        
-        btnActiveInactive.layer.borderColor = UIColor.clear.cgColor
-        btnActiveInactive.layer.borderWidth = 0.0
-        btnActiveInactive.layer.cornerRadius = 2.0
-        btnActiveInactive.layer.masksToBounds = true
-        
         let border = CALayer()
         let width = CGFloat(0.5)
         border.borderColor = UIColor(red: 65/255, green: 65/255, blue: 66/255, alpha: 1.0).cgColor
-        border.frame = CGRect(x: 0, y: txtEmail.frame.size.height - width, width: txtEmail.frame.size.width, height: txtEmail.frame.size.height)
+        border.frame = CGRect(x: 0, y: txtName.frame.size.height - width, width: txtName.frame.size.width, height: txtName.frame.size.height)
         border.borderWidth = width
-        txtEmail.layer.addSublayer(border)
-        txtEmail.layer.masksToBounds = true
-        txtEmail.attributedPlaceholder = NSAttributedString(string: "Email",attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        txtName.layer.addSublayer(border)
+        txtName.layer.masksToBounds = true
+        txtName.attributedPlaceholder = NSAttributedString(string: "Name",attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         let border2 = CALayer()
         let width2 = CGFloat(0.5)
         border2.borderColor = UIColor(red: 65/255, green: 65/255, blue: 66/255, alpha: 1.0).cgColor
-        border2.frame = CGRect(x: 0, y: txtLastname.frame.size.height - width2, width: txtLastname.frame.size.width, height: txtLastname.frame.size.height)
+        border2.frame = CGRect(x: 0, y: txtEmail.frame.size.height - width2, width: txtEmail.frame.size.width, height: txtEmail.frame.size.height)
         border2.borderWidth = width2
-        txtLastname.layer.addSublayer(border2)
-        txtLastname.layer.masksToBounds = true
-        txtLastname.attributedPlaceholder = NSAttributedString(string: "Last Name",attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        txtEmail.layer.addSublayer(border2)
+        txtEmail.layer.masksToBounds = true
+        txtEmail.attributedPlaceholder = NSAttributedString(string: "Email",attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         let border3 = CALayer()
         let width3 = CGFloat(0.5)
@@ -81,19 +63,26 @@ class MyProfileDetails: UIViewController, UITextFieldDelegate {
         txtMobile.layer.masksToBounds = true
         txtMobile.attributedPlaceholder = NSAttributedString(string: "Mobile Number",attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
-        let border4 = CALayer()
-        let width4 = CGFloat(0.5)
-        border4.borderColor = UIColor(red: 65/255, green: 65/255, blue: 66/255, alpha: 1.0).cgColor
-        border4.frame = CGRect(x: 0, y: txtFirstname.frame.size.height - width4, width: txtFirstname.frame.size.width, height: txtFirstname.frame.size.height)
-        border4.borderWidth = width4
-        txtFirstname.layer.addSublayer(border4)
-        txtFirstname.layer.masksToBounds = true
-        txtFirstname.attributedPlaceholder = NSAttributedString(string: "First Name",attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        
+        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+        let  strfirst_name = String(format: "%@", dicUser.value(forKey: "first_name") as! CVarArg)
+        let  strlast_name = String(format: "%@", dicUser.value(forKey: "last_name") as! CVarArg)
+        let  stremail = String(format: "%@", dicUser.value(forKey: "email") as! CVarArg)
+        let  strregister_mobilenumber = String(format: "%@", dicUser.value(forKey: "register_mobilenumber") as! CVarArg)
+        txtEmail.text = stremail
+        txtMobile.text = strregister_mobilenumber
+        txtName.text = String(format: "%@ %@", strfirst_name,strlast_name)
+        
     }
 
     // MARK: - pressBack method
     @IBAction func pressBack(_ sender: Any)
     {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - pressEdit method
+    @IBAction func pressEdit(_ sender: Any)
+    {
     }
 }

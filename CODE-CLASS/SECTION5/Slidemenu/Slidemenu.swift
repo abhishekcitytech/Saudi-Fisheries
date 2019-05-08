@@ -60,10 +60,15 @@ class Slidemenu: UIViewController, UITableViewDataSource, UITableViewDelegate
             viewNotLoggedIn.isHidden = true
             viewLogout.isHidden = false
             
-            lblemail.text = "brett@gmail.com"
-            lblmobileno.text = "+971 66654568"
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            let  strfirst_name = String(format: "%@", dicUser.value(forKey: "first_name") as! CVarArg)
+            let  strlast_name = String(format: "%@", dicUser.value(forKey: "last_name") as! CVarArg)
+            let  stremail = String(format: "%@", dicUser.value(forKey: "email") as! CVarArg)
+            let  strregister_mobilenumber = String(format: "%@", dicUser.value(forKey: "register_mobilenumber") as! CVarArg)
+            lblemail.text = stremail
+            lblmobileno.text = strregister_mobilenumber
             lblUser.isHidden = false
-            lblUser.text = "Brett Lee"
+            lblUser.text = String(format: "%@ %@", strfirst_name,strlast_name)
             
         }
     }

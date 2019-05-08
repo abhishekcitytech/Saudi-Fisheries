@@ -100,7 +100,7 @@
                 <outlet property="txtQTTY" destination="h63-w3-fn8" id="QB8-is-GFm"/>
                 <outlet property="viewQTY" destination="WjS-bo-OJy" id="jZO-Hv-mae"/>
             </connections>
-            <point key="canvasLocation" x="-287.19999999999999" y="34.182908545727138"/>
+            <point key="canvasLocation" x="-402" y="36"/>
         </tableViewCell>
     </objects>
 </document>

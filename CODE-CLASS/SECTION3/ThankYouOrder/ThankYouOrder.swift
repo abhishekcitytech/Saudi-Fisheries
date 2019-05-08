@@ -8,7 +8,17 @@
 
 import UIKit
 
-class ThankYouOrder: UIViewController {
+class ThankYouOrder: UIViewController
+{
+    @IBOutlet var viewUpperPart: UIView!
+    @IBOutlet var imgvThumbsup: UIImageView!
+    @IBOutlet var lbl1: UILabel!
+    @IBOutlet var lbl2: UILabel!
+    @IBOutlet var lbl3: UILabel!
+    @IBOutlet var lbl4: UILabel!
+    
+    var strOrderid = String()
+    
 
     // MARK: - viewWillAppear Method
     override func viewWillAppear(_ animated: Bool) {
@@ -27,6 +37,7 @@ class ThankYouOrder: UIViewController {
         super.viewDidLoad()
         //Do any additional setup after loading the view.
         //let myAppDelegate = UIApplication.shared.delegate as! AppDelegate
+        lbl2.text  = String(format: "Order #%@", strOrderid)
     }
 
     // MARK: - press Home method

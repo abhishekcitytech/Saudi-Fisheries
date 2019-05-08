@@ -1,20 +1,18 @@
 //
-//  DACell.swift
+//  PUCell.swift
 //  Saudi Fisheries
 //
-//  Created by Sandipan on 22/02/19.
+//  Created by Sandipan on 01/05/19.
 //  Copyright © 2019 SANDIPAN. All rights reserved.
 //
 
 import UIKit
 
-class DACell: UITableViewCell {
-    
-    @IBOutlet var lblName: UILabel!
-    @IBOutlet var lblAddress: UILabel!
-    @IBOutlet var lblMobileno: UILabel!
-    @IBOutlet var lblAddressType: UILabel!
-
+class PUCell: UITableViewCell {
+    @IBOutlet var lbl1: UILabel!
+    @IBOutlet var lbl2: UILabel!
+    @IBOutlet var lbl3: UILabel!
+    @IBOutlet var btnCheckUnCheck: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

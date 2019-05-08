@@ -461,6 +461,9 @@
                                 <state key="normal" image="pencil">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="pressEdit:" destination="6Mn-OD-glp" eventType="touchUpInside" id="lCR-kZ-boF"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Brett Lee" placeholder="Firstname" textAlignment="center" minimumFontSize="17" id="itl-er-F9j">
                                 <rect key="frame" x="30" y="358" width="315" height="32"/>
@@ -469,6 +472,9 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="6Mn-OD-glp" id="bGZ-6H-qAS"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="brett@citytech.com" placeholder="Email" textAlignment="center" minimumFontSize="17" id="cte-E4-VCx">
                                 <rect key="frame" x="30" y="422" width="315" height="32"/>
@@ -477,6 +483,9 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
+                                <connections>
+                                    <outlet property="delegate" destination="6Mn-OD-glp" id="1vx-14-Ekc"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  97155346758" placeholder="Mobile Number" textAlignment="center" minimumFontSize="17" id="41A-Gg-2dV">
                                 <rect key="frame" x="30" y="390" width="315" height="32"/>
@@ -485,6 +494,9 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="6Mn-OD-glp" id="1u9-YN-4uq"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -493,6 +505,9 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imgvProfile" destination="xGV-9y-ci2" id="oQz-aU-IM7"/>
+                        <outlet property="txtEmail" destination="cte-E4-VCx" id="pAk-VT-DIU"/>
+                        <outlet property="txtMobile" destination="41A-Gg-2dV" id="2Sg-P8-74d"/>
+                        <outlet property="txtName" destination="itl-er-F9j" id="ClP-xS-94S"/>
                         <outlet property="view1" destination="lpi-w9-PGS" id="SJr-RE-rXR"/>
                     </connections>
                 </viewController>
