@@ -101,7 +101,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iw9-9q-UC4">
-                                <rect key="frame" x="0.0" y="64" width="375" height="381"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="295"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -120,7 +120,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" id="sJZ-mg-jyH">
-                                <rect key="frame" x="0.0" y="445" width="375" height="116"/>
+                                <rect key="frame" x="0.0" y="360" width="375" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kzB-4G-lcQ">
@@ -190,12 +190,81 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" id="pXe-hP-ZNH">
+                                <rect key="frame" x="0.0" y="477" width="375" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Discount Code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Y0i-S1-Pc9">
+                                        <rect key="frame" x="0.0" y="0.0" width="188" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CkO-Hr-HFg">
+                                        <rect key="frame" x="116" y="39" width="64" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="18"/>
+                                        <state key="normal" title="Apply">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressApplyDiscountCode:" destination="O44-1p-9jA" eventType="touchUpInside" id="EHy-Ps-rcC"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Gift Cards" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="toW-wB-5dq">
+                                        <rect key="frame" x="191" y="0.0" width="184" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gift code" textAlignment="center" minimumFontSize="17" id="IIG-si-P8t">
+                                        <rect key="frame" x="196" y="39" width="100" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="O44-1p-9jA" id="2G7-9X-nT9"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="llr-tU-SDZ">
+                                        <rect key="frame" x="305" y="39" width="64" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="18"/>
+                                        <state key="normal" title="Apply">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressApplyGiftCards:" destination="O44-1p-9jA" eventType="touchUpInside" id="5pN-zK-Yrw"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Promo code" textAlignment="center" minimumFontSize="17" id="GQd-iF-Qx1">
+                                        <rect key="frame" x="8" y="39" width="100" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="O44-1p-9jA" id="V1q-vb-vGE"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="btnApplyDiscountCode" destination="CkO-Hr-HFg" id="Kne-U3-tCc"/>
+                        <outlet property="btnApplyGiftCards" destination="llr-tU-SDZ" id="In8-tk-GDD"/>
                         <outlet property="btnProceedtoCheckout" destination="Xa1-ij-vJL" id="Eeq-lU-P57"/>
                         <outlet property="btnSlide" destination="Z1b-bm-YsO" id="mN3-Ip-KzU"/>
                         <outlet property="lbl01" destination="kzB-4G-lcQ" id="xKK-UB-cF5"/>
@@ -206,8 +275,13 @@
                         <outlet property="lbl033" destination="zGX-HB-Eza" id="L5U-uC-3nS"/>
                         <outlet property="lbl04" destination="gUh-4U-OAK" id="Iwp-ko-wlU"/>
                         <outlet property="lbl044" destination="6Tt-rx-PgY" id="LfY-3b-KFo"/>
+                        <outlet property="lblDiscountCode" destination="Y0i-S1-Pc9" id="11j-Q4-uDS"/>
+                        <outlet property="lblGiftCards" destination="toW-wB-5dq" id="M4b-YS-rlU"/>
                         <outlet property="tableLine" destination="iw9-9q-UC4" id="KiI-gt-HOh"/>
+                        <outlet property="txtDiscountCode" destination="GQd-iF-Qx1" id="qfP-Gy-Puk"/>
+                        <outlet property="txtGiftCards" destination="IIG-si-P8t" id="WEf-m8-k2M"/>
                         <outlet property="viewBottomTotal" destination="sJZ-mg-jyH" id="0bg-W2-5mb"/>
+                        <outlet property="viewDiscountGiftCard" destination="pXe-hP-ZNH" id="YWk-9d-uE0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGA-xM-Lww" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -296,7 +370,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAUDI FISHERIES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GqV-ov-c85">
-                                        <rect key="frame" x="52" y="28" width="270" height="29"/>
+                                        <rect key="frame" x="52" y="28" width="214" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="21"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -310,14 +384,31 @@
                                             <action selector="pressSlide:" destination="Vio-fI-9Fw" eventType="touchUpInside" id="ZhT-Ff-eLg"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t8U-wx-Vpo">
-                                        <rect key="frame" x="339" y="28" width="28" height="28"/>
+                                    <view contentMode="scaleToFill" id="VMB-Ub-3eM">
+                                        <rect key="frame" x="263" y="24" width="112" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="search-w"/>
-                                        <connections>
-                                            <action selector="pressSearch:" destination="Vio-fI-9Fw" eventType="touchUpInside" id="IuZ-EI-tpN"/>
-                                        </connections>
-                                    </button>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jeddah Store 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qrd-AD-i6a">
+                                                <rect key="frame" x="26" y="0.0" width="86" height="36"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="13"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mapdirect" id="YrL-Ug-moz">
+                                                <rect key="frame" x="2" y="8" width="20" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t8U-wx-Vpo">
+                                                <rect key="frame" x="0.0" y="0.0" width="112" height="36"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="pressStoreLocator:" destination="Vio-fI-9Fw" eventType="touchUpInside" id="jdw-3p-jQz"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -340,7 +431,7 @@
                                 <rect key="frame" x="0.0" y="264" width="375" height="178"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Fresh Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="qqC-qy-NEM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Best Sellers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="qqC-qy-NEM">
                                         <rect key="frame" x="0.0" y="4" width="375" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -356,7 +447,7 @@
                                             <outlet property="delegate" destination="Vio-fI-9Fw" id="JJ8-Qb-ftw"/>
                                         </connections>
                                     </scrollView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lbm-St-kNC">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lbm-St-kNC">
                                         <rect key="frame" x="303" y="7" width="64" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -370,7 +461,7 @@
                                 <rect key="frame" x="0.0" y="442" width="375" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Frozen Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8ds-Xg-k0L">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  New Arrivals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8ds-Xg-k0L">
                                         <rect key="frame" x="0.0" y="4" width="375" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -386,7 +477,7 @@
                                             <outlet property="delegate" destination="Vio-fI-9Fw" id="AgM-Np-9e8"/>
                                         </connections>
                                     </scrollView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hay-LM-AXg">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hay-LM-AXg">
                                         <rect key="frame" x="303" y="1" width="64" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -402,16 +493,19 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="btnSearch" destination="t8U-wx-Vpo" id="Uiq-Gs-SAK"/>
                         <outlet property="btnSlide" destination="caf-wy-guQ" id="6dr-to-7q0"/>
+                        <outlet property="btnStoreLocator" destination="t8U-wx-Vpo" id="Tki-sY-nld"/>
+                        <outlet property="imgvStoreMapPin" destination="YrL-Ug-moz" id="Num-0y-VdH"/>
                         <outlet property="lblFreshProducts" destination="qqC-qy-NEM" id="1aM-VJ-ef3"/>
                         <outlet property="lblFrozenProducts" destination="8ds-Xg-k0L" id="6KQ-Cp-Hly"/>
+                        <outlet property="lblStoreName" destination="Qrd-AD-i6a" id="xuP-5C-tJI"/>
                         <outlet property="scrollBanner" destination="Rz9-re-xC3" id="MU5-wV-H7M"/>
                         <outlet property="scrollFreshProducts" destination="cLL-eO-1fV" id="gWb-y6-eZp"/>
                         <outlet property="scrollFrozenProducts" destination="FVo-Yq-3aw" id="9An-iE-bWc"/>
                         <outlet property="viewBanner" destination="Oit-Ft-exL" id="JdW-fC-stM"/>
                         <outlet property="viewFreshProducts" destination="TXq-Be-9U3" id="5zi-Td-tca"/>
                         <outlet property="viewFrozenProducts" destination="tYk-Ys-gpd" id="O8r-Au-ApK"/>
+                        <outlet property="viewStoreLocator" destination="VMB-Ub-3eM" id="4Bt-ES-xor"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZy-Us-18F" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -421,8 +515,8 @@
     </scenes>
     <resources>
         <image name="cart-wTop" width="28" height="28"/>
+        <image name="mapdirect" width="28" height="28"/>
         <image name="menuSlide" width="32" height="32"/>
-        <image name="search-w" width="32" height="32"/>
         <image name="wishlist-wTop" width="28" height="28"/>
     </resources>
 </document>

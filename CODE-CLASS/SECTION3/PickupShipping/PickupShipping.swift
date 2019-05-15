@@ -98,6 +98,7 @@ class PickupShipping: UIViewController , UITableViewDelegate, UITableViewDataSou
     {
         if btnPickup.isSelected == true {
             print(strStoreId)
+            self.setShippingAddressPickup(strPickId: strStoreId)
         }
         else if btnDelivery.isSelected == true{
             print(strAddressId)
@@ -132,7 +133,7 @@ class PickupShipping: UIViewController , UITableViewDelegate, UITableViewDataSou
             viewDelivery.isHidden = true
             UserDefaults.standard.set("200", forKey: "DeliveryPickup")
             UserDefaults.standard.synchronize()
-            self.getStoreList()
+            self.tabvStore.reloadData()
         }
     }
     
@@ -173,15 +174,34 @@ class PickupShipping: UIViewController , UITableViewDelegate, UITableViewDataSou
             cell.backgroundColor = UIColor.white
             
             let dictemp: NSDictionary = self.arrMStoreList[indexPath.item] as! NSDictionary
-            
-            let strId = String(format: "%@", dictemp.value(forKey: "id") as! CVarArg)
-            let strName = String(format: "%@", dictemp.value(forKey: "name") as! CVarArg)
-            let strcompany_address = String(format: "%@", dictemp.value(forKey: "company_address") as! CVarArg)
-            let strcompany_phone_number = String(format: "%@", dictemp.value(forKey: "company_phone_number") as! CVarArg)
+            let strId = String(format: "%@", dictemp.value(forKey: "Id") as! CVarArg)
+            let strName = String(format: "%@", dictemp.value(forKey: "Name") as! CVarArg)
+            let strProviderSystemName = String(format: "%@", dictemp.value(forKey: "ProviderSystemName") as! CVarArg)
+            let strAddress = String(format: "%@,%@,%@,%@,%@", dictemp.value(forKey: "Address") as! CVarArg,dictemp.value(forKey: "City") as! CVarArg,dictemp.value(forKey: "StateName") as! CVarArg,dictemp.value(forKey: "ZipPostalCode") as! CVarArg,dictemp.value(forKey: "CountryName") as! CVarArg)
+            let strLatitude = String(format: "%@", dictemp.value(forKey: "Latitude") as! CVarArg)
+            let strLongitude = String(format: "%@", dictemp.value(forKey: "Longitude") as! CVarArg)
+            let strOpeningHours = String(format: "%@", dictemp.value(forKey: "OpeningHours") as! CVarArg)
             
             cell.lbl1.text = strName
-            cell.lbl2.text = strcompany_address
-            cell.lbl3.text = strcompany_phone_number
+            cell.lbl2.text = strAddress
+            cell.lbl3.text = strOpeningHours
+            
+            let strSelectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+            let strSelectedStoreNAME = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreNAME")!)
+            print("strId %@",strId)
+            print("strSelectedStoreID %@",strSelectedStoreID)
+            if strSelectedStoreID == strId{
+                cell.backgroundColor=UIColor(red: 242/255, green: 242/255, blue: 246/255, alpha: 1.0)
+                
+                let selectedIndexPath = IndexPath(row: indexPath.row, section: 0)
+                selectedRows1.removeAll()
+                selectedRows1.append(selectedIndexPath)
+                
+                strStoreId = String(format: "%@", dictemp.value(forKey: "Id") as! CVarArg)
+                print("strStoreId %@",strStoreId)
+            }else{
+                cell.backgroundColor=UIColor.white
+            }
             
             if selectedRows1.contains(indexPath){
                 cell.btnCheckUnCheck.setBackgroundImage(UIImage(named:"radiocheck"), for: .normal)
@@ -237,12 +257,17 @@ class PickupShipping: UIViewController , UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
     }
+    
+    //MARK: - Delivery Address List Logical Method
     @objc func checkBoxSelection1(_ sender:UIButton)
     {
         let selectedIndexPath = IndexPath(row: sender.tag, section: 0)
-        if self.selectedRows.contains(selectedIndexPath){
+        if self.selectedRows.contains(selectedIndexPath)
+        {
             self.selectedRows.remove(at: self.selectedRows.index(of: selectedIndexPath)!)
-        }else{
+        }
+        else
+        {
             self.selectedRows.removeAll()
             self.selectedRows.append(selectedIndexPath)
             
@@ -261,6 +286,8 @@ class PickupShipping: UIViewController , UITableViewDelegate, UITableViewDataSou
         }
         return indexPaths
     }
+    
+    //MARK: - Store List Logical Method
     @objc func checkBoxSelection2(_ sender:UIButton)
     {
         let selectedIndexPath = IndexPath(row: sender.tag, section: 0)
@@ -378,9 +405,16 @@ class PickupShipping: UIViewController , UITableViewDelegate, UITableViewDataSou
     {
         self.showLoadingMode()
      
-        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
-        //print(dicUser)
-        let  strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
         
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
@@ -414,6 +448,22 @@ class PickupShipping: UIViewController , UITableViewDelegate, UITableViewDataSou
                     self.arrMAddressList = NSMutableArray(array: arrMaddr)
                     print("arrMAddressList --->",self.arrMAddressList)
                     
+                    let arrMstr = Data.value(forKey: "PickupPoints") as! NSArray
+                    let arrMstr1 = NSMutableArray(array: arrMstr)
+                    print("arrMstr1 count --->",arrMstr1.count)
+                    
+                    let strSelectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+                    
+                    for x in 0 ..< arrMstr1.count
+                    {
+                        let dictemp: NSDictionary = arrMstr1[x] as! NSDictionary
+                        let strId = String(format: "%@", dictemp.value(forKey: "Id") as! CVarArg)
+                        if strSelectedStoreID == strId{
+                            self.arrMStoreList.add(dictemp)
+                        }
+                    }
+                    print("arrMStoreList count --->",self.arrMStoreList.count)
+                    
                     OperationQueue.main.addOperation {
                         self.tabvAddress.reloadData()
                     }
@@ -433,8 +483,16 @@ class PickupShipping: UIViewController , UITableViewDelegate, UITableViewDataSou
     {
         self.showLoadingMode()
         
-        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
-        let  strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
         
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
@@ -508,15 +566,27 @@ class PickupShipping: UIViewController , UITableViewDelegate, UITableViewDataSou
     }
     
     
-    //MARK: - get StoreList method
-    func getStoreList()
+    //MARK: - set ShippingAddressPickup method
+    func setShippingAddressPickup(strPickId:String)
     {
         self.showLoadingMode()
         
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
+        let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+        
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
-        let strconnurl = String(format: "%@%@", Constants.conn.ConnUrl, "/api/stores")
+        let strconnurl = String(format: "%@%@customerId=%@&storeId=%@&addressId=%@&shippingComputationMethod=%@&IsInStorePickup=%@&selecteInstorePickupId=%@", Constants.conn.ConnUrl, "/api/saveshippingaddress?",strCustomerid,strSlectedStoreID,"","Shipping.FixedByWeightByTotal","true",strPickId)
         let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
-        request.httpMethod = "GET"
+        request.httpMethod = "POST"
         request.setValue(strapikey, forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -532,20 +602,45 @@ class PickupShipping: UIViewController , UITableViewDelegate, UITableViewDataSou
                 if let json = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
                 {
                     self.hideLoadingMode()
-                    //print("json --->",json)
+                    print("json --->",json)
                     
                     let dictemp = NSMutableDictionary(dictionary: json)
-                    
                     let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
                     let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
                     
-                    let Data = dictemp.value(forKey: "Data") as! NSDictionary
-                    let arrMStore = Data.value(forKey: "stores") as! NSArray
-                    self.arrMStoreList = NSMutableArray(array: arrMStore)
-                    print("arrMStoreList --->",self.arrMStoreList)
-                  
                     OperationQueue.main.addOperation {
-                        self.tabvStore.reloadData()
+                        if Status == "1"
+                        {
+                            let screenSize = UIScreen.main.bounds
+                            if (screenSize.height == 568.0){
+                            }
+                            else if (screenSize.height == 480.0){
+                            }
+                            else if(screenSize.height == 667.0){
+                                let storyBoard = UIStoryboard(name: "SectionThree6S", bundle: nil)
+                                let Paymentmethod = storyBoard.instantiateViewController(withIdentifier: "Paymentmethod") as! Paymentmethod
+                                Paymentmethod.hidesBottomBarWhenPushed = true
+                                self.navigationController?.pushViewController(Paymentmethod, animated: true)
+                            }
+                            else if(screenSize.height == 736.0){
+                                let storyBoard = UIStoryboard(name: "SectionThree6SPlus", bundle: nil)
+                                let Paymentmethod = storyBoard.instantiateViewController(withIdentifier: "Paymentmethod") as! Paymentmethod
+                                Paymentmethod.hidesBottomBarWhenPushed = true
+                                self.navigationController?.pushViewController(Paymentmethod, animated: true)
+                            }
+                            else if(screenSize.height == 812.0){
+                                let storyBoard = UIStoryboard(name: "SectionThreeXS", bundle: nil)
+                                let Paymentmethod = storyBoard.instantiateViewController(withIdentifier: "Paymentmethod") as! Paymentmethod
+                                Paymentmethod.hidesBottomBarWhenPushed = true
+                                self.navigationController?.pushViewController(Paymentmethod, animated: true)
+                            }
+                            else{
+                                let storyBoard = UIStoryboard(name: "SectionThreeXSMAX", bundle: nil)
+                                let Paymentmethod = storyBoard.instantiateViewController(withIdentifier: "Paymentmethod") as! Paymentmethod
+                                Paymentmethod.hidesBottomBarWhenPushed = true
+                                self.navigationController?.pushViewController(Paymentmethod, animated: true)
+                            }
+                        }
                     }
                 }
             }

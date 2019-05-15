@@ -28,35 +28,42 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cH-Ql-ril">
-                        <rect key="frame" x="16" y="11" width="311" height="30"/>
+                        <rect key="frame" x="16" y="11" width="316" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIE-ut-3dY">
-                        <rect key="frame" x="16" y="39" width="343" height="48"/>
+                        <rect key="frame" x="16" y="39" width="343" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="16"/>
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMc-ud-kGE">
-                        <rect key="frame" x="335" y="11" width="24" height="24"/>
+                        <rect key="frame" x="16" y="71" width="20" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" backgroundImage="mobileno"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNP-ec-K7T">
+                        <rect key="frame" x="340" y="11" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" backgroundImage="radiocheck"/>
                     </button>
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btnPhone" destination="JMc-ud-kGE" id="5oK-Qx-8fZ"/>
+                <outlet property="btnRadioCheck" destination="yNP-ec-K7T" id="oVl-xR-D4j"/>
                 <outlet property="lblAddress" destination="CIE-ut-3dY" id="UX9-Zp-amd"/>
                 <outlet property="lblName" destination="0cH-Ql-ril" id="iG7-es-EIR"/>
             </connections>
-            <point key="canvasLocation" x="-644" y="-84.107946026986511"/>
+            <point key="canvasLocation" x="-855" y="-112"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="mobileno" width="28" height="28"/>
+        <image name="radiocheck" width="28" height="28"/>
     </resources>
 </document>

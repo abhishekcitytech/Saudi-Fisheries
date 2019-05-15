@@ -273,8 +273,10 @@ class CategoryTab: UIViewController,UICollectionViewDelegate, UICollectionViewDa
     {
         self.showLoadingMode()
         
+        let strSlectedLanguageID = String(format: "%@", UserDefaults.standard.string(forKey: "lngunique_seo_code")!)
+        
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
-        let strconnurl = String(format: "%@%@%@", Constants.conn.ConnUrl, "/api/categories?storeid=",strSelectedStoreID)
+        let strconnurl = String(format: "%@%@?storeid=%@&languageid=%@", Constants.conn.ConnUrl, "/api/categories",strSelectedStoreID,strSlectedLanguageID)
         let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
         request.httpMethod = "GET"
         request.setValue(strapikey, forHTTPHeaderField: "Authorization")

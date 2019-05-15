@@ -79,6 +79,23 @@ class StoreLocator: UIViewController, UITableViewDataSource, UITableViewDelegate
         let strcompany_address = String(format: "%@", dictemp.value(forKey: "company_address") as! CVarArg)
         let strcompany_phone_number = String(format: "%@", dictemp.value(forKey: "company_phone_number") as! CVarArg)
         
+        
+        let strSelectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+        let strSelectedStoreNAME = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreNAME")!)
+        
+        print("strId %@",strId)
+        print("strSelectedStoreID %@",strSelectedStoreID)
+        
+        if strSelectedStoreID == strId
+        {
+            cell.backgroundColor=UIColor(red: 242/255, green: 242/255, blue: 246/255, alpha: 1.0)
+            cell.btnRadioCheck.isHidden = false
+        }
+        else{
+            cell.backgroundColor=UIColor.white
+            cell.btnRadioCheck.isHidden = true
+        }
+        
         cell.lblName.text = strName
         cell.lblAddress.text = strcompany_address
         
@@ -211,7 +228,10 @@ class StoreLocator: UIViewController, UITableViewDataSource, UITableViewDelegate
                     let Data = dictemp.value(forKey: "Data") as! NSDictionary
                     let arrMStore = Data.value(forKey: "stores") as! NSArray
                     self.arrMStoreList = NSMutableArray(array: arrMStore)
+                    
                     print("arrMStoreList --->",self.arrMStoreList)
+                    
+                    
                     
                     /*let dicFirstIndex = self.arrMStores.object(at: 0) as! NSDictionary
                     let SelectedStoreID = String(format: "%@", dicFirstIndex.value(forKey: "id") as! CVarArg)

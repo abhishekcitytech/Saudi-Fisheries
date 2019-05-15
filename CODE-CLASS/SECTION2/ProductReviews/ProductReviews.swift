@@ -1,37 +1,53 @@
 //
-//  Billing.swift
+//  ProductReviews.swift
 //  Saudi Fisheries
 //
-//  Created by Sandipan on 01/05/19.
+//  Created by Sandipan on 13/05/19.
 //  Copyright © 2019 SANDIPAN. All rights reserved.
 //
 
 import UIKit
 
-class Billing: UIViewController, UITableViewDataSource, UITableViewDelegate
+class ProductReviews: UIViewController,UITextViewDelegate,FloatRatingViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource
 {
     var loadingCircle = UIView()
     var circle = UIView()
     
+    @IBOutlet var viewAddReview: UIView!
+    @IBOutlet var viewRating: FloatRatingView!
+    @IBOutlet var txtReviewTitle: UITextField!
+    @IBOutlet var txtvReviewText: UITextView!
+    @IBOutlet var btnSubmitReview: UIButton!
+    
+    @IBOutlet var viewAllReviewList: UIView!
+    @IBOutlet var lblReviewList: UILabel!
+    
     let cellReuseIdentifier = "cell"
-    @IBOutlet var tableLine: UITableView!
+    var stridentifer = NSString()
+    @IBOutlet var tabvReviewList: UITableView!
     
-    var arrMAddress = NSMutableArray()
+    var arrMReviews = NSMutableArray()
     
-    var strAddressId = String()
-    var selectedRows:[IndexPath] = []
+    
+    var strRating = Double()
+    var strPrdID = String()
     
     // MARK: - viewWillAppear Method
-    override func viewWillAppear(_ animated: Bool)
-    {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.isHidden = true
+        
+        self.tabvReviewList.backgroundView=nil
+        self.tabvReviewList.backgroundColor=UIColor.clear
+        self.tabvReviewList.separatorColor=UIColor.clear
+        self.tabvReviewList.register(UINib(nibName: "PRCell", bundle: nil), forCellReuseIdentifier: "PRCell")
     }
     
     // MARK: - viewDidAppear Method
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.getBillingAddressList()
+        
+        self.getReviewList()
     }
     
     // MARK: - viewDidLoad method
@@ -41,10 +57,37 @@ class Billing: UIViewController, UITableViewDataSource, UITableViewDelegate
         //Do any additional setup after loading the view.
         //let myAppDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        self.tableLine.backgroundView=nil
-        self.tableLine.backgroundColor=UIColor.clear
-        self.tableLine.separatorColor=UIColor.clear
-        self.tableLine.register(UINib(nibName: "BTCell", bundle: nil), forCellReuseIdentifier: "BTCell")
+        let border = CALayer()
+        let width = CGFloat(0.5)
+        border.borderColor = UIColor(red: 65/255, green: 65/255, blue: 66/255, alpha: 1.0).cgColor
+        border.frame = CGRect(x: 0, y: viewAddReview.frame.size.height - width, width: viewAddReview.frame.size.width, height: viewAddReview.frame.size.height)
+        border.borderWidth = width
+        viewAddReview.layer.addSublayer(border)
+        viewAddReview.layer.masksToBounds = true
+        
+        let border1 = CALayer()
+        let width1 = CGFloat(0.5)
+        border1.borderColor = UIColor(red: 65/255, green: 65/255, blue: 66/255, alpha: 1.0).cgColor
+        border1.frame = CGRect(x: 0, y: txtReviewTitle.frame.size.height - width1, width: txtReviewTitle.frame.size.width, height: txtReviewTitle.frame.size.height)
+        border1.borderWidth = width1
+        txtReviewTitle.layer.addSublayer(border1)
+        txtReviewTitle.layer.masksToBounds = true
+        
+        let border2 = CALayer()
+        let width2 = CGFloat(0.5)
+        border2.borderColor = UIColor(red: 65/255, green: 65/255, blue: 66/255, alpha: 1.0).cgColor
+        border2.frame = CGRect(x: 0, y: txtvReviewText.frame.size.height - width2, width: txtvReviewText.frame.size.width, height: txtvReviewText.frame.size.height)
+        border2.borderWidth = width2
+        txtvReviewText.layer.addSublayer(border2)
+        txtvReviewText.layer.masksToBounds = true
+        
+        strRating = 0
+        viewRating.backgroundColor = UIColor.clear
+        viewRating.delegate = self
+        viewRating.contentMode = UIView.ContentMode.center
+        viewRating.type = .wholeRatings
+        viewRating.rating = strRating
+        
     }
     
     // MARK: - pressBack method
@@ -52,53 +95,135 @@ class Billing: UIViewController, UITableViewDataSource, UITableViewDelegate
     {
         self.navigationController?.popViewController(animated: true)
     }
-
-    // MARK: - pressContinue method
-    @IBAction func pressContinue(_ sender: Any)
+    
+    // MARK: - pressSubmitReview method
+    @IBAction func pressSubmitReview(_ sender: Any)
     {
-        self.setBillingAddress(strAddressId: strAddressId)
+        //print(strRating)
+        //print(txtvReviewText.text)
+        
+        if txtReviewTitle.text == ""
+        {
+            let uiAlert = UIAlertController(title: "", message: "Please enter review subject", preferredStyle: UIAlertController.Style.alert)
+            self.present(uiAlert, animated: true, completion: nil)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                print("Click of default button")
+            }))
+        }
+        else if strRating == 0
+        {
+            let uiAlert = UIAlertController(title: "", message: "Please give your ratings", preferredStyle: UIAlertController.Style.alert)
+            self.present(uiAlert, animated: true, completion: nil)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                print("Click of default button")
+            }))
+        }
+        else{
+            self.postAddReviewRating(strPId: strPrdID)
+        }
+    }
+    
+    //MARK: - floatRatingView Delegate Method
+    @objc func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Double)
+    {
+        strRating = rating
+        print("strRating >>>> %@",strRating)
+    }
+    @objc func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Double)
+    {
+        strRating = rating
+        print("strRating >>>> %@",strRating)
+    }
+    
+    // MARK: - UITextView Delegate Method
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool{
+        return true;
+    }
+    func textViewDidBeginEditing(_ textView: UITextView){
+    }
+    func textViewDidEndEditing(_ textView: UITextView){
+    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{
+        if (text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    func textViewDidChange(_ textView: UITextView){
+    }
+    func textViewDidChangeSelection(_ textView: UITextView){
+    }
+    
+    // MARK: - Textfield Delegate Method
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+    }
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
+    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool
+    {
+        return true;
+    }
+    func textFieldShouldClear(_ textField: UITextField) -> Bool
+    {
+        return true;
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool
+    {
+        return true;
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        return true;
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder();
+        return true;
     }
     
     
     // MARK: - tableView delegate and datasoruce Method
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return arrMAddress.count
+        return arrMReviews.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 120
+        return 140.0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BTCell", for: indexPath) as! BTCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PRCell", for: indexPath) as! PRCell
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.accessoryType = UITableViewCell.AccessoryType.none
-        cell.selectionStyle = .none
-        cell.backgroundColor = UIColor.white
+        cell.backgroundColor=UIColor.white
+        cell.clearsContextBeforeDrawing = true
+        cell.contentView.clearsContextBeforeDrawing = true
         
-        let dictemp: NSDictionary = arrMAddress[indexPath.row] as! NSDictionary
-        let  strId = String(format: "%@", dictemp.value(forKey: "Id") as! CVarArg)
-        let  strFirstName = String(format: "%@", dictemp.value(forKey: "FirstName") as! CVarArg)
-        let  strLastName = String(format: "%@", dictemp.value(forKey: "LastName") as! CVarArg)
-        let  strAddress1 = String(format: "%@", dictemp.value(forKey: "Address1") as! CVarArg)
-        let  strAddress2 = String(format: "%@", dictemp.value(forKey: "Address2") as! CVarArg)
-        let  strCity = String(format: "%@", dictemp.value(forKey: "City") as! CVarArg)
-        let  strZipPostalCode = String(format: "%@", dictemp.value(forKey: "ZipPostalCode") as! CVarArg)
-        let  strPhoneNumber = String(format: "%@", dictemp.value(forKey: "PhoneNumber") as! CVarArg)
+        let dictemp: NSDictionary = self.arrMReviews[indexPath.item] as! NSDictionary
+        let  Id = String(format: "%@", dictemp.value(forKey: "Id") as! CVarArg)
+        let  id = String(format: "%@", dictemp.value(forKey: "id") as! CVarArg)
+        let  CustomerName = String(format: "%@", dictemp.value(forKey: "CustomerName") as! CVarArg)
+        let  title = String(format: "%@", dictemp.value(forKey: "title") as! CVarArg)
+        let  reviewText = String(format: "%@", dictemp.value(forKey: "reviewText") as! CVarArg)
+        let  rating = String(format: "%@", dictemp.value(forKey: "rating") as! CVarArg)
         
-        cell.lbl1.text = String(format: "%@ %@", strFirstName,strLastName)
-        cell.lbl2.text = String(format: "%@,%@,%@,%@", strAddress1,strAddress2,strCity,strZipPostalCode)
-        cell.lbl3.text = String(format: "%@", strPhoneNumber)
+        cell.lbl1.text = String(format: "%@", title)
+        cell.lbl2.text = String(format: "%@ %@", "posted by:",CustomerName)
+        cell.lbl3.text = String(format: "%@", reviewText)
         
-        if selectedRows.contains(indexPath){
-            cell.btnCheckUnCheck.setBackgroundImage(UIImage(named:"radiocheck"), for: .normal)
-        }else{
-            cell.btnCheckUnCheck.setBackgroundImage(UIImage(named:"radiouncheck"), for: .normal)
-        }
-        cell.btnCheckUnCheck.tag = indexPath.row
-        cell.btnCheckUnCheck.addTarget(self, action: #selector(checkBoxSelection(_:)), for: .touchUpInside)
+        cell.floatingReview.isUserInteractionEnabled = false
+        cell.floatingReview.backgroundColor = UIColor.clear
+        cell.floatingReview.delegate = self
+        cell.floatingReview.contentMode = UIView.ContentMode.center
+        cell.floatingReview.type = .floatRatings
+        let lessPrecisePI = Double(rating)
+        cell.floatingReview.rating = lessPrecisePI!
         
-        let labelSeparator = UILabel(frame: CGRect(x: 15, y: 119.5, width: tableView.frame.size.width, height: 0.5))
+        let labelSeparator = UILabel(frame: CGRect(x: 15, y: 139.5, width: tableView.frame.size.width, height: 0.5))
         labelSeparator.backgroundColor = UIColor.lightGray
         cell.contentView.addSubview(labelSeparator)
         
@@ -106,33 +231,6 @@ class Billing: UIViewController, UITableViewDataSource, UITableViewDelegate
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-    }
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
-    {
-    }
-    @objc func checkBoxSelection(_ sender:UIButton)
-    {
-        let selectedIndexPath = IndexPath(row: sender.tag, section: 0)
-        if self.selectedRows.contains(selectedIndexPath){
-            self.selectedRows.remove(at: self.selectedRows.index(of: selectedIndexPath)!)
-        }else{
-            self.selectedRows.removeAll()
-            self.selectedRows.append(selectedIndexPath)
-            
-            let dictemp: NSDictionary = arrMAddress[selectedIndexPath.row] as! NSDictionary
-            strAddressId = String(format: "%@", dictemp.value(forKey: "Id") as! CVarArg)
-            print(dictemp)
-            print(strAddressId)
-        }
-        self.tableLine.reloadData()
-    }
-    func getAllIndexPaths() -> [IndexPath]
-    {
-        var indexPaths: [IndexPath] = []
-        for j in 0..<tableLine.numberOfRows(inSection: 0) {
-            indexPaths.append(IndexPath(row: j, section: 0))
-        }
-        return indexPaths
     }
     
     
@@ -222,8 +320,8 @@ class Billing: UIViewController, UITableViewDataSource, UITableViewDelegate
     }
     
     
-    //MARK: - get Billing Address List method
-    func getBillingAddressList()
+    //MARK: - get ReviewList method
+    func getReviewList()
     {
         self.showLoadingMode()
         
@@ -239,8 +337,9 @@ class Billing: UIViewController, UITableViewDataSource, UITableViewDelegate
         }
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
         
+
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
-        let strconnurl = String(format: "%@%@%@", Constants.conn.ConnUrl, "/api/getbillingaddress/",strCustomerid)
+        let strconnurl = String(format: "%@%@%@", Constants.conn.ConnUrl, "/api/reviews/",strPrdID)
         let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
         request.httpMethod = "GET"
         request.setValue(strapikey, forHTTPHeaderField: "Authorization")
@@ -265,13 +364,14 @@ class Billing: UIViewController, UITableViewDataSource, UITableViewDelegate
                     let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
                     let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
                     
-                    let Data = dictemp.value(forKey: "Data") as! NSDictionary
-                    let arrMaddr = Data.value(forKey: "ExistingAddresses") as! NSArray
-                    self.arrMAddress = NSMutableArray(array: arrMaddr)
-                    print("arrMAddress --->",self.arrMAddress)
+                    let arrMRV = dictemp.value(forKey: "Data") as! NSArray
+                    self.arrMReviews = NSMutableArray(array: arrMRV)
+                    print("arrMReviews --->",self.arrMReviews)
                     
                     OperationQueue.main.addOperation {
-                        self.tableLine.reloadData()
+                        if Status == "1"{
+                            self.tabvReviewList.reloadData()
+                        }
                     }
                 }
             }
@@ -284,11 +384,14 @@ class Billing: UIViewController, UITableViewDataSource, UITableViewDelegate
         task.resume()
     }
     
-    //MARK: - set BillingAddress method
-    func setBillingAddress(strAddressId:String)
+    
+    //MARK: - AddReviewRating method
+    func postAddReviewRating(strPId:String)
     {
         self.showLoadingMode()
-      
+        
+        let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+        
         var  strCustomerid = String()
         if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
             print("emplty")
@@ -299,14 +402,24 @@ class Billing: UIViewController, UITableViewDataSource, UITableViewDelegate
             //print(dicUser)
             strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
         }
-        let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+        
+        
+        let dicTemp:NSMutableDictionary? = ["customerId" : strCustomerid,"title" : txtReviewTitle.text,"reviewText" : txtvReviewText.text,"rating" : strRating];
+        
+        let dicPostOverAll:NSMutableDictionary? = ["ProductReviewHelpfulness" : dicTemp as Any];
+        print("dicPostOverAll ---->>>>>",dicPostOverAll as Any)
         
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
-        let strconnurl = String(format: "%@%@customerId=%@&storeId=%@&addressId=%@&shipToSameAddress=%@", Constants.conn.ConnUrl, "/api/savebillingaddress?",strCustomerid,strSlectedStoreID,strAddressId,"true")
+        let strconnurl = String(format: "%@%@%@", Constants.conn.ConnUrl, "/api/addProductReview/",strPId)
         let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
         request.httpMethod = "POST"
         request.setValue(strapikey, forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonData : NSData = try! JSONSerialization.data(withJSONObject: dicPostOverAll as Any) as NSData
+        let jsonString = NSString(data: jsonData as Data, encoding: String.Encoding.utf8.rawValue)! as String
+        print("json string = \(jsonString)")
+        request.httpBody = jsonData as Data
         
         let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
             guard error == nil && data != nil else
@@ -320,44 +433,27 @@ class Billing: UIViewController, UITableViewDataSource, UITableViewDelegate
                 if let json = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
                 {
                     self.hideLoadingMode()
-                    print("json --->",json)
                     
-                    let dictemp = NSMutableDictionary(dictionary: json)
+                    let dictemp = json as NSDictionary
+                    print("dictemp --->",dictemp)
+                    
                     let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
                     let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
                     
                     OperationQueue.main.addOperation {
+                        
                         if Status == "1"
                         {
-                            let screenSize = UIScreen.main.bounds
-                            if (screenSize.height == 568.0){
-                            }
-                            else if (screenSize.height == 480.0){
-                            }
-                            else if(screenSize.height == 667.0){
-                                let storyBoard = UIStoryboard(name: "SectionThree6S", bundle: nil)
-                                let PickupShipping = storyBoard.instantiateViewController(withIdentifier: "PickupShipping") as! PickupShipping
-                                PickupShipping.hidesBottomBarWhenPushed = true
-                                self.navigationController?.pushViewController(PickupShipping, animated: true)
-                            }
-                            else if(screenSize.height == 736.0){
-                                let storyBoard = UIStoryboard(name: "SectionThree6SPlus", bundle: nil)
-                                let PickupShipping = storyBoard.instantiateViewController(withIdentifier: "PickupShipping") as! PickupShipping
-                                PickupShipping.hidesBottomBarWhenPushed = true
-                                self.navigationController?.pushViewController(PickupShipping, animated: true)
-                            }
-                            else if(screenSize.height == 812.0){
-                                let storyBoard = UIStoryboard(name: "SectionThreeXS", bundle: nil)
-                                let PickupShipping = storyBoard.instantiateViewController(withIdentifier: "PickupShipping") as! PickupShipping
-                                PickupShipping.hidesBottomBarWhenPushed = true
-                                self.navigationController?.pushViewController(PickupShipping, animated: true)
-                            }
-                            else{
-                                let storyBoard = UIStoryboard(name: "SectionThreeXSMAX", bundle: nil)
-                                let PickupShipping = storyBoard.instantiateViewController(withIdentifier: "PickupShipping") as! PickupShipping
-                                PickupShipping.hidesBottomBarWhenPushed = true
-                                self.navigationController?.pushViewController(PickupShipping, animated: true)
-                            }
+                            self.txtReviewTitle.text = ""
+                            self.txtvReviewText.text = ""
+                            self.strRating = 0
+                            self.viewRating.rating = self.strRating
+                            
+                            let uiAlert = UIAlertController(title: "", message: "Thanks for your valuable review.", preferredStyle: UIAlertController.Style.alert)
+                            self.present(uiAlert, animated: true, completion: nil)
+                            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                                print("Click of default button")
+                            }))
                         }
                     }
                 }

@@ -395,33 +395,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" id="wlI-Ti-V2n">
-                                <rect key="frame" x="0.0" y="184" width="375" height="424"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search nearest store" id="Zym-nN-k75">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" red="0.015686274510000001" green="0.58823529409999997" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="barTintColor" red="0.70196078429999997" green="0.82352941180000006" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="UQc-2w-uXc" id="kqP-eB-5OW"/>
-                                        </connections>
-                                    </searchBar>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ltm-Cv-Ha6">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="368"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="UQc-2w-uXc" id="Zlu-QA-OPA"/>
-                                            <outlet property="delegate" destination="UQc-2w-uXc" id="e4p-U6-cy3"/>
-                                        </connections>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <view contentMode="scaleToFill" id="PHr-LM-wAm">
                                 <rect key="frame" x="0.0" y="184" width="375" height="424"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -433,6 +406,22 @@
                                         <connections>
                                             <outlet property="dataSource" destination="UQc-2w-uXc" id="7LD-7W-gac"/>
                                             <outlet property="delegate" destination="UQc-2w-uXc" id="1tb-9w-q0O"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="wlI-Ti-V2n">
+                                <rect key="frame" x="0.0" y="184" width="375" height="424"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ltm-Cv-Ha6">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="424"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="UQc-2w-uXc" id="Zlu-QA-OPA"/>
+                                            <outlet property="delegate" destination="UQc-2w-uXc" id="e4p-U6-cy3"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
@@ -458,7 +447,6 @@
                         <outlet property="btnPickup" destination="Vob-kq-CCn" id="W9L-Kp-S1T"/>
                         <outlet property="lblDelivery" destination="VGt-HB-flE" id="EVj-aA-HKb"/>
                         <outlet property="lblPickup" destination="3CM-5A-zVV" id="hmB-iP-KN7"/>
-                        <outlet property="searchStore" destination="Zym-nN-k75" id="qPu-F9-09L"/>
                         <outlet property="tabvAddress" destination="Egh-xn-Oy2" id="jDI-dd-uVZ"/>
                         <outlet property="tabvStore" destination="Ltm-Cv-Ha6" id="BZG-As-Y52"/>
                         <outlet property="view" destination="j5Z-is-Qw8" id="1bk-xW-DE6"/>

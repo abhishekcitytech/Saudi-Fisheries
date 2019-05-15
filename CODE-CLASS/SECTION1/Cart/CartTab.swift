@@ -28,6 +28,14 @@ class CartTab: UIViewController,UITextFieldDelegate , UITableViewDelegate,UITabl
     @IBOutlet var btnProceedtoCheckout: UIButton!
     @IBOutlet var tableLine: UITableView!
     
+    @IBOutlet var viewDiscountGiftCard: UIView!
+    @IBOutlet var lblDiscountCode: UILabel!
+    @IBOutlet var txtDiscountCode: UITextField!
+    @IBOutlet var btnApplyDiscountCode: UIButton!
+    @IBOutlet var lblGiftCards: UILabel!
+    @IBOutlet var txtGiftCards: UITextField!
+    @IBOutlet var btnApplyGiftCards: UIButton!
+    
     var arrMProducts = NSMutableArray()
     
     // MARK: - viewWillAppear Method
@@ -59,6 +67,27 @@ class CartTab: UIViewController,UITextFieldDelegate , UITableViewDelegate,UITabl
         viewBottomTotal.layer.cornerRadius = 0.0
         viewBottomTotal.layer.masksToBounds = true
         
+        txtDiscountCode.layer.borderColor = UIColor.lightGray.cgColor
+        txtDiscountCode.layer.borderWidth = 1.0
+        txtDiscountCode.layer.cornerRadius = 4.0
+        txtDiscountCode.layer.masksToBounds = true
+        
+        btnApplyDiscountCode.layer.borderColor = UIColor.clear.cgColor
+        btnApplyDiscountCode.layer.borderWidth = 0.0
+        btnApplyDiscountCode.layer.cornerRadius = 4.0
+        btnApplyDiscountCode.layer.masksToBounds = true
+        
+        txtGiftCards.layer.borderColor = UIColor.lightGray.cgColor
+        txtGiftCards.layer.borderWidth = 1.0
+        txtGiftCards.layer.cornerRadius = 4.0
+        txtGiftCards.layer.masksToBounds = true
+        
+        btnApplyGiftCards.layer.borderColor = UIColor.clear.cgColor
+        btnApplyGiftCards.layer.borderWidth = 0.0
+        btnApplyGiftCards.layer.cornerRadius = 4.0
+        btnApplyGiftCards.layer.masksToBounds = true
+        
+        viewDiscountGiftCard.isHidden = true
         viewBottomTotal.isHidden = true
         btnProceedtoCheckout.isHidden = true
         self.tableLine.isHidden = true
@@ -98,6 +127,35 @@ class CartTab: UIViewController,UITextFieldDelegate , UITableViewDelegate,UITabl
         }, completion: nil)
     }
     
+    // MARK: - Textfield Delegate Method
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+    }
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
+    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool
+    {
+        return true;
+    }
+    func textFieldShouldClear(_ textField: UITextField) -> Bool
+    {
+        return true;
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool
+    {
+        return true;
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        return true;
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder();
+        return true;
+    }
+    
     // MARK: - tableView delegate and datasoruce Method
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -121,6 +179,7 @@ class CartTab: UIViewController,UITextFieldDelegate , UITableViewDelegate,UITabl
         let  id = String(format: "%@", dictemp.value(forKey: "id") as! CVarArg)
         let  product_id = String(format: "%@", dictemp.value(forKey: "product_id") as! CVarArg)
         let  quantity = String(format: "%@", dictemp.value(forKey: "quantity") as! CVarArg)
+        let  strlineitemunitprice = String(format: "%@", dictemp.value(forKey: "lineitemunitprice") as! CVarArg)
         
         let dictempproduct: NSDictionary = dictemp.value(forKey: "product") as! NSDictionary
         
@@ -134,7 +193,7 @@ class CartTab: UIViewController,UITextFieldDelegate , UITableViewDelegate,UITabl
         let dictempImg: NSDictionary = arrImages[0] as! NSDictionary
         let  strsrc = String(format: "%@", dictempImg.value(forKey: "src") as! CVarArg)
         
-        cell.lblPrice.text = String(format: "%@%@", strprice,"SAR")
+        cell.lblPrice.text = String(format: "%@%@", strlineitemunitprice,"SAR")
         cell.lblname.text = strname
         cell.lblCategory.text = String(format: "%@%@", strproduct_type,"")
         
@@ -142,6 +201,8 @@ class CartTab: UIViewController,UITextFieldDelegate , UITableViewDelegate,UITabl
        
         cell.txtQTTY.text = quantity
         
+        cell.btnMinus.tag = indexPath.item
+        cell.btnPlus.tag = indexPath.item
         cell.btnMinus.addTarget(self, action: #selector(pressMinus), for: .touchUpInside)
         cell.btnPlus.addTarget(self, action: #selector(pressPlus), for: .touchUpInside)
         
@@ -193,7 +254,7 @@ class CartTab: UIViewController,UITextFieldDelegate , UITableViewDelegate,UITabl
             myInt1 = myInt1! - 1
             print(myInt1 as Any)
             
-            self.updateCartList(strQty: myInt1!, strid: id, arrproduct_attributes: arrMAttr,strPrdId:product_id)
+            self.updateCartList(strQty: myInt1!, strCartid: id, strProductid: product_id)
         }
     }
     @objc func pressPlus(sender:UIButton!)
@@ -212,12 +273,43 @@ class CartTab: UIViewController,UITextFieldDelegate , UITableViewDelegate,UITabl
             myInt1 = myInt1! + 1
             print(myInt1 as Any)
             
-            self.updateCartList(strQty: myInt1!, strid: id, arrproduct_attributes: arrMAttr,strPrdId:product_id)
+             self.updateCartList(strQty: myInt1!, strCartid: id, strProductid: product_id)
         }
         else
         {
         }
     }
+    
+    // MARK: - press Apply Discount Gift  Method
+    @IBAction func pressApplyDiscountCode(_ sender: Any)
+    {
+        if txtDiscountCode.text == ""
+        {
+            let uiAlert = UIAlertController(title: "", message: "Please enter promo code", preferredStyle: UIAlertController.Style.alert)
+            self.present(uiAlert, animated: true, completion: nil)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                print("Click of default button")
+            }))
+        }
+        else{
+            self.getApplydiscountcode()
+        }
+    }
+    @IBAction func pressApplyGiftCards(_ sender: Any)
+    {
+        if txtGiftCards.text == ""
+        {
+            let uiAlert = UIAlertController(title: "", message: "Please enter gift code", preferredStyle: UIAlertController.Style.alert)
+            self.present(uiAlert, animated: true, completion: nil)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                print("Click of default button")
+            }))
+        }
+        else{
+            self.getApplygiftcard()
+        }
+    }
+    
     
     // MARK: - press ProceedtoCheckout Method
     @IBAction func pressProceedtoCheckout(_ sender: Any)
@@ -345,9 +437,16 @@ class CartTab: UIViewController,UITextFieldDelegate , UITableViewDelegate,UITabl
     {
         self.showLoadingMode()
         
-        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
-        //print(dicUser)
-        let  strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
         
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
         
@@ -392,12 +491,15 @@ class CartTab: UIViewController,UITextFieldDelegate , UITableViewDelegate,UITabl
                     
                     OperationQueue.main.addOperation {
                         
-                        if strSubTotal == "" || strOrderTotalDiscount == "" || strTax == "" || strOrderTotal == ""
+                        if strOrderTotal == ""
                         {
+                            self.viewDiscountGiftCard.isHidden = true
                             self.viewBottomTotal.isHidden = true
                             self.btnProceedtoCheckout.isHidden = true
                         }
-                        else{
+                        else
+                        {
+                            self.viewDiscountGiftCard.isHidden = false
                             self.viewBottomTotal.isHidden = false
                             self.lbl01.text = " Sub Total"
                             self.lbl011.text = strSubTotal
@@ -430,9 +532,16 @@ class CartTab: UIViewController,UITextFieldDelegate , UITableViewDelegate,UITabl
     {
         self.showLoadingMode()
         
-        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
-        //print(dicUser)
-        let  strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
         
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
         
@@ -493,28 +602,33 @@ class CartTab: UIViewController,UITextFieldDelegate , UITableViewDelegate,UITabl
     
     
     //MARK: - update CartList method
-    func updateCartList(strQty:Int,strid:String,arrproduct_attributes:NSArray,strPrdId:String)
+    func updateCartList(strQty:Int,strCartid:String,strProductid:String)
     {
         self.showLoadingMode()
         
-        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
-        //print(dicUser)
-        let  strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
         
         let dicshopping_cart_item:NSMutableDictionary? = [
-            "product_attributes" : arrproduct_attributes,
-            "product_id" : strPrdId,
             "quantity" : strQty,
             "shopping_cart_type" : "shoppingcart",
-            "customer_id" : strCustomerid,
+            "product_id" : strProductid,
             "storeid" : strSlectedStoreID,
             ];
         
         let dicPostOverAll:NSMutableDictionary? = ["shopping_cart_item" : dicshopping_cart_item as Any];
         
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
-        let strconnurl = String(format: "%@%@%@", Constants.conn.ConnUrl, "/api/shopping_cart_items/",strid)
+        let strconnurl = String(format: "%@%@%@?customerId=%@", Constants.conn.ConnUrl, "/api/shopping_cart_items/",strCartid,strCustomerid)
         let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
         request.httpMethod = "PUT"
         request.setValue(strapikey, forHTTPHeaderField: "Authorization")
@@ -546,6 +660,133 @@ class CartTab: UIViewController,UITextFieldDelegate , UITableViewDelegate,UITabl
                     OperationQueue.main.addOperation {
                         
                         if Status == "1"{
+                            self.arrMProducts.removeAllObjects()
+                            self.getCartList()
+                        }
+                    }
+                }
+            }
+            catch {
+                //check for internal server data error
+                self.hideLoadingMode()
+                print("Error -> \(error)")
+            }
+        }
+        task.resume()
+    }
+    
+    //MARK: - get Apply Discount Code method
+    func getApplydiscountcode()
+    {
+        self.showLoadingMode()
+        
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
+        
+        let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+        
+        let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
+        let strconnurl = String(format: "%@%@%@?storeId=%@&shoppingTypeId=%@&discountcouponcode=%@&discountTypeId=%@", Constants.conn.ConnUrl, "/api/shopping_cart_items/",strCustomerid,strSlectedStoreID,"1",txtDiscountCode.text!,"1")
+        let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
+        request.httpMethod = "GET"
+        request.setValue(strapikey, forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
+            guard error == nil && data != nil else
+            {
+                //check for fundamental networking error
+                self.hideLoadingMode()
+                print("Error=\(String(describing: error))")
+                return
+            }
+            do{
+                if let json = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
+                {
+                    self.hideLoadingMode()
+                    print("json --->",json)
+                    
+                    let dictemp = NSMutableDictionary(dictionary: json)
+                    
+                    let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
+                    let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
+                    
+                   
+                    OperationQueue.main.addOperation {
+                        if Status == "1"
+                        {
+                            self.txtDiscountCode.text = ""
+                            self.arrMProducts.removeAllObjects()
+                            self.getCartList()
+                        }
+                    }
+                }
+            }
+            catch {
+                //check for internal server data error
+                self.hideLoadingMode()
+                print("Error -> \(error)")
+            }
+        }
+        task.resume()
+    }
+    
+    //MARK: - get Apply Gift Cards method
+    func getApplygiftcard()
+    {
+        self.showLoadingMode()
+        
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
+        
+        let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+        
+        let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
+        let strconnurl = String(format: "%@%@%@?storeId=%@&shoppingTypeId=%@&giftcardcouponcode=%@&giftcardTypeId=%@", Constants.conn.ConnUrl, "/api/shopping_cart_items/",strCustomerid,strSlectedStoreID,"1",txtGiftCards.text!,"1")
+        let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
+        request.httpMethod = "GET"
+        request.setValue(strapikey, forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
+            guard error == nil && data != nil else
+            {
+                //check for fundamental networking error
+                self.hideLoadingMode()
+                print("Error=\(String(describing: error))")
+                return
+            }
+            do{
+                if let json = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
+                {
+                    self.hideLoadingMode()
+                    print("json --->",json)
+                    
+                    let dictemp = NSMutableDictionary(dictionary: json)
+                    
+                    let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
+                    let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
+                    
+                    
+                    OperationQueue.main.addOperation {
+                        if Status == "1"
+                        {
+                            self.txtGiftCards.text = ""
                             self.arrMProducts.removeAllObjects()
                             self.getCartList()
                         }

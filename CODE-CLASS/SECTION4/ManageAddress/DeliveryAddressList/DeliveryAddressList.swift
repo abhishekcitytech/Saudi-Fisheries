@@ -111,21 +111,25 @@ class DeliveryAddressList: UIViewController , UITableViewDelegate, UITableViewDa
         else if(screenSize.height == 667.0){
             let storyBoard = UIStoryboard(name: "SectionFour6S", bundle: nil)
             let AddDeliveryAddress = storyBoard.instantiateViewController(withIdentifier: "AddDeliveryAddress") as! AddDeliveryAddress
+            AddDeliveryAddress.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(AddDeliveryAddress, animated: true)
         }
         else if(screenSize.height == 736.0){
             let storyBoard = UIStoryboard(name: "SectionFour6SPlus", bundle: nil)
             let AddDeliveryAddress = storyBoard.instantiateViewController(withIdentifier: "AddDeliveryAddress") as! AddDeliveryAddress
+            AddDeliveryAddress.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(AddDeliveryAddress, animated: true)
         }
         else if(screenSize.height == 812.0){
             let storyBoard = UIStoryboard(name: "SectionFourXS", bundle: nil)
             let AddDeliveryAddress = storyBoard.instantiateViewController(withIdentifier: "AddDeliveryAddress") as! AddDeliveryAddress
+            AddDeliveryAddress.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(AddDeliveryAddress, animated: true)
         }
         else{
             let storyBoard = UIStoryboard(name: "SectionFourXSMAX", bundle: nil)
             let AddDeliveryAddress = storyBoard.instantiateViewController(withIdentifier: "AddDeliveryAddress") as! AddDeliveryAddress
+            AddDeliveryAddress.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(AddDeliveryAddress, animated: true)
         }
     }
@@ -221,14 +225,21 @@ class DeliveryAddressList: UIViewController , UITableViewDelegate, UITableViewDa
     {
         self.showLoadingMode()
         
-        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
-        print(dicUser)
-        let  strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
         
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
         
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
-        let strconnurl = String(format: "%@%@%@", Constants.conn.ConnUrl, "/api/getshippingaddress/",strCustomerid)
+        let strconnurl = String(format: "%@%@%@?storeid=%@", Constants.conn.ConnUrl, "/api/getshippingaddress/",strCustomerid,strSlectedStoreID)
         let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
         request.httpMethod = "GET"
         request.setValue(strapikey, forHTTPHeaderField: "Authorization")
@@ -246,7 +257,7 @@ class DeliveryAddressList: UIViewController , UITableViewDelegate, UITableViewDa
                 if let json = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
                 {
                     self.hideLoadingMode()
-                    //print("json --->",json)
+                    print("json --->",json)
                     
                     let dictemp = NSMutableDictionary(dictionary: json)
                     
@@ -254,8 +265,8 @@ class DeliveryAddressList: UIViewController , UITableViewDelegate, UITableViewDa
                     let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
                     
                     let Data = dictemp.value(forKey: "Data") as! NSDictionary
-                    let arrMShiipinglist = Data.value(forKey: "ExistingAddresses") as! NSArray
-                    self.arrMAddressList = NSMutableArray(array: arrMShiipinglist)
+                    let arrMaddr = Data.value(forKey: "ExistingAddresses") as! NSArray
+                    self.arrMAddressList = NSMutableArray(array: arrMaddr)
                     print("arrMAddressList --->",self.arrMAddressList)
                     
                     OperationQueue.main.addOperation {

@@ -200,8 +200,16 @@ class Shippingmethod: UIViewController,UICollectionViewDelegate,UICollectionView
     {
         self.showLoadingMode()
         
-        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
-        let  strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
         
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
@@ -254,8 +262,16 @@ class Shippingmethod: UIViewController,UICollectionViewDelegate,UICollectionView
     {
         self.showLoadingMode()
         
-        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
-        let  strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
         
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)

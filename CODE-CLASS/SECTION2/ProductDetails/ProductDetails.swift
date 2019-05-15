@@ -30,6 +30,7 @@ class ProductDetails: UIViewController,UIScrollViewDelegate,FloatRatingViewDeleg
     @IBOutlet var lblOrigin: UILabel!
     @IBOutlet var lblCategory: UILabel!
     @IBOutlet var viewReviewFeebcak: FloatRatingView!
+    @IBOutlet var btnViewAllReviews: UIButton!
     
     //----------- SIZE ----------------//
     @IBOutlet var viewMiddle1: UIView!
@@ -108,6 +109,9 @@ class ProductDetails: UIViewController,UIScrollViewDelegate,FloatRatingViewDeleg
     var  dicServicesAttr = NSMutableDictionary()
     var  dicCommentsAttr = NSMutableDictionary()
     
+    var strdisable_wishlist_button = String()
+    
+    
     // MARK: - viewWillAppear Method
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -170,6 +174,14 @@ class ProductDetails: UIViewController,UIScrollViewDelegate,FloatRatingViewDeleg
         border2.borderWidth = width2
         viewmid33.layer.addSublayer(border2)
         viewmid33.layer.masksToBounds = true
+        
+        let border3 = CALayer()
+        let width3 = CGFloat(1.5)
+        border3.borderColor = UIColor(red: 0/255, green: 183/255, blue: 178/255, alpha: 1.0).cgColor
+        border3.frame = CGRect(x: 8, y: btnViewAllReviews.frame.size.height - width3, width: btnViewAllReviews.intrinsicContentSize.width, height: btnViewAllReviews.frame.size.height)
+        border3.borderWidth = width3
+        btnViewAllReviews.layer.addSublayer(border3)
+        btnViewAllReviews.layer.masksToBounds = true
         
         viewQTY.layer.borderColor = UIColor.lightGray.cgColor
         viewQTY.layer.borderWidth = 1.0
@@ -408,11 +420,53 @@ class ProductDetails: UIViewController,UIScrollViewDelegate,FloatRatingViewDeleg
     // MARK: - pressFav && pressShare method
     @IBAction func pressFav(_ sender: Any)
     {
-         self.postAddtoFav(strPId: strID)
+        if strdisable_wishlist_button == "0" {
+            self.postAddtoFav(strPId: strID)
+        }else{
+        }
     }
     @IBAction func pressShare(_ sender: Any)
     {
     }
+    
+    // MARK: - view All Reviews Method
+    @IBAction func pressViewAllReviews(_ sender: Any)
+    {
+        let screenSize = UIScreen.main.bounds
+        if (screenSize.height == 568.0){
+        }
+        else if (screenSize.height == 480.0){
+        }
+        else if(screenSize.height == 667.0){
+            let storyBoard = UIStoryboard(name: "SectionTwo6S", bundle: nil)
+            let ProductReviews = storyBoard.instantiateViewController(withIdentifier: "ProductReviews") as! ProductReviews
+            ProductReviews.strPrdID=self.strID
+            ProductReviews.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(ProductReviews, animated: true)
+        }
+        else if(screenSize.height == 736.0){
+            let storyBoard = UIStoryboard(name: "SectionTwo6SPlus", bundle: nil)
+            let ProductReviews = storyBoard.instantiateViewController(withIdentifier: "ProductReviews") as! ProductReviews
+            ProductReviews.strPrdID=self.strID
+            ProductReviews.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(ProductReviews, animated: true)
+        }
+        else if(screenSize.height == 812.0){
+            let storyBoard = UIStoryboard(name: "SectionTwoXS", bundle: nil)
+            let ProductReviews = storyBoard.instantiateViewController(withIdentifier: "ProductReviews") as! ProductReviews
+            ProductReviews.strPrdID=self.strID
+            ProductReviews.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(ProductReviews, animated: true)
+        }
+        else{
+            let storyBoard = UIStoryboard(name: "SectionTwoXSMAX", bundle: nil)
+            let ProductReviews = storyBoard.instantiateViewController(withIdentifier: "ProductReviews") as! ProductReviews
+            ProductReviews.strPrdID=self.strID
+            ProductReviews.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(ProductReviews, animated: true)
+        }
+    }
+    
     
     // MARK: - pagecontroller Gallery Method
     func pagecontrollerGallery() -> Void
@@ -610,8 +664,19 @@ class ProductDetails: UIViewController,UIScrollViewDelegate,FloatRatingViewDeleg
     {
         self.showLoadingMode()
         
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
+        
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
-        let strconnurl = String(format: "%@%@%@", Constants.conn.ConnUrl, "/api/products/",strPId)
+        let strconnurl = String(format: "%@%@%@?customerid=%@", Constants.conn.ConnUrl, "/api/products/",strPId,strCustomerid)
         let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
         request.httpMethod = "GET"
         request.setValue(strapikey, forHTTPHeaderField: "Authorization")
@@ -645,7 +710,7 @@ class ProductDetails: UIViewController,UIScrollViewDelegate,FloatRatingViewDeleg
                     let  strid = String(format: "%@", dictempDetails.value(forKey: "id") as! CVarArg)
                     let  strname = String(format: "%@", dictempDetails.value(forKey: "name") as! CVarArg)
                     let  strprice = String(format: "%@", dictempDetails.value(forKey: "price") as! CVarArg)
-                    let  strdisable_wishlist_button = String(format: "%@", dictempDetails.value(forKey: "disable_wishlist_button") as! CVarArg) //0 1
+                    self.strdisable_wishlist_button = String(format: "%@", dictempDetails.value(forKey: "isproductinwishlist") as! CVarArg) //0 1
                     let  strproduct_type = String(format: "%@", dictempDetails.value(forKey: "product_type") as! CVarArg)
                     let  strRating = String(format: "%@", dictempDetails.value(forKey: "Rating") as! CVarArg)
                     
@@ -667,6 +732,7 @@ class ProductDetails: UIViewController,UIScrollViewDelegate,FloatRatingViewDeleg
                         self.lblProductPrice.text = String(format: "%@%@", strprice,"SAR")
                         self.txtQTY.text = String(format: "%@", strorder_minimum_quantity)
                         
+                        self.viewReviewFeebcak.isUserInteractionEnabled = false
                         self.viewReviewFeebcak.backgroundColor = UIColor.clear
                         self.viewReviewFeebcak.delegate = self
                         self.viewReviewFeebcak.contentMode = UIView.ContentMode.center
@@ -674,7 +740,7 @@ class ProductDetails: UIViewController,UIScrollViewDelegate,FloatRatingViewDeleg
                         let lessPrecisePI = Double(strRating)
                         self.viewReviewFeebcak.rating = lessPrecisePI!
                         
-                        if strdisable_wishlist_button == "0" {
+                        if self.strdisable_wishlist_button == "0" {
                             self.btnFav.setImage(UIImage(named: "favdeselected"), for: .normal)
                         }else{
                             self.btnFav.setImage(UIImage(named: "favselected"), for: .normal)
@@ -822,9 +888,16 @@ class ProductDetails: UIViewController,UIScrollViewDelegate,FloatRatingViewDeleg
         
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
     
-        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
-        print(dicUser)
-        let  strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
         
         let dicshopping_cart_item:NSMutableDictionary? = ["quantity" : txtQTY.text!,
                                                         "shopping_cart_type" : "wishlist",
@@ -872,14 +945,7 @@ class ProductDetails: UIViewController,UIScrollViewDelegate,FloatRatingViewDeleg
                         
                         if Status == "1"
                         {
-                            let uiAlert = UIAlertController(title: "", message: "Product successfully added in your wishlist", preferredStyle: UIAlertController.Style.alert)
-                            self.present(uiAlert, animated: true, completion: nil)
-                            uiAlert.addAction(UIAlertAction(title: "Go to Wishlist", style: .default, handler: { action in
-                                print("Click of default button")
-                            }))
-                            uiAlert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { action in
-                                print("Click of Cancel button")
-                            }))
+                            self.getProductDetails(strPId: self.strID)
                         }
                     }
                 }
@@ -901,9 +967,16 @@ class ProductDetails: UIViewController,UIScrollViewDelegate,FloatRatingViewDeleg
         
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
         
-        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
-        print(dicUser)
-        let  strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
         
         let dicshopping_cart_item:NSMutableDictionary? = [
             "product_attributes" : arrMattr,
@@ -957,6 +1030,9 @@ class ProductDetails: UIViewController,UIScrollViewDelegate,FloatRatingViewDeleg
                             self.present(uiAlert, animated: true, completion: nil)
                             uiAlert.addAction(UIAlertAction(title: "Go to Cart", style: .default, handler: { action in
                                 print("Click of default button")
+                                
+                                let myAppDelegate = UIApplication.shared.delegate as! AppDelegate
+                                myAppDelegate.tabBarCnt.selectedIndex = 2
                             }))
                             uiAlert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { action in
                                 print("Click of Cancel button")

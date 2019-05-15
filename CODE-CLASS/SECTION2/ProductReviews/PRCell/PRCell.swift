@@ -1,20 +1,20 @@
 //
-//  SLCell.swift
+//  PRCell.swift
 //  Saudi Fisheries
 //
-//  Created by Sandipan on 22/02/19.
+//  Created by Sandipan on 13/05/19.
 //  Copyright © 2019 SANDIPAN. All rights reserved.
 //
 
 import UIKit
 
-class SLCell: UITableViewCell
-{
-    @IBOutlet var lblName: UILabel!
-    @IBOutlet var lblAddress: UILabel!
-    @IBOutlet var btnPhone: UIButton!
-    @IBOutlet var btnRadioCheck: UIButton!
+class PRCell: UITableViewCell,FloatRatingViewDelegate {
     
+    @IBOutlet var lbl1: UILabel!
+    @IBOutlet var lbl2: UILabel!
+    @IBOutlet var lbl3: UILabel!
+    @IBOutlet var floatingReview: FloatRatingView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

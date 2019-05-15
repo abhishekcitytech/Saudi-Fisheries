@@ -37,13 +37,6 @@
                                             <action selector="pressBack:" destination="UlN-oA-TrP" eventType="touchUpInside" id="Gnt-Mr-lPR"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dNF-12-L4d">
-                                        <rect key="frame" x="58" y="29" width="258" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="21"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yd9-ZE-bue">
                                         <rect key="frame" x="339" y="28" width="28" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -56,6 +49,13 @@
                                             <action selector="pressAddNewAddress:" destination="UlN-oA-TrP" eventType="touchUpInside" id="zPR-03-ujq"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dNF-12-L4d">
+                                        <rect key="frame" x="58" y="24" width="258" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -102,8 +102,8 @@
                                             <action selector="pressBack:" destination="WVf-Ln-FgE" eventType="touchUpInside" id="PYI-uB-NkW"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k7K-JG-rro">
-                                        <rect key="frame" x="58" y="29" width="258" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k7K-JG-rro">
+                                        <rect key="frame" x="58" y="24" width="258" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="21"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,154 +112,144 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gc4-bG-Lkt">
-                                <rect key="frame" x="16" y="72" width="343" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="18"/>
-                                <state key="normal" title="Use my current location">
-                                    <color key="titleColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gpslocation" id="iS2-Aq-3j5">
-                                <rect key="frame" x="65" y="82" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <view contentMode="scaleToFill" id="cuP-KC-HmU">
-                                <rect key="frame" x="16" y="134" width="343" height="181"/>
+                                <rect key="frame" x="16" y="72" width="343" height="405"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PIN Code" textAlignment="natural" minimumFontSize="17" id="2Js-MY-bLY">
-                                        <rect key="frame" x="1" y="1" width="341" height="44"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Firstname" textAlignment="natural" minimumFontSize="17" id="yAR-Wp-4Qr">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="ZOp-Zz-gPD"/>
+                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="zWt-cb-KgP"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Lastname" textAlignment="natural" minimumFontSize="17" id="PSd-XG-hed">
+                                        <rect key="frame" x="0.0" y="45" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="nU6-V5-Wlg"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" id="2Js-MY-bLY">
+                                        <rect key="frame" x="0.0" y="90" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="Ps1-rI-amU"/>
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address 1" textAlignment="natural" minimumFontSize="17" id="myO-hO-ESq">
-                                        <rect key="frame" x="1" y="46" width="341" height="44"/>
+                                        <rect key="frame" x="0.0" y="135" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="Waj-bK-Zyt"/>
+                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="LTw-Bv-coa"/>
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address 2" textAlignment="natural" minimumFontSize="17" id="yXo-KS-Eih">
-                                        <rect key="frame" x="1" y="91" width="341" height="44"/>
+                                        <rect key="frame" x="0.0" y="180" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                         <connections>
-                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="BGr-tD-vcb"/>
+                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="7RW-VS-AmH"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Landmark (optional)" textAlignment="natural" minimumFontSize="17" id="0NW-QN-Xas">
-                                        <rect key="frame" x="1" y="136" width="341" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="yhQ-Ki-ks3"/>
-                                        </connections>
-                                    </textField>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" id="uAU-b2-BDR">
-                                <rect key="frame" x="16" y="336" width="343" height="136"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" id="6Dj-xY-ahC">
-                                        <rect key="frame" x="1" y="1" width="341" height="44"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Country" textAlignment="center" minimumFontSize="17" id="J1Y-2d-Kmh">
+                                        <rect key="frame" x="0.0" y="225" width="171" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="ywL-yd-pQh"/>
+                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="VpI-46-h6C"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile number" textAlignment="natural" minimumFontSize="17" id="RqC-PH-Mgh">
-                                        <rect key="frame" x="1" y="46" width="341" height="44"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State/Provience" textAlignment="center" minimumFontSize="17" id="YRo-e7-CiV">
+                                        <rect key="frame" x="172" y="225" width="171" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="Nx1-pj-WNJ"/>
+                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="Zkv-9k-0Ey"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Alternate Phone number (optional)" textAlignment="natural" minimumFontSize="17" id="bqS-d2-0r0">
-                                        <rect key="frame" x="1" y="91" width="341" height="44"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdwonarrow" id="Hwm-t7-WNN">
+                                        <rect key="frame" x="311" y="235" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="center" minimumFontSize="17" id="0NW-QN-Xas">
+                                        <rect key="frame" x="0.0" y="270" width="171" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="dVh-Gs-lY9"/>
+                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="Kav-Ht-QZv"/>
                                         </connections>
                                     </textField>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" id="zX4-3L-cbd">
-                                <rect key="frame" x="16" y="490" width="343" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="B1p-5h-d6K">
-                                        <rect key="frame" x="42" y="11" width="24" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
-                                        <state key="normal" backgroundImage="radiouncheck"/>
-                                        <state key="selected" backgroundImage="radiocheck"/>
-                                        <connections>
-                                            <action selector="pressHome:" destination="WVf-Ln-FgE" eventType="touchUpInside" id="fc3-6K-4F5"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mDW-Jr-ibS">
-                                        <rect key="frame" x="74" y="11" width="79" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zipcode" textAlignment="center" minimumFontSize="17" id="Cn5-qa-Ubc">
+                                        <rect key="frame" x="172" y="270" width="171" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jHy-EF-O9Y">
-                                        <rect key="frame" x="190" y="11" width="24" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="40"/>
-                                        <state key="normal" backgroundImage="radiouncheck"/>
-                                        <state key="selected" backgroundImage="radiocheck"/>
-                                        <connections>
-                                            <action selector="pressWork:" destination="WVf-Ln-FgE" eventType="touchUpInside" id="Acv-uy-dO3"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nkL-N0-XpO">
-                                        <rect key="frame" x="222" y="11" width="79" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" textContentType="email"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="k3r-oZ-BaN"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile no." textAlignment="natural" minimumFontSize="17" id="D8b-8a-oIJ">
+                                        <rect key="frame" x="0.0" y="315" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="email"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="J3E-4i-ZIO"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Fax no." textAlignment="natural" minimumFontSize="17" id="NZW-eB-NIO">
+                                        <rect key="frame" x="0.0" y="360" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" textContentType="email"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="WVf-Ln-FgE" id="eIc-EC-TbT"/>
+                                        </connections>
+                                    </textField>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdwonarrow" id="Epx-Co-3ub">
+                                        <rect key="frame" x="129" y="235" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oxN-hz-gQ3">
-                                <rect key="frame" x="16" y="558" width="343" height="44"/>
+                                <rect key="frame" x="16" y="603" width="343" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="18"/>
@@ -272,25 +262,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="btnGps" destination="gc4-bG-Lkt" id="fDr-bA-iZf"/>
-                        <outlet property="btnHome" destination="B1p-5h-d6K" id="hEI-y4-ZMt"/>
                         <outlet property="btnSave" destination="oxN-hz-gQ3" id="PXk-yB-8FC"/>
-                        <outlet property="btnWork" destination="jHy-EF-O9Y" id="i4o-63-bOH"/>
-                        <outlet property="imgvGps" destination="iS2-Aq-3j5" id="tLG-qo-ivl"/>
-                        <outlet property="lblHome" destination="mDW-Jr-ibS" id="KFZ-ZM-QFl"/>
-                        <outlet property="lblWork" destination="nkL-N0-XpO" id="cOg-O1-QU3"/>
-                        <outlet property="txtAddress1" destination="myO-hO-ESq" id="5SG-LB-pbm"/>
-                        <outlet property="txtAddress2" destination="yXo-KS-Eih" id="j9i-Wx-7Ok"/>
-                        <outlet property="txtLandmark" destination="0NW-QN-Xas" id="vsn-cv-Veh"/>
-                        <outlet property="txtMobileNumber" destination="RqC-PH-Mgh" id="OU0-Kh-eni"/>
-                        <outlet property="txtMobileNumberAlternate" destination="bqS-d2-0r0" id="TqW-M6-oBy"/>
-                        <outlet property="txtName" destination="6Dj-xY-ahC" id="81c-WC-6uN"/>
-                        <outlet property="txtPincode" destination="2Js-MY-bLY" id="r1h-UW-RU1"/>
+                        <outlet property="txtAddress1" destination="myO-hO-ESq" id="RRO-IM-q05"/>
+                        <outlet property="txtAddress2" destination="yXo-KS-Eih" id="hJU-wl-ryM"/>
+                        <outlet property="txtCity" destination="0NW-QN-Xas" id="LLb-Zq-MuG"/>
+                        <outlet property="txtCountry" destination="J1Y-2d-Kmh" id="SBb-En-Mou"/>
+                        <outlet property="txtEmail" destination="2Js-MY-bLY" id="E6w-sQ-9by"/>
+                        <outlet property="txtFaxno" destination="NZW-eB-NIO" id="NY0-4z-lL5"/>
+                        <outlet property="txtFirstname" destination="yAR-Wp-4Qr" id="bFd-0b-CTP"/>
+                        <outlet property="txtLastname" destination="PSd-XG-hed" id="vVN-ff-VeJ"/>
+                        <outlet property="txtMobileno" destination="D8b-8a-oIJ" id="PCV-TS-NX0"/>
+                        <outlet property="txtStateProvience" destination="YRo-e7-CiV" id="8uK-Ou-mvU"/>
+                        <outlet property="txtZipcode" destination="Cn5-qa-Ubc" id="QXN-Ii-cHA"/>
                         <outlet property="view1" destination="cuP-KC-HmU" id="MqF-4T-WJ1"/>
-                        <outlet property="view2" destination="uAU-b2-BDR" id="2EM-zr-v2F"/>
-                        <outlet property="view3" destination="zX4-3L-cbd" id="wBb-GK-6JR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fjj-Ph-y0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -453,6 +439,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="L9T-YL-Z9K">
+                                <rect key="frame" x="137" y="220" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="pressCamera:" destination="6Mn-OD-glp" eventType="touchUpInside" id="CGb-63-gef"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5jz-ra-oTc">
                                 <rect key="frame" x="209" y="292" width="28" height="28"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -465,21 +458,44 @@
                                     <action selector="pressEdit:" destination="6Mn-OD-glp" eventType="touchUpInside" id="lCR-kZ-boF"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Brett Lee" placeholder="Firstname" textAlignment="center" minimumFontSize="17" id="itl-er-F9j">
-                                <rect key="frame" x="30" y="358" width="315" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ouP-wI-ONd">
+                                <rect key="frame" x="30" y="485" width="315" height="47"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.0" green="0.71764705880000002" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Dubai-Medium" family="Dubai" pointSize="19"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressSave:" destination="6Mn-OD-glp" eventType="touchUpInside" id="iAD-kT-1Es"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sandipan" placeholder="Firstname" textAlignment="right" minimumFontSize="17" id="itl-er-F9j">
+                                <rect key="frame" x="30" y="346" width="145" height="33"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="6Mn-OD-glp" id="bGZ-6H-qAS"/>
+                                    <outlet property="delegate" destination="6Mn-OD-glp" id="sPk-Rd-QHR"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="brett@citytech.com" placeholder="Email" textAlignment="center" minimumFontSize="17" id="cte-E4-VCx">
-                                <rect key="frame" x="30" y="422" width="315" height="32"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Mukherjee" placeholder="Lastname" minimumFontSize="17" id="UKt-4q-bb3">
+                                <rect key="frame" x="183" y="346" width="162" height="33"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="19"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="6Mn-OD-glp" id="9su-UU-ahC"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="email@gmail.com" placeholder="Email" textAlignment="center" minimumFontSize="17" id="cte-E4-VCx">
+                                <rect key="frame" x="30" y="410" width="315" height="33"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
@@ -487,10 +503,10 @@
                                     <outlet property="delegate" destination="6Mn-OD-glp" id="1vx-14-Ekc"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  97155346758" placeholder="Mobile Number" textAlignment="center" minimumFontSize="17" id="41A-Gg-2dV">
-                                <rect key="frame" x="30" y="390" width="315" height="32"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="98674562436" placeholder="Mobile Number" textAlignment="center" minimumFontSize="17" id="41A-Gg-2dV">
+                                <rect key="frame" x="30" y="378" width="315" height="33"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Dubai-Regular" family="Dubai" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
@@ -504,10 +520,14 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="btnCamera" destination="L9T-YL-Z9K" id="Yix-8l-QzA"/>
+                        <outlet property="btnEdit" destination="5jz-ra-oTc" id="q4M-Uf-kKG"/>
+                        <outlet property="btnSave" destination="ouP-wI-ONd" id="QkB-RA-cgQ"/>
                         <outlet property="imgvProfile" destination="xGV-9y-ci2" id="oQz-aU-IM7"/>
                         <outlet property="txtEmail" destination="cte-E4-VCx" id="pAk-VT-DIU"/>
+                        <outlet property="txtFName" destination="itl-er-F9j" id="Ee7-xf-Z9e"/>
+                        <outlet property="txtLName" destination="UKt-4q-bb3" id="Ri5-JS-dyi"/>
                         <outlet property="txtMobile" destination="41A-Gg-2dV" id="2Sg-P8-74d"/>
-                        <outlet property="txtName" destination="itl-er-F9j" id="ClP-xS-94S"/>
                         <outlet property="view1" destination="lpi-w9-PGS" id="SJr-RE-rXR"/>
                     </connections>
                 </viewController>
@@ -570,11 +590,9 @@
     </scenes>
     <resources>
         <image name="back-white" width="28" height="28"/>
-        <image name="gpslocation" width="28" height="28"/>
+        <image name="dropdwonarrow" width="32" height="32"/>
         <image name="menuSlide" width="32" height="32"/>
         <image name="pencil" width="28" height="28"/>
-        <image name="radiocheck" width="28" height="28"/>
-        <image name="radiouncheck" width="28" height="28"/>
         <image name="userProfile" width="120" height="120"/>
     </resources>
 </document>

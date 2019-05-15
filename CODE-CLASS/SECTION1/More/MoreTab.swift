@@ -10,19 +10,21 @@ import UIKit
 
 class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate , UITextViewDelegate
 {
+    var loadingCircle = UIView()
+    var circle = UIView()
+    
     
     @IBOutlet var btnSlide: UIButton!
     
-    var viewHELPControlPop = UIControl()
+    /*var viewHELPControlPop = UIControl()
     var viewHELPPop = UIView()
     var txtHELPSubject = UITextField()
     var txtvHELPNote = UITextView()
     var btnHELPCancelPop = UIButton()
-    var btnHELPSavePop = UIButton()
+    var btnHELPSavePop = UIButton()*/
     
     var viewCPControlPop = UIControl()
     var viewCPPop = UIView()
-    var txtCP1Pop = UITextField()
     var txtCP2Pop = UITextField()
     var txtCP3Pop = UITextField()
     var btnCPCancelPop = UIButton()
@@ -43,6 +45,9 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     // MARK: - viewDidAppear Method
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        
+        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+        print(dicUser)
     }
     
     // MARK: - viewDidLoad method
@@ -52,7 +57,7 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         //Do any additional setup after loading the view.
         //let myAppDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        arrMMore = ["My Profile","My Orders","My Wishlist","Store Location","Manage Address","Chnage Password","Notifications","Preferred language", "Help?","About Us","Contact Us"]
+        arrMMore = ["My Profile","My Orders","My Wishlist","Store Location","Manage Address","Chnage Password","Preferred language","About Us","Contact Us"]
         
         tabvMore.backgroundView=nil
         tabvMore.backgroundColor=UIColor.clear
@@ -93,6 +98,37 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
             obj.view.frame=CGRect(x:0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         }, completion: nil)
     }
+    
+    
+    // MARK: - Textfield Delegate Method
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+    }
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
+    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool
+    {
+        return true;
+    }
+    func textFieldShouldClear(_ textField: UITextField) -> Bool
+    {
+        return true;
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool
+    {
+        return true;
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        return true;
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder();
+        return true;
+    }
+    
     
     // MARK: - tableView delegate & datasource Method
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -143,22 +179,23 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         label.text = String(format: "  %@", arrMMore[indexPath.row] as! CVarArg)
         cell.contentView.addSubview(label)
         
+        /*if indexPath.row == 6
+         {
+         //Notification Settings
+         let onColor  = UIColor(red: 0/255, green: 183/255, blue: 178/255, alpha: 1.0)
+         let offColor = UIColor.lightGray
+         
+         let switchOnOff = UISwitch(frame:CGRect(x: tableView.frame.size.width - 60 , y: 5, width: 0, height: 0))
+         switchOnOff.addTarget(self, action: #selector(switchStateDidChange(_:)), for: .valueChanged)
+         switchOnOff.setOn(true, animated: false)
+         switchOnOff.onTintColor = onColor
+         switchOnOff.tintColor = offColor
+         switchOnOff.layer.cornerRadius = switchOnOff.frame.height / 2
+         switchOnOff.backgroundColor = offColor
+         cell.contentView.addSubview(switchOnOff)
+         }*/
+        
         if indexPath.row == 6
-        {
-            //Notification Settings
-            let onColor  = UIColor(red: 0/255, green: 183/255, blue: 178/255, alpha: 1.0)
-            let offColor = UIColor.lightGray
-            
-            let switchOnOff = UISwitch(frame:CGRect(x: tableView.frame.size.width - 60 , y: 5, width: 0, height: 0))
-            switchOnOff.addTarget(self, action: #selector(switchStateDidChange(_:)), for: .valueChanged)
-            switchOnOff.setOn(true, animated: false)
-            switchOnOff.onTintColor = onColor
-            switchOnOff.tintColor = offColor
-            switchOnOff.layer.cornerRadius = switchOnOff.frame.height / 2
-            switchOnOff.backgroundColor = offColor
-            cell.contentView.addSubview(switchOnOff)
-        }
-        else if indexPath.row == 7
         {
             let items = ["English" , "عربى"]
             let segmentedControl = UISegmentedControl(items : items)
@@ -179,9 +216,6 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        
-        ["My Profile","My Orders","My Wishlist","Store Location","Manage Address","Chnage Password","Notifications","Preferred language", "Help?","About Us","Contact Us"]
-        
         if indexPath.row == 0
         {
             //My Profile
@@ -334,24 +368,15 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         }
         else if indexPath.row == 6
         {
-            //Notifications
-        }
-        else if indexPath.row == 7
-        {
             //Preferred language
         }
-        else if indexPath.row == 8
-        {
-            //Help?
-            self.createHELPPopUp()
-        }
-        else if indexPath.row == 9
+        else if indexPath.row == 7
         {
             //About Us
             guard let url = URL(string: "http://www.saudi-fisheries.com/aboutus.html") else { return }
             UIApplication.shared.open(url)
         }
-        else if indexPath.row == 10
+        else if indexPath.row == 8
         {
             //Contact Us
             guard let url = URL(string: "http://www.saudi-fisheries.com/contact.html") else { return }
@@ -360,14 +385,14 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     }
     
     // MARK: - Notification Switch Case method
-    @objc func switchStateDidChange(_ sender:UISwitch){
+    /*@objc func switchStateDidChange(_ sender:UISwitch){
         if (sender.isOn == true){
             print("UISwitch state is now ON")
         }
         else{
             print("UISwitch state is now Off")
         }
-    }
+    }*/
     
     // MARK: - Language Switch Case method
     @objc func indexChanged(_ sender: UISegmentedControl) {
@@ -387,34 +412,14 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         self.viewCPControlPop = UIControl(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height))
         self.viewCPControlPop.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.7)
         
-        viewCPPop = UIView(frame: CGRect(x: 15, y: 0, width: self.viewCPControlPop.frame.size.width - 30 , height:260))
+        viewCPPop = UIView(frame: CGRect(x: 15, y: 0, width: self.viewCPControlPop.frame.size.width - 30 , height:180))
         viewCPPop.center = self.viewCPControlPop.center
         viewCPPop.backgroundColor = UIColor.white
         viewCPPop.layer.cornerRadius = 4.0
         viewCPPop.layer.masksToBounds = true
         self.viewCPControlPop.addSubview(viewCPPop)
         
-        //--------- Text Input ----------------
-        txtCP1Pop =  UITextField(frame: CGRect(x: 15, y: 15, width: viewCPPop.frame.width-30, height: 44))
-        txtCP1Pop.textAlignment = NSTextAlignment.left
-        txtCP1Pop.backgroundColor = UIColor.white
-        txtCP1Pop.delegate=self
-        txtCP1Pop.placeholder="  Current Password"
-        txtCP1Pop.textColor=UIColor.darkGray
-        txtCP1Pop.isSecureTextEntry=true
-        txtCP1Pop.font = UIFont(name: "Dubai-Regular", size: 16.0)!
-        
-        let border = CALayer()
-        let width = CGFloat(0.5)
-        border.borderColor = UIColor(red: 65/255, green: 65/255, blue: 66/255, alpha: 1.0).cgColor
-        border.frame = CGRect(x: 0, y: txtCP1Pop.frame.size.height - width, width: txtCP1Pop.frame.size.width, height: txtCP1Pop.frame.size.height)
-        border.borderWidth = width
-        txtCP1Pop.layer.addSublayer(border)
-        txtCP1Pop.layer.masksToBounds = true
-    
-        viewCPPop.addSubview(txtCP1Pop)
-        
-        txtCP2Pop =  UITextField(frame: CGRect(x: 15, y: txtCP1Pop.frame.maxY + 2, width: viewCPPop.frame.width-30, height: 44))
+        txtCP2Pop =  UITextField(frame: CGRect(x: 15, y: 15, width: viewCPPop.frame.width-30, height: 44))
         txtCP2Pop.textAlignment = NSTextAlignment.left
         txtCP2Pop.backgroundColor = UIColor.white
         txtCP2Pop.delegate=self
@@ -422,7 +427,6 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         txtCP2Pop.textColor=UIColor.darkGray
         txtCP2Pop.isSecureTextEntry=true
         txtCP2Pop.font = UIFont(name: "Dubai-Regular", size: 16.0)!
-        
         let border1 = CALayer()
         let width1 = CGFloat(0.5)
         border1.borderColor = UIColor(red: 65/255, green: 65/255, blue: 66/255, alpha: 1.0).cgColor
@@ -430,7 +434,6 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         border1.borderWidth = width1
         txtCP2Pop.layer.addSublayer(border1)
         txtCP2Pop.layer.masksToBounds = true
-        
         viewCPPop.addSubview(txtCP2Pop)
         
         txtCP3Pop =  UITextField(frame: CGRect(x: 15, y: txtCP2Pop.frame.maxY + 2, width: viewCPPop.frame.width-30, height: 44))
@@ -441,7 +444,6 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         txtCP3Pop.textColor=UIColor.darkGray
         txtCP3Pop.isSecureTextEntry=true
         txtCP3Pop.font = UIFont(name: "Dubai-Regular", size: 16.0)!
-        
         let border2 = CALayer()
         let width2 = CGFloat(0.5)
         border2.borderColor = UIColor(red: 65/255, green: 65/255, blue: 66/255, alpha: 1.0).cgColor
@@ -449,7 +451,6 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         border2.borderWidth = width2
         txtCP3Pop.layer.addSublayer(border2)
         txtCP3Pop.layer.masksToBounds = true
-       
         viewCPPop.addSubview(txtCP3Pop)
         
         //--------- Cancel & Save ----------------
@@ -487,12 +488,31 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     }
     @objc func pressSavePop() -> Void
     {
-        self.viewCPControlPop.removeFromSuperview()
+        if txtCP2Pop.text == ""
+        {
+            let uiAlert = UIAlertController(title: "", message: "Please enter new password", preferredStyle: UIAlertController.Style.alert)
+            self.present(uiAlert, animated: true, completion: nil)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                print("Click of default button")
+            }))
+        }
+        else if txtCP3Pop.text == ""
+        {
+            let uiAlert = UIAlertController(title: "", message: "Please enetr confirm password", preferredStyle: UIAlertController.Style.alert)
+            self.present(uiAlert, animated: true, completion: nil)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                print("Click of default button")
+            }))
+        }
+        else
+        {
+            self.postChnagePassword(strNewPass: txtCP2Pop.text!, strNewConfirmPass: txtCP3Pop.text!)
+        }
     }
     
     
     // MARK: - HELP PopUp View method
-    func createHELPPopUp() -> Void
+    /*func createHELPPopUp() -> Void
     {
         self.viewHELPControlPop = UIControl(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height))
         self.viewHELPControlPop.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.7)
@@ -578,5 +598,176 @@ class MoreTab: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     @objc func pressSaveHELPPop() -> Void
     {
         self.viewHELPControlPop.removeFromSuperview()
+    }*/
+    
+    // MARK: - showLoadingMode Method
+    func showLoadingMode()
+    {
+        OperationQueue.main.addOperation {
+            self.loadingCircle.removeFromSuperview()
+        }
+        
+        loadingCircle = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
+        loadingCircle.backgroundColor = UIColor.black
+        loadingCircle.alpha = 0.6
+        
+        circle = UIView ()
+        circle.backgroundColor = UIColor.white
+        circle.alpha = 1.0
+        let size = 60
+        let size1 = 60
+        var frame = circle.frame
+        frame.size.width = CGFloat(size)
+        frame.size.height = CGFloat(size1)
+        frame.origin.x = self.view.frame.size.width / 2 - frame.size.width / 2;
+        frame.origin.y = self.view.frame.size.height / 2 - frame.size.height / 2;
+        circle.frame = frame
+        circle.center = self.view.center
+        circle.layer.cornerRadius = 30.0
+        circle.layer.borderWidth = 1.0
+        circle.layer.borderColor=UIColor.white.cgColor
+        circle.layer.masksToBounds = true
+        
+        /*let imgvLogo = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+         imgvLogo.backgroundColor = UIColor.clear
+         imgvLogo.image = UIImage(named:"productlogo")
+         circle.addSubview(imgvLogo)*/
+        
+        let  animatedImageView =  UIImageView(frame: circle.bounds)
+        animatedImageView.animationImages = NSArray(objects:UIImage(named: "frame-0.png")!,
+                                                    UIImage(named: "frame-1.png")!,
+                                                    UIImage(named: "frame-2.png")!,
+                                                    UIImage(named: "frame-3.png")!,
+                                                    UIImage(named: "frame-4.png")!,
+                                                    UIImage(named: "frame-5.png")!,
+                                                    UIImage(named: "frame-6.png")!,
+                                                    UIImage(named: "frame-7.png")!,
+                                                    UIImage(named: "frame-8.png")!,
+                                                    UIImage(named: "frame-9.png")!,
+                                                    UIImage(named: "frame-10.png")!,
+                                                    UIImage(named: "frame-11.png")!,
+                                                    UIImage(named: "frame-12.png")!,
+                                                    UIImage(named: "frame-13.png")!,
+                                                    UIImage(named: "frame-14.png")!,
+                                                    UIImage(named: "frame-15.png")!,
+                                                    UIImage(named: "frame-16.png")!,
+                                                    UIImage(named: "frame-17.png")!,
+                                                    UIImage(named: "frame-18.png")!,
+                                                    UIImage(named: "frame-19.png")!,
+                                                    UIImage(named: "frame-20.png")!,
+                                                    UIImage(named: "frame-21.png")!,
+                                                    UIImage(named: "frame-22.png")!,
+                                                    UIImage(named: "frame-23.png")!,
+                                                    UIImage(named: "frame-24.png")!,
+                                                    UIImage(named: "frame-25.png")!,
+                                                    UIImage(named: "frame-26.png")!,
+                                                    UIImage(named: "frame-27.png")!,
+                                                    UIImage(named: "frame-28.png")!,
+                                                    UIImage(named: "frame-29.png")!) as? [UIImage]
+        
+        animatedImageView.animationDuration = 9
+        animatedImageView.animationRepeatCount = 0
+        animatedImageView.startAnimating()
+        circle.addSubview(animatedImageView)
+        circle.center = CGPoint(x: UIScreen.main.bounds.size.width/2, y: UIScreen.main.bounds.size.height/2)
+        
+        self.view.addSubview(circle)
+        self.view.addSubview(loadingCircle)
+        self.view.bringSubviewToFront(circle)
+        
+        
+    }
+    func hideLoadingMode()
+    {
+        OperationQueue.main.addOperation {
+            self.loadingCircle.removeFromSuperview()
+            self.circle.removeFromSuperview()
+        }
+    }
+    
+    
+    //MARK: - post Chnage Password method
+    func postChnagePassword(strNewPass:String,strNewConfirmPass:String)
+    {
+        self.showLoadingMode()
+        
+        var  strCustomerid = String()
+        var  strCustomermobilenumber = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+            strCustomermobilenumber = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+            strCustomermobilenumber = String(format: "%@", dicUser.value(forKey: "register_mobilenumber") as! CVarArg)
+        }
+        
+        let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+        
+        let diccustomer:NSMutableDictionary? = ["register_mobilenumber" : strCustomermobilenumber,"password" : strNewPass,"confirm_password" : strNewConfirmPass,"registered_in_store_id" : strSlectedStoreID];
+        
+        let dicPostOverAll:NSMutableDictionary? = ["customer" : diccustomer as Any];
+        
+        let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
+        let strconnurl = String(format: "%@%@%@", Constants.conn.ConnUrl, "/api/customers/",strCustomerid)
+        let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
+        request.httpMethod = "PUT"
+        request.setValue(strapikey, forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonData : NSData = try! JSONSerialization.data(withJSONObject: dicPostOverAll as Any) as NSData
+        let jsonString = NSString(data: jsonData as Data, encoding: String.Encoding.utf8.rawValue)! as String
+        print("json string = \(jsonString)")
+        request.httpBody = jsonData as Data
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
+            guard error == nil && data != nil else
+            {
+                //check for fundamental networking error
+                self.hideLoadingMode()
+                print("Error=\(String(describing: error))")
+                return
+            }
+            do{
+                if let json = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
+                {
+                    self.hideLoadingMode()
+                    
+                    let dictemp = NSMutableDictionary(dictionary: json)
+                    let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
+                    let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
+                    
+                    OperationQueue.main.addOperation {
+                        
+                        if Status == "1"{
+                            
+                            let strpassword = String(format: "%@", self.txtCP2Pop.text!)
+                            UserDefaults.standard.set(strpassword, forKey: "RegisteredUserDetailsPassword")
+                            UserDefaults.standard.synchronize()
+                            
+                            let strPP = String(format: "%@", UserDefaults.standard.string(forKey: "RegisteredUserDetailsPassword")!)
+                            print("strPP >>><<< %@",strPP)
+                            
+                            self.viewCPControlPop.removeFromSuperview()
+                            
+                            let uiAlert = UIAlertController(title: "", message: "Password has been changed succesfully", preferredStyle: UIAlertController.Style.alert)
+                            self.present(uiAlert, animated: true, completion: nil)
+                            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                                print("Click of default button")
+                            }))
+                        }
+                    }
+                }
+            }
+            catch {
+                //check for internal server data error
+                self.hideLoadingMode()
+                print("Error -> \(error)")
+            }
+        }
+        task.resume()
     }
 }

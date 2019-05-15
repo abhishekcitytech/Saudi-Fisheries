@@ -147,20 +147,39 @@ class login: UIViewController,UITextFieldDelegate
                     self.hideLoadingMode()
                     
                     let dictemp = json as NSDictionary
-                    print("dictemp --->",dictemp)
+                    //print("dictemp --->",dictemp)
                     
                     let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
                     let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
                     
-                    let Data = dictemp.value(forKey: "Data") as! NSDictionary
-                    UserDefaults.standard.set(Data, forKey: "RegisteredUserDetails")
-                    UserDefaults.standard.synchronize()
-                    
-                    UserDefaults.standard.set(1, forKey: "dataNotSave")
-                    UserDefaults.standard.synchronize()
-                    
                     OperationQueue.main.addOperation {
-                        self.navigationController?.popToRootViewController(animated: true)
+                        
+                        if Status == "1"
+                        {
+                            let Data = dictemp.value(forKey: "Data") as! NSDictionary
+                            UserDefaults.standard.set(Data, forKey: "RegisteredUserDetails")
+                            UserDefaults.standard.synchronize()
+                            
+                            let strpassword = String(format: "%@", self.txtPassword.text!)
+                            UserDefaults.standard.set(strpassword, forKey: "RegisteredUserDetailsPassword")
+                            UserDefaults.standard.synchronize()
+                            
+                            UserDefaults.standard.set(1, forKey: "dataNotSave")
+                            UserDefaults.standard.synchronize()
+                            
+                            let strPP = String(format: "%@", UserDefaults.standard.string(forKey: "RegisteredUserDetailsPassword")!)
+                            print("strPP >>><<< %@",strPP)
+                            
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }
+                        else
+                        {
+                            let uiAlert = UIAlertController(title: "", message: ResponseMessage, preferredStyle: UIAlertController.Style.alert)
+                            self.present(uiAlert, animated: true, completion: nil)
+                            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                                print("Click of default button")
+                            }))
+                        }
                     }
                     
                 }

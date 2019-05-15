@@ -8,13 +8,19 @@
 
 import UIKit
 
-class HomeTab: UIViewController,UIScrollViewDelegate {
+class HomeTab: UIViewController,UIScrollViewDelegate,UITextFieldDelegate
+{
 
     var loadingCircle = UIView()
     var circle = UIView()
     
+    
     @IBOutlet var btnSlide: UIButton!
-    @IBOutlet var btnSearch: UIButton!
+    
+    @IBOutlet var viewStoreLocator: UIView!
+    @IBOutlet var lblStoreName: UILabel!
+    @IBOutlet var imgvStoreMapPin: UIImageView!
+    @IBOutlet var btnStoreLocator: UIButton!
     
     @IBOutlet var viewBanner: UIView!
     @IBOutlet var scrollBanner: UIScrollView!
@@ -32,6 +38,9 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
     @IBOutlet var lblFrozenProducts: UILabel!
     @IBOutlet var scrollFrozenProducts: UIScrollView!
     var  arrMFrozenProducts = NSMutableArray()
+    
+    
+    var  arrMLanguages = NSMutableArray()
     
     // MARK: - viewWillAppear Method
     override func viewWillAppear(_ animated: Bool) {
@@ -51,25 +60,8 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
         //let myAppDelegate = UIApplication.shared.delegate as! AppDelegate
         //self.tabBarController?.navigationController?.navigationBar.isHidden = true
         
-        arrMFreshProducts = ["p1.jpg", "p2.jpg", "p3.jpg","p4.jpg"]
-        arrMFrozenProducts = ["p1.jpg", "p2.jpg", "p3.jpg"]
-       
-        self.createFreshProductsSlide()
-        self.createFrozenProductsSlide()
+        self.getAuthenticationToken()
         
-        let datanotSave = UserDefaults.standard.integer(forKey: "dataNotSave")
-        print("datanotSave",datanotSave)
-        if (datanotSave == 0)
-        {
-            print("call get authorization method")
-            self.getAuthenticationToken()
-        }
-        else
-        {
-            print("not call get authorization method")
-            let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
-            self.getBannerUrl(strSelectedStoreID: strSlectedStoreID)
-        }
     }
     
      // MARK: - Slide method
@@ -106,9 +98,34 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
             obj.view.frame=CGRect(x:0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         }, completion: nil)
     }
-    // MARK: - Search method
-    @IBAction func pressSearch(_ sender: Any)
+    // MARK: - StoreLocator method
+    @IBAction func pressStoreLocator(_ sender: Any)
     {
+        let screenSize = UIScreen.main.bounds
+        if (screenSize.height == 568.0){
+        }
+        else if (screenSize.height == 480.0){
+        }
+        else if(screenSize.height == 667.0){
+            let storyBoard = UIStoryboard(name: "SectionFour6S", bundle: nil)
+            let StoreLocator = storyBoard.instantiateViewController(withIdentifier: "StoreLocator") as! StoreLocator
+            self.navigationController?.pushViewController(StoreLocator, animated: true)
+        }
+        else if(screenSize.height == 736.0){
+            let storyBoard = UIStoryboard(name: "SectionFour6SPlus", bundle: nil)
+            let StoreLocator = storyBoard.instantiateViewController(withIdentifier: "StoreLocator") as! StoreLocator
+            self.navigationController?.pushViewController(StoreLocator, animated: true)
+        }
+        else if(screenSize.height == 812.0){
+            let storyBoard = UIStoryboard(name: "SectionFourXS", bundle: nil)
+            let StoreLocator = storyBoard.instantiateViewController(withIdentifier: "StoreLocator") as! StoreLocator
+            self.navigationController?.pushViewController(StoreLocator, animated: true)
+        }
+        else{
+            let storyBoard = UIStoryboard(name: "SectionFourXSMAX", bundle: nil)
+            let StoreLocator = storyBoard.instantiateViewController(withIdentifier: "StoreLocator") as! StoreLocator
+            self.navigationController?.pushViewController(StoreLocator, animated: true)
+        }
     }
     
     // MARK: - create Banners Slider Method
@@ -147,7 +164,7 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
             imgviconBG.backgroundColor = UIColor.clear
             let dictemp: NSDictionary = arrMBanners[x] as! NSDictionary
             let  strimage = String(format: "%@", dictemp.value(forKey: "PictureUrl") as! CVarArg)
-            print(strimage)
+            //print(strimage)
             imgviconBG.imageFromURL(urlString: strimage)
             viewPage.addSubview(imgviconBG)
         }
@@ -168,6 +185,17 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
         
         for x in 0 ..< arrMFreshProducts.count
         {
+            let dictemp: NSDictionary = arrMFreshProducts[x] as! NSDictionary
+            
+            let  Id = String(format: "%@", dictemp.value(forKey: "Id") as! CVarArg)
+            let  Name = String(format: "%@", dictemp.value(forKey: "Name") as! CVarArg)
+            let  Price = String(format: "%@", dictemp.value(forKey: "Price") as! CVarArg)
+            let  RatingSum = String(format: "%@", dictemp.value(forKey: "RatingSum") as! CVarArg)
+        
+            let arrImages = dictemp.value(forKey: "images") as! NSArray
+            let dictempImg: NSDictionary = arrImages[0] as! NSDictionary
+            let  strsrc = String(format: "%@", dictempImg.value(forKey: "src") as! CVarArg)
+            
             let viewPage = UIView(frame: CGRect(x: x * NSInteger(scrollFreshProducts.frame.size.width / 2) + 10 , y: 5, width: NSInteger(scrollFreshProducts.frame.size.width / 2)-20, height: NSInteger(scrollFreshProducts.frame.size.height)-10))
             viewPage.tag=x
             viewPage.backgroundColor = UIColor.white
@@ -177,15 +205,14 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
          
             let imgvProducts = UIImageView(frame: CGRect(x: 0, y: 0, width: viewPage.frame.size.width, height: viewPage.frame.size.height/2 + 15))
             imgvProducts.backgroundColor = UIColor.clear
-            let rowimagename = "\(arrMFreshProducts[x])"
-            imgvProducts.image = UIImage(named:rowimagename)
+            imgvProducts.imageFromURL(urlString: strsrc)
             viewPage.addSubview(imgvProducts)
             
             let lblNameType = UILabel(frame: CGRect(x: 0, y: imgvProducts.frame.maxY, width: viewPage.frame.size.width, height:20))
             lblNameType.textAlignment = .center
             lblNameType.textColor = UIColor(red: 65/255, green: 65/255, blue: 67/255, alpha: 1.0)
             lblNameType.backgroundColor = UIColor.clear
-            lblNameType.text = " Sea Bream | Turkey"
+            lblNameType.text = Name
             lblNameType.font = UIFont(name: "Dubai-Regular", size: 13.0)!
             viewPage.addSubview(lblNameType)
             
@@ -193,13 +220,59 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
             lblPriceUnit.textAlignment = .center
             lblPriceUnit.textColor = UIColor(red: 0/255, green: 183/255, blue: 178/255, alpha: 1.0)
             lblPriceUnit.backgroundColor = UIColor.clear
-            lblPriceUnit.text = " 47.00 AED"
+            lblPriceUnit.text = String(format: "%@ SAR", Price)
             lblPriceUnit.font = UIFont(name: "Dubai-Medium", size: 13.0)!
             viewPage.addSubview(lblPriceUnit)
             
+            let btnOverAll1 = UIButton(frame: CGRect(x: 0, y: 0, width: viewPage.frame.size.width, height: viewPage.frame.size.height))
+            btnOverAll1.tag=viewPage.tag
+            btnOverAll1.backgroundColor=UIColor.clear
+            btnOverAll1.addTarget(self, action: #selector(pressbtnOverAll1), for: .touchUpInside)
+            viewPage.addSubview(btnOverAll1)
             scrollFreshProducts.addSubview(viewPage)
         }
     }
+    @objc func pressbtnOverAll1(sender: UIButton)
+    {
+        print("pressbtnOverAll1")
+        let dictemp: NSDictionary = arrMFreshProducts[sender.tag] as! NSDictionary
+        let  strid = String(format: "%@", dictemp.value(forKey: "Id") as! CVarArg)
+        
+        let screenSize = UIScreen.main.bounds
+        if (screenSize.height == 568.0){
+        }
+        else if (screenSize.height == 480.0){
+        }
+        else if(screenSize.height == 667.0){
+            let storyBoard = UIStoryboard(name: "SectionTwo6S", bundle: nil)
+            let ProductDetails = storyBoard.instantiateViewController(withIdentifier: "ProductDetails") as! ProductDetails
+            ProductDetails.strID = strid
+            ProductDetails.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(ProductDetails, animated: true)
+        }
+        else if(screenSize.height == 736.0){
+            let storyBoard = UIStoryboard(name: "SectionTwo6SPlus", bundle: nil)
+            let ProductDetails = storyBoard.instantiateViewController(withIdentifier: "ProductDetails") as! ProductDetails
+            ProductDetails.strID = strid
+            ProductDetails.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(ProductDetails, animated: true)
+        }
+        else if(screenSize.height == 812.0){
+            let storyBoard = UIStoryboard(name: "SectionTwoXS", bundle: nil)
+            let ProductDetails = storyBoard.instantiateViewController(withIdentifier: "ProductDetails") as! ProductDetails
+            ProductDetails.strID = strid
+            ProductDetails.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(ProductDetails, animated: true)
+        }
+        else{
+            let storyBoard = UIStoryboard(name: "SectionTwoXSMAX", bundle: nil)
+            let ProductDetails = storyBoard.instantiateViewController(withIdentifier: "ProductDetails") as! ProductDetails
+            ProductDetails.strID = strid
+            ProductDetails.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(ProductDetails, animated: true)
+        }
+    }
+    
     
     // MARK: - create Frozen Products Slider Method
     func createFrozenProductsSlide() -> Void
@@ -216,6 +289,18 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
         
         for x in 0 ..< arrMFrozenProducts.count
         {
+            
+            let dictemp: NSDictionary = arrMFrozenProducts[x] as! NSDictionary
+            
+            let  id = String(format: "%@", dictemp.value(forKey: "id") as! CVarArg)
+            let  name = String(format: "%@", dictemp.value(forKey: "name") as! CVarArg)
+            let  price = String(format: "%@", dictemp.value(forKey: "price") as! CVarArg)
+            let  Rating = String(format: "%@", dictemp.value(forKey: "Rating") as! CVarArg)
+            
+            let arrImages = dictemp.value(forKey: "images") as! NSArray
+            let dictempImg: NSDictionary = arrImages[0] as! NSDictionary
+            let  strsrc = String(format: "%@", dictempImg.value(forKey: "src") as! CVarArg)
+            
             let viewPage = UIView(frame: CGRect(x: x * NSInteger(scrollFrozenProducts.frame.size.width / 3) + 5 , y: 2, width: NSInteger(scrollFrozenProducts.frame.size.width / 3)-10, height: NSInteger(scrollFrozenProducts.frame.size.height)-4))
             viewPage.tag=x
             viewPage.backgroundColor = UIColor.white
@@ -225,15 +310,14 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
             
             let imgvProducts = UIImageView(frame: CGRect(x: 5, y: 5, width: viewPage.frame.size.width-10, height: viewPage.frame.size.height/2 + 10))
             imgvProducts.backgroundColor = UIColor.clear
-            let rowimagename = "\(arrMFrozenProducts[x])"
-            imgvProducts.image = UIImage(named:rowimagename)
+            imgvProducts.imageFromURL(urlString: strsrc)
             viewPage.addSubview(imgvProducts)
             
             let lblNameType = UILabel(frame: CGRect(x: 0, y: imgvProducts.frame.maxY, width: viewPage.frame.size.width, height:20))
             lblNameType.textAlignment = .center
             lblNameType.textColor = UIColor(red: 65/255, green: 65/255, blue: 67/255, alpha: 1.0)
             lblNameType.backgroundColor = UIColor.clear
-            lblNameType.text = " Sea Bream | Oman"
+            lblNameType.text = name
             lblNameType.font = UIFont(name: "Dubai-Regular", size: 13.0)!
             viewPage.addSubview(lblNameType)
             
@@ -241,14 +325,60 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
             lblPriceUnit.textAlignment = .center
             lblPriceUnit.textColor = UIColor(red: 0/255, green: 183/255, blue: 178/255, alpha: 1.0)
             lblPriceUnit.backgroundColor = UIColor.clear
-            lblPriceUnit.text = " 47.00 AED"
+            lblPriceUnit.text = String(format: "%@ SAR", price)
             lblPriceUnit.font = UIFont(name: "Dubai-Medium", size: 13.0)!
             viewPage.addSubview(lblPriceUnit)
            
+            let btnOverAll2 = UIButton(frame: CGRect(x: 0, y: 0, width: viewPage.frame.size.width, height: viewPage.frame.size.height))
+            btnOverAll2.tag=viewPage.tag
+            btnOverAll2.backgroundColor=UIColor.clear
+            btnOverAll2.addTarget(self, action: #selector(pressbtnOverAll2), for: .touchUpInside)
+            viewPage.addSubview(btnOverAll2)
             scrollFrozenProducts.addSubview(viewPage)
         }
         
     }
+    @objc func pressbtnOverAll2(sender: UIButton)
+    {
+        print("pressbtnOverAll2")
+        let dictemp: NSDictionary = arrMFrozenProducts[sender.tag] as! NSDictionary
+        let  strid = String(format: "%@", dictemp.value(forKey: "id") as! CVarArg)
+        
+        let screenSize = UIScreen.main.bounds
+        if (screenSize.height == 568.0){
+        }
+        else if (screenSize.height == 480.0){
+        }
+        else if(screenSize.height == 667.0){
+            let storyBoard = UIStoryboard(name: "SectionTwo6S", bundle: nil)
+            let ProductDetails = storyBoard.instantiateViewController(withIdentifier: "ProductDetails") as! ProductDetails
+            ProductDetails.strID = strid
+            ProductDetails.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(ProductDetails, animated: true)
+        }
+        else if(screenSize.height == 736.0){
+            let storyBoard = UIStoryboard(name: "SectionTwo6SPlus", bundle: nil)
+            let ProductDetails = storyBoard.instantiateViewController(withIdentifier: "ProductDetails") as! ProductDetails
+            ProductDetails.strID = strid
+            ProductDetails.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(ProductDetails, animated: true)
+        }
+        else if(screenSize.height == 812.0){
+            let storyBoard = UIStoryboard(name: "SectionTwoXS", bundle: nil)
+            let ProductDetails = storyBoard.instantiateViewController(withIdentifier: "ProductDetails") as! ProductDetails
+            ProductDetails.strID = strid
+            ProductDetails.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(ProductDetails, animated: true)
+        }
+        else{
+            let storyBoard = UIStoryboard(name: "SectionTwoXSMAX", bundle: nil)
+            let ProductDetails = storyBoard.instantiateViewController(withIdentifier: "ProductDetails") as! ProductDetails
+            ProductDetails.strID = strid
+            ProductDetails.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(ProductDetails, animated: true)
+        }
+    }
+    
     
     // MARK: - ScrollView Delegate Method
     func scrollViewDidScroll(_ scrollView: UIScrollView)
@@ -424,20 +554,146 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
                     let token_type = String(format: "%@", Data.value(forKey: "token_type") as! CVarArg)
                     let refresh_token = String(format: "%@", Data.value(forKey: "refresh_token") as! CVarArg)
                    
-                    print("Status",Status)
+                    /*print("Status",Status)
                     print("ResponseMessage",ResponseMessage)
                     print("Data",Data)
                     print("access_token",access_token)
                     print("expires_in",expires_in)
                     print("token_type",token_type)
-                    print("refresh_token",refresh_token)
+                    print("refresh_token",refresh_token)*/
                     
                     UserDefaults.standard.set(access_token, forKey: "access_token")
                     UserDefaults.standard.set(expires_in, forKey: "expires_in")
                     UserDefaults.standard.set(token_type, forKey: "token_type")
                     UserDefaults.standard.set(refresh_token, forKey: "refresh_token")
                     
+                    OperationQueue.main.addOperation{
+                        
+                        let LanguageSET = UserDefaults.standard.value(forKey: "LanguageSET")
+                        print("LanguageSET",LanguageSET)
+                        if (LanguageSET == nil)
+                        {
+                            print("not set")
+                            self.getLanguageList()
+                        }
+                        else
+                        {
+                            print("already set")
+                            print("LanguageSET",LanguageSET)
+                            print("lngid",UserDefaults.standard.value(forKey: "lngid") as Any)
+                            print("lngname",UserDefaults.standard.value(forKey: "lngname") as Any)
+                            print("lngunique_seo_code",UserDefaults.standard.value(forKey: "lngunique_seo_code") as Any)
+                            print("lnglanguage_culture",UserDefaults.standard.value(forKey: "lnglanguage_culture") as Any)
+                            
+                            self.getStoreList()
+                        }
+                        
+                    }
+                }
+            }
+            catch {
+                //check for internal server data error
+                self.hideLoadingMode()
+                print("Error -> \(error)")
+            }
+        }
+        task.resume()
+    }
+    
+    //MARK: - get LanguageList method
+    func getLanguageList()
+    {
+        self.showLoadingMode()
+        
+        var preferredLanguage : String = Bundle.main.preferredLocalizations.first!
+        print("preferredLanguage >>>>>>%@",preferredLanguage)
+        
+        let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
+        let strconnurl = String(format: "%@%@", Constants.conn.ConnUrl, "/api/languages")
+        let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
+        request.httpMethod = "GET"
+        request.setValue(strapikey, forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
+            guard error == nil && data != nil else
+            {
+                //check for fundamental networking error
+                self.hideLoadingMode()
+                print("Error=\(String(describing: error))")
+                return
+            }
+            do{
+                if let json = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
+                {
+                    self.hideLoadingMode()
+                    //print("json --->",json)
+                    
+                    let dictemp = NSMutableDictionary(dictionary: json)
+                    
+                    let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
+                    let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
+                    
+                    let Data = dictemp.value(forKey: "Data") as! NSDictionary
+                    let arrMStore = Data.value(forKey: "languages") as! NSArray
+                    self.arrMLanguages = NSMutableArray(array: arrMStore)
+                    //print("arrMLanguages --->",self.arrMLanguages)
+                    
+                    for x in 0 ..< self.arrMLanguages.count
+                    {
+                        let dictemp111: NSDictionary = self.arrMLanguages[x] as! NSDictionary
+                        let id = String(format: "%@", dictemp111.value(forKey: "id") as! CVarArg)
+                        let name = String(format: "%@", dictemp111.value(forKey: "name") as! CVarArg)
+                        let unique_seo_code = String(format: "%@", dictemp111.value(forKey: "unique_seo_code") as! CVarArg)
+                        let language_culture = String(format: "%@", dictemp111.value(forKey: "language_culture") as! CVarArg)
+                        
+                        if preferredLanguage == "en" || preferredLanguage == "ar"
+                        {
+                            //ENGLISH or ARBIC
+                            if unique_seo_code == "en" {
+                                //ENGLISH
+                                UserDefaults.standard.set(id, forKey: "lngid")
+                                UserDefaults.standard.set(name, forKey: "lngname")
+                                UserDefaults.standard.set(unique_seo_code, forKey: "lngunique_seo_code")
+                                UserDefaults.standard.set(language_culture, forKey: "lnglanguage_culture")
+                                UserDefaults.standard.synchronize()
+                                break
+                            }else if unique_seo_code == "ar"{
+                                //ARBIC
+                                UserDefaults.standard.set(id, forKey: "lngid")
+                                UserDefaults.standard.set(name, forKey: "lngname")
+                                UserDefaults.standard.set(unique_seo_code, forKey: "lngunique_seo_code")
+                                UserDefaults.standard.set(language_culture, forKey: "lnglanguage_culture")
+                                UserDefaults.standard.synchronize()
+                                break
+                            }
+                        }
+                        else
+                        {
+                            if unique_seo_code == "en"{
+                                //ENGLISH
+                                UserDefaults.standard.set(id, forKey: "lngid")
+                                UserDefaults.standard.set(name, forKey: "lngname")
+                                UserDefaults.standard.set(unique_seo_code, forKey: "lngunique_seo_code")
+                                UserDefaults.standard.set(language_culture, forKey: "lnglanguage_culture")
+                                UserDefaults.standard.synchronize()
+                                break
+                            }
+                        }
+                    }
+                    
+                    UserDefaults.standard.set("1", forKey: "LanguageSET")
+                    UserDefaults.standard.synchronize()
+                    
                     OperationQueue.main.addOperation {
+                        
+                        let LanguageSET = UserDefaults.standard.integer(forKey: "LanguageSET")
+                        print("LanguageSET",LanguageSET)
+                        print("lngid",UserDefaults.standard.value(forKey: "lngid") as Any)
+                        print("lngname",UserDefaults.standard.value(forKey: "lngname") as Any)
+                        print("lngunique_seo_code",UserDefaults.standard.value(forKey: "lngunique_seo_code") as Any)
+                        print("lnglanguage_culture",UserDefaults.standard.value(forKey: "lnglanguage_culture") as Any)
+                        
                         self.getStoreList()
                     }
                 }
@@ -485,7 +741,7 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
                     let Data = dictemp.value(forKey: "Data") as! NSDictionary
                     let arrMStore = Data.value(forKey: "stores") as! NSArray
                     self.arrMStores = NSMutableArray(array: arrMStore)
-                    print("arrMStores --->",self.arrMStores)
+                    //print("arrMStores --->",self.arrMStores)
                     
                     let dicFirstIndex = self.arrMStores.object(at: 0) as! NSDictionary
                     let SelectedStoreID = String(format: "%@", dicFirstIndex.value(forKey: "id") as! CVarArg)
@@ -497,6 +753,7 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
                     
                     OperationQueue.main.addOperation {
                         
+                        self.lblStoreName.text = SelectedStoreNAME
                         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
                         self.getBannerUrl(strSelectedStoreID: strSlectedStoreID)
                     }
@@ -517,7 +774,7 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
         self.showLoadingMode()
         
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
-        print("strapikey>>>>> %@",strapikey)
+        //print("strapikey>>>>> %@",strapikey)
         let strconnurl = String(format: "%@%@%@", Constants.conn.ConnUrl, "api/getbannerbystoreid/",strSelectedStoreID)
         let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
         request.httpMethod = "GET"
@@ -545,10 +802,74 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
                     
                     let arrMGallery = json.value(forKey: "Data") as! NSArray
                     self.arrMBanners = NSMutableArray(array: arrMGallery)
-                    print("arrMBanners --->",self.arrMBanners)
+                    //print("arrMBanners --->",self.arrMBanners)
                     
                     OperationQueue.main.addOperation {
                         self.pagecontrollerBanners()
+                        self.getBestSellerList()
+                    }
+                }
+            }
+            catch {
+                //check for internal server data error
+                self.hideLoadingMode()
+                print("Error -> \(error)")
+            }
+        }
+        task.resume()
+    }
+  
+    //MARK: - get BestSeller method
+    func getBestSellerList()
+    {
+        self.showLoadingMode()
+        
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            //print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
+     
+        let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+    
+        let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
+        let strconnurl = String(format: "%@%@storeid=%@&customerId=%@&languageId=%@", Constants.conn.ConnUrl, "/api/bestseller?",strSlectedStoreID,strCustomerid,"1")
+        let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
+        request.httpMethod = "GET"
+        request.setValue(strapikey, forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
+            guard error == nil && data != nil else
+            {
+                //check for fundamental networking error
+                self.hideLoadingMode()
+                print("Error=\(String(describing: error))")
+                return
+            }
+            do{
+                if let json = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
+                {
+                    self.hideLoadingMode()
+                    //print("json --->",json)
+                    
+                    let dictemp = NSMutableDictionary(dictionary: json)
+                    
+                    let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
+                    let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
+                    
+                    let arrMbestsell = dictemp.value(forKey: "Data") as! NSArray
+                    self.arrMFreshProducts = NSMutableArray(array: arrMbestsell)
+                    //print("arrMFreshProducts --->",self.arrMFreshProducts)
+                    
+                    OperationQueue.main.addOperation {
+                        self.createFreshProductsSlide()
+                        self.getNewArrivalList()
                     }
                 }
             }
@@ -561,8 +882,67 @@ class HomeTab: UIViewController,UIScrollViewDelegate {
         task.resume()
     }
     
-    
-    
+    //MARK: - get NewArrival method
+    func getNewArrivalList()
+    {
+        self.showLoadingMode()
+        
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            //print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
+        let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+        
+        let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
+        let strconnurl = String(format: "%@%@storeid=%@&customerId=%@&languageId=%@", Constants.conn.ConnUrl, "/api/newarrivals?",strSlectedStoreID,strCustomerid,"1")
+        let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
+        request.httpMethod = "GET"
+        request.setValue(strapikey, forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
+            guard error == nil && data != nil else
+            {
+                //check for fundamental networking error
+                self.hideLoadingMode()
+                print("Error=\(String(describing: error))")
+                return
+            }
+            do{
+                if let json = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
+                {
+                    self.hideLoadingMode()
+                    //print("json --->",json)
+                    
+                    let dictemp = NSMutableDictionary(dictionary: json)
+                    
+                    let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
+                    let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
+                    
+                    let Data = dictemp.value(forKey: "Data") as! NSDictionary
+                    let arrMnewarr = Data.value(forKey: "products") as! NSArray
+                    self.arrMFrozenProducts = NSMutableArray(array: arrMnewarr)
+                    //print("arrMFrozenProducts --->",self.arrMFrozenProducts)
+                  
+                    OperationQueue.main.addOperation {
+                        self.createFrozenProductsSlide()
+                    }
+                }
+            }
+            catch {
+                //check for internal server data error
+                self.hideLoadingMode()
+                print("Error -> \(error)")
+            }
+        }
+        task.resume()
+    }
 }
 extension UIImageView {
     public func imageFromURL(urlString: String) {

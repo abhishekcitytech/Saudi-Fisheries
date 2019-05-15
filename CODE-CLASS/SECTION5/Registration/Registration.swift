@@ -115,7 +115,7 @@ class Registration: UIViewController,UITextFieldDelegate
         
     }
     
-    //MARK: - pressRegister Method
+    //MARK: - save Register Method
     @IBAction func pressRegister(_ sender: Any)
     {
         if txtFirstname.text == ""
@@ -172,84 +172,10 @@ class Registration: UIViewController,UITextFieldDelegate
         }
 
     }
-    func postRegister()
-    {
-        self.showLoadingMode()
-        
-        let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
-        
-        let dicPostRegistration:NSMutableDictionary? = ["first_name" : txtFirstname.text!,
-        "last_name" : txtLastname.text!,
-        "email" : txtEmail.text!,
-        "password" : txtPassword.text!,
-        "confirm_password" : txtConfirmPassword.text!,
-        "register_mobilenumber" : txtMobileNumber.text!,
-        "registered_in_store_id" : strSlectedStoreID
-        ];
-        print("dicPostRegistration ---->>>>>",dicPostRegistration as Any)
-        
-        let dicPostOverAll:NSMutableDictionary? = ["customer" : dicPostRegistration as Any];
-        print("dicPostOverAll ---->>>>>",dicPostOverAll as Any)
-        
-        let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
-        let strconnurl = String(format: "%@%@", Constants.conn.ConnUrl, "/api/customer/registration")
-        let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
-        request.httpMethod = "POST"
-        request.setValue(strapikey, forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let jsonData : NSData = try! JSONSerialization.data(withJSONObject: dicPostOverAll) as NSData
-        let jsonString = NSString(data: jsonData as Data, encoding: String.Encoding.utf8.rawValue)! as String
-        print("json string = \(jsonString)")
-        request.httpBody = jsonData as Data
-        
-        let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
-            guard error == nil && data != nil else
-            {
-                //check for fundamental networking error
-                self.hideLoadingMode()
-                print("Error=\(String(describing: error))")
-                return
-            }
-            do{
-                if let json = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
-                {
-                    self.hideLoadingMode()
-                    
-                    let dictemp = json as NSDictionary
-                    print("dictemp --->",dictemp)
-                    
-                    let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
-                    let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
-                    
-                    let Data = dictemp.value(forKey: "Data") as! NSDictionary
-                    UserDefaults.standard.set(Data, forKey: "RegisteredUserDetails")
-                    UserDefaults.standard.synchronize()
-                    
-                    UserDefaults.standard.set(1, forKey: "dataNotSave")
-                    UserDefaults.standard.synchronize()
-                    
-                    OperationQueue.main.addOperation {
-                        self.navigationController?.popToRootViewController(animated: true)
-                    }
-                    
-                    
-                }
-            }
-            catch {
-                //check for internal server data error
-                self.hideLoadingMode()
-                print("Error -> \(error)")
-            }
-        }
-        task.resume()
-    }
     
     //MARK: - pressHaveanAccount Method
     @IBAction func pressHaveanAccount(_ sender: Any) {
     }
-    
-    
     
     // MARK: - Textfield Delegate Method
     func textFieldDidBeginEditing(_ textField: UITextField)
@@ -363,5 +289,99 @@ class Registration: UIViewController,UITextFieldDelegate
             self.loadingCircle.removeFromSuperview()
             self.circle.removeFromSuperview()
         }
+    }
+    
+    //MARK: - post Registration Method
+    func postRegister()
+    {
+        self.showLoadingMode()
+        
+        let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+        
+        let dicPostRegistration:NSMutableDictionary? = ["first_name" : txtFirstname.text!,
+                                                        "last_name" : txtLastname.text!,
+                                                        "email" : txtEmail.text!,
+                                                        "password" : txtPassword.text!,
+                                                        "confirm_password" : txtConfirmPassword.text!,
+                                                        "register_mobilenumber" : txtMobileNumber.text!,
+                                                        "registered_in_store_id" : strSlectedStoreID
+        ];
+        print("dicPostRegistration ---->>>>>",dicPostRegistration as Any)
+        
+        let dicPostOverAll:NSMutableDictionary? = ["customer" : dicPostRegistration as Any];
+        print("dicPostOverAll ---->>>>>",dicPostOverAll as Any)
+        
+        let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
+        let strconnurl = String(format: "%@%@", Constants.conn.ConnUrl, "/api/customer/registration")
+        let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
+        request.httpMethod = "POST"
+        request.setValue(strapikey, forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonData : NSData = try! JSONSerialization.data(withJSONObject: dicPostOverAll) as NSData
+        let jsonString = NSString(data: jsonData as Data, encoding: String.Encoding.utf8.rawValue)! as String
+        print("json string = \(jsonString)")
+        request.httpBody = jsonData as Data
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
+            guard error == nil && data != nil else
+            {
+                //check for fundamental networking error
+                self.hideLoadingMode()
+                print("Error=\(String(describing: error))")
+                return
+            }
+            do{
+                if let json = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
+                {
+                    self.hideLoadingMode()
+                    
+                    let dictemp = json as NSDictionary
+                    print("dictemp --->",dictemp)
+                    
+                    let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
+                    let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
+                    
+                    OperationQueue.main.addOperation {
+                        
+                        if Status == "1"
+                        {
+                            let Data = dictemp.value(forKey: "Data") as! NSDictionary
+                            UserDefaults.standard.set(Data, forKey: "RegisteredUserDetails")
+                            UserDefaults.standard.synchronize()
+                            
+                            let strpassword = String(format: "%@", self.txtPassword.text!)
+                            UserDefaults.standard.set(strpassword, forKey: "RegisteredUserDetailsPassword")
+                            UserDefaults.standard.synchronize()
+                            
+                            UserDefaults.standard.set(1, forKey: "dataNotSave")
+                            UserDefaults.standard.synchronize()
+                            
+                            let strPP = String(format: "%@", UserDefaults.standard.string(forKey: "RegisteredUserDetailsPassword")!)
+                            print("strPP >>><<< %@",strPP)
+                            
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }
+                        else
+                        {
+                            let uiAlert = UIAlertController(title: "", message: ResponseMessage, preferredStyle: UIAlertController.Style.alert)
+                            self.present(uiAlert, animated: true, completion: nil)
+                            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                                print("Click of default button")
+                            }))
+                        }
+                        
+                    }
+                    
+                    
+                }
+            }
+            catch {
+                //check for internal server data error
+                self.hideLoadingMode()
+                print("Error -> \(error)")
+            }
+        }
+        task.resume()
     }
 }

@@ -109,7 +109,7 @@ class OrderReview: UIViewController, UITableViewDataSource, UITableViewDelegate,
             cell.backgroundColor = UIColor.white
         }*/
         
-        cell.backgroundColor = UIColor(red: 178/255, green: 210/255, blue: 51/255, alpha: 1.0)
+        cell.backgroundColor = UIColor.lightGray
         
         let dictemp: NSDictionary = arrMWareHouse[indexPath.row] as! NSDictionary
         let  str1 = String(format: "%@", dictemp.value(forKey: "Id") as! CVarArg)
@@ -314,8 +314,16 @@ class OrderReview: UIViewController, UITableViewDataSource, UITableViewDelegate,
     {
         self.showLoadingMode()
         
-        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
-        let  strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
         
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
@@ -360,7 +368,7 @@ class OrderReview: UIViewController, UITableViewDataSource, UITableViewDelegate,
                     
                     OperationQueue.main.addOperation {
                         
-                        if strSubTotal == "" || strOrderTotalDiscount == "" || strTax == "" || strOrderTotal == ""
+                        if strSubTotal == ""
                         {
                             self.viewBottomTotal.isHidden = true
                             self.btnConfirmOrder.isHidden = true
@@ -390,6 +398,7 @@ class OrderReview: UIViewController, UITableViewDataSource, UITableViewDelegate,
                         }
                         else if strIdentifier == "200" {
                             //Prickup
+                            self.getWareHouseList()
                         }
                     }
                 }
@@ -445,6 +454,8 @@ class OrderReview: UIViewController, UITableViewDataSource, UITableViewDelegate,
                         let  StoreId = String(format: "%@", dictemp.value(forKey: "StoreId") as! CVarArg)
                         if strSlectedStoreID == StoreId
                         {
+                            let  str1 = String(format: "%@", dictemp.value(forKey: "Id") as! CVarArg)
+                            self.strSelectedWareHouse = str1
                             self.arrMWareHouse.addObjects(from: [arrMWrhs[x]])
                         }
                     }
@@ -470,8 +481,16 @@ class OrderReview: UIViewController, UITableViewDataSource, UITableViewDelegate,
     {
         self.showLoadingMode()
         
-        let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
-        let  strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
         
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)

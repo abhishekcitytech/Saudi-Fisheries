@@ -102,7 +102,7 @@ class ProductGrid: UIViewController,UICollectionViewDelegate, UICollectionViewDa
         let  strid = String(format: "%@", dictemp.value(forKey: "id") as! CVarArg)
         let  strname = String(format: "%@", dictemp.value(forKey: "name") as! CVarArg)
         let  strprice = String(format: "%@", dictemp.value(forKey: "price") as! CVarArg)
-        let  strdisable_wishlist_button = String(format: "%@", dictemp.value(forKey: "disable_wishlist_button") as! CVarArg) //0 1
+        let  strdisable_wishlist_button = String(format: "%@", dictemp.value(forKey: "isproductinwishlist") as! CVarArg) //0 1
         let  strproduct_type = String(format: "%@", dictemp.value(forKey: "product_type") as! CVarArg)
         let  strRating = String(format: "%@", dictemp.value(forKey: "Rating") as! CVarArg)
         
@@ -113,10 +113,11 @@ class ProductGrid: UIViewController,UICollectionViewDelegate, UICollectionViewDa
         /*print(strid)
         print(strname)
         print(strprice)
-        print(strdisable_wishlist_button)
         print(strproduct_type)
         print(strRating)
         print(strsrc)*/
+        
+        print(strdisable_wishlist_button)
        
         cell.lbl1.text = String(format: "%@%@", strprice,"SAR")
         cell.lbl2.text = strname
@@ -126,11 +127,12 @@ class ProductGrid: UIViewController,UICollectionViewDelegate, UICollectionViewDa
         
         if strdisable_wishlist_button == "0" {
             cell.btnFav.setImage(UIImage(named: "favdeselected"), for: .normal)
+            cell.btnFav.tag = indexPath.item
+            cell.btnFav.addTarget(self, action: #selector(pressFavAdd), for: .touchUpInside)
         }
         else{
             cell.btnFav.setImage(UIImage(named: "favselected"), for: .normal)
         }
-        cell.btnFav.addTarget(self, action: #selector(pressFavAdd), for: .touchUpInside)
         
         cell.floatRatingView.backgroundColor = UIColor.clear
         cell.floatRatingView.delegate = self
@@ -184,8 +186,13 @@ class ProductGrid: UIViewController,UICollectionViewDelegate, UICollectionViewDa
             self.navigationController?.pushViewController(ProductDetails, animated: true)
         }
     }
-    @objc func pressFavAdd() -> Void
+    
+    //MARK: - add to wishlist Method
+    @objc func pressFavAdd(sender: UIButton)
     {
+        let dictemp: NSDictionary = self.arrMProducts[sender.tag] as! NSDictionary
+        let  strid = String(format: "%@", dictemp.value(forKey: "id") as! CVarArg)
+        self.postAddtoFav(strPId: strid)
     }
     
     // MARK: - tableView delegate and datasoruce Method
@@ -221,6 +228,9 @@ class ProductGrid: UIViewController,UICollectionViewDelegate, UICollectionViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
     }
+    
+    
+    //MARK: - Add Wishlist Method
     @objc func pressFavAddTable() -> Void
     {
     }
@@ -373,8 +383,19 @@ class ProductGrid: UIViewController,UICollectionViewDelegate, UICollectionViewDa
         
         let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
         
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
+        
         let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
-        let strconnurl = String(format: "%@%@storeid=%@&category_id=%@&limit=%@&page=%@", Constants.conn.ConnUrl, "/api/products?",strSlectedStoreID,strCategoryID,"10","1")
+        let strconnurl = String(format: "%@%@storeid=%@&category_id=%@&customer_id=%@&limit=%@&page=%@", Constants.conn.ConnUrl, "/api/products?",strSlectedStoreID,strCategoryID,strCustomerid,"10","1")
         let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
         request.httpMethod = "GET"
         request.setValue(strapikey, forHTTPHeaderField: "Authorization")
@@ -406,6 +427,85 @@ class ProductGrid: UIViewController,UICollectionViewDelegate, UICollectionViewDa
             
                     OperationQueue.main.addOperation {
                         self.CollectionTable.reloadData()
+                    }
+                }
+            }
+            catch {
+                //check for internal server data error
+                self.hideLoadingMode()
+                print("Error -> \(error)")
+            }
+        }
+        task.resume()
+    }
+    
+    //MARK: - get AddtoFav method
+    func postAddtoFav(strPId:String)
+    {
+        self.showLoadingMode()
+        
+        let strSlectedStoreID = String(format: "%@", UserDefaults.standard.string(forKey: "SelectedStoreID")!)
+        
+        var  strCustomerid = String()
+        if UserDefaults.standard.value(forKey: "RegisteredUserDetails") == nil{
+            print("emplty")
+            strCustomerid = String(format: "%@", "")
+        }
+        else{
+            let dicUser = UserDefaults.standard.value(forKey: "RegisteredUserDetails") as! NSMutableDictionary
+            //print(dicUser)
+            strCustomerid = String(format: "%@", dicUser.value(forKey: "id") as! CVarArg)
+        }
+        
+        let dicshopping_cart_item:NSMutableDictionary? = ["quantity" : "1",
+                                                          "shopping_cart_type" : "wishlist",
+                                                          "product_id" : strPId,
+                                                          "customer_id" : strCustomerid,
+                                                          "storeid" : strSlectedStoreID,
+                                                          ];
+        print("dicshopping_cart_item ---->>>>>",dicshopping_cart_item as Any)
+        
+        let dicPostOverAll:NSMutableDictionary? = ["shopping_cart_item" : dicshopping_cart_item as Any];
+        print("dicPostOverAll ---->>>>>",dicPostOverAll as Any)
+        
+        let strapikey = String(format: "%@ %@", UserDefaults.standard.string(forKey: "token_type")!, UserDefaults.standard.string(forKey: "access_token")!)
+        let strconnurl = String(format: "%@%@", Constants.conn.ConnUrl, "/api/shopping_cart_items")
+        let request = NSMutableURLRequest(url: NSURL(string: strconnurl)! as URL)
+        request.httpMethod = "POST"
+        request.setValue(strapikey, forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonData : NSData = try! JSONSerialization.data(withJSONObject: dicPostOverAll as Any) as NSData
+        let jsonString = NSString(data: jsonData as Data, encoding: String.Encoding.utf8.rawValue)! as String
+        print("json string = \(jsonString)")
+        request.httpBody = jsonData as Data
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
+            guard error == nil && data != nil else
+            {
+                //check for fundamental networking error
+                self.hideLoadingMode()
+                print("Error=\(String(describing: error))")
+                return
+            }
+            do{
+                if let json = try JSONSerialization.jsonObject(with: data!) as? NSDictionary
+                {
+                    self.hideLoadingMode()
+                    
+                    let dictemp = json as NSDictionary
+                    print("dictemp --->",dictemp)
+                    
+                    let Status = String(format: "%@", dictemp.value(forKey: "Status") as! CVarArg)
+                    let ResponseMessage = String(format: "%@", dictemp.value(forKey: "ResponseMessage") as! CVarArg)
+                    
+                    OperationQueue.main.addOperation {
+                        
+                        if Status == "1"
+                        {
+                            self.arrMProducts.removeAllObjects()
+                            self.getProductList(strCategoryID: self.strCatID)
+                        }
                     }
                 }
             }
